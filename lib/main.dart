@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'pages/start.dart';
-import 'pages/entdecken.dart';
-import 'pages/neuigkeiten.dart';
-import 'pages/einstellungen.dart';
+import 'pages/discover.dart';
+import 'pages/news.dart';
+import 'pages/settings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,7 +42,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Widget> _pages = [Start(), Entdecken(), Neuigkeiten(), Einstellungen()];
+  List<Widget> _pages = [Start(), Discover(), News(), Settings()];
   int _selectedIndex = 0;
 
   @override
@@ -60,11 +60,11 @@ class _HomeState extends State<Home> {
         currentIndex: _selectedIndex,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Start"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Entdecken"),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Discover"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.notifications), label: "Neuigkeiten"),
+              icon: Icon(Icons.notifications), label: "News"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: "Einstellungen"),
+              icon: Icon(Icons.settings), label: "Settings"),
         ],
       ),
     );
