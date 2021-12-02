@@ -2,6 +2,7 @@ import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/widgets/settingsbuttom.dart';
+import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: const CustomAppBar('Settings'),
       body: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
