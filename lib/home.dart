@@ -12,7 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Widget> _pages = [Start(), Discover(), News(), Settings()];
+  List<Widget> _pages = [Start(), NewProcedure(), News(), Settings()];
   int _selectedIndex = 0;
 
   @override
