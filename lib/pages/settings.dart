@@ -30,11 +30,13 @@ class _SettingsState extends State<Settings> {
             const Divider(
               color: Colors.purple,
             ),
-            SettingsButton(Icons.create, "Neues Erfahren erstellen", () {}),
+            SettingsButton(CommunityMaterialIcons.archive_outline,
+                "Meine Verfahren", () {}),
             const Divider(
               color: Colors.purple,
             ),
-            SettingsButton(Icons.question_answer, "FAQ", () {}),
+            SettingsButton(Icons.admin_panel_settings_outlined,
+                "Benutzerverwaltung", () {}),
             const Divider(
               color: Colors.purple,
             ),
