@@ -1,6 +1,7 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
+import 'package:swp_direktdem_verf_app/pages/logout.dart';
 import 'package:swp_direktdem_verf_app/widgets/settingsbuttom.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
@@ -40,8 +41,13 @@ class _SettingsState extends State<Settings> {
             const Divider(
               color: Colors.purple,
             ),
-            SettingsButton(
-                CommunityMaterialIcons.logout_variant, "Ausloggen", () {}),
+            SettingsButton(CommunityMaterialIcons.logout_variant, "Ausloggen",
+                () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Logout()),
+              );
+            }),
           ],
         ),
       ),
