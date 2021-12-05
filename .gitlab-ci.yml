@@ -1,0 +1,15 @@
+stages:
+  - lint
+
+flutter_analyze:
+  image: cirrusci/flutter:stable
+  stage: lint
+  script:
+    - flutter pub get
+    - flutter analyze --pub
+    - flutter format -l 80 -n . --set-exit-if-changed
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - lib/*
