@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swp_direktdem_verf_app/pages/NewProcedure.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
 class Start extends StatefulWidget {
@@ -17,8 +18,13 @@ class _StartState extends State<Start> {
         child: Text("Hallo das ist die Seite Start"),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {},
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const NewProcedure()),
+          );
+        },
         backgroundColor: Theme.of(context).primaryColor,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
