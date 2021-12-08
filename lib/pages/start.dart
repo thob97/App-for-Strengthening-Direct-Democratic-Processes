@@ -16,32 +16,37 @@ class _StartState extends State<Start> {
       appBar: const CustomAppBar('Start'),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const SizedBox(
               height: 10,
             ),
-            const Text(
-              'Abonnierte Verfahren',
-              textAlign: TextAlign
-                  .start, //todo: for some reason the text is in the center ???
-              style: TextStyle(color: Colors.purple, fontSize: 18),
+            const Padding(
+              padding: EdgeInsets.only(right: 200.0), //todo align start
+              child: Text(
+                'Abonnierte Verfahren',
+                style: TextStyle(color: Colors.purple, fontSize: 18),
+              ),
             ),
-            _procedureList(),
+            _proceduresList(),
             const SizedBox(height: 25.0),
-            const Text(
-              'Abonnierte Statistiken',
-              textAlign: TextAlign.start,
-              style: TextStyle(color: Colors.purple, fontSize: 18),
+            const Padding(
+              padding: EdgeInsets.only(right: 200.0), //todo align start
+              child: Text(
+                'Abonnierte Statistiken',
+                style: TextStyle(color: Colors.purple, fontSize: 18),
+              ),
             ),
-            _procedureList(), //todo: create statistic card and list
-            const SizedBox(height: 25.0),
+            _proceduresList(), //todo: create statistic card and list
+            const SizedBox(height: 20.0),
             ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
                 ),
-                child: const Text("Log in"))
+                child: const Text("Log in")),
+            const SizedBox(height: 10.0),
           ],
         ),
       ),
@@ -55,19 +60,20 @@ class _StartState extends State<Start> {
   }
 }
 
-Widget _procedureList() {
+Widget _proceduresList() {
   return SizedBox(
-    height: 200.0,
+    height: 250.0,
     child: ListView.builder(
         physics: const ClampingScrollPhysics(),
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: 15,
+        itemCount: 5,
         itemBuilder: (BuildContext context, int index) => CardProcedure(
             "Titel No. $index",
             "Beschreibung $index: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam ",
             "$index",
             true,
-            DateTime.now())),
+            DateTime.now(),
+            80.0)),
   );
 }
