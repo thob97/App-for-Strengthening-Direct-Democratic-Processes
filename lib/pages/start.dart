@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/widgets/card_procedure.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
 class Start extends StatefulWidget {
@@ -81,7 +80,12 @@ Widget _proceduresList() {
 Widget _myFloatingActionButton(BuildContext context) {
   return FloatingActionButton(
     child: const Icon(Icons.add),
-    onPressed: () {},
+    onPressed: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const NewProcedure()),
+      );
+    },
     backgroundColor: Theme.of(context).primaryColor,
   );
 }
