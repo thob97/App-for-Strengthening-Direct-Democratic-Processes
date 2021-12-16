@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/pages/datasecurity.dart';
 import 'package:swp_direktdem_verf_app/pages/logout.dart';
+import 'package:swp_direktdem_verf_app/pages/profilesettings.dart';
 import 'package:swp_direktdem_verf_app/widgets/settingsbuttom.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
@@ -33,7 +34,12 @@ class _SettingsState extends State<Settings> {
               color: Colors.purple,
             ),
             SettingsButton(CommunityMaterialIcons.account_edit,
-                "Profileinstellungen", () {}),
+                "Profileinstellungen", () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EditProfilePage()),
+                  );
+                }),
             const Divider(
               color: Colors.purple,
             ),
