@@ -17,36 +17,45 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar('Settings'),
-      bottomNavigationBar: CustomBottomNavigationBar(selectedIndex: 3),
+      bottomNavigationBar: const CustomBottomNavigationBar(selectedIndex: 3),
       body: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
         child: ListView(
           children: [
-            SettingsButton(Icons.notes, "Datenschutzbestimmungen", () {}),
+            SettingsButton(Icons.notes, 'Datenschutzbestimmungen', () {}),
             const Divider(
               color: Colors.purple,
             ),
-            SettingsButton(CommunityMaterialIcons.account_edit,
-                "Profileinstellungen", () {}),
+            SettingsButton(
+              CommunityMaterialIcons.account_edit,
+              'Profileinstellungen',
+              () {},
+            ),
             const Divider(
               color: Colors.purple,
             ),
-            SettingsButton(CommunityMaterialIcons.archive_outline,
-                "Meine Verfahren", () {}),
+            SettingsButton(
+              CommunityMaterialIcons.archive_outline,
+              'Meine Verfahren',
+              () {},
+            ),
             const Divider(
               color: Colors.purple,
             ),
-            SettingsButton(Icons.admin_panel_settings_outlined,
-                "Benutzerverwaltung", () {}),
+            SettingsButton(
+              Icons.admin_panel_settings_outlined,
+              'Benutzerverwaltung',
+              () {},
+            ),
             const Divider(
               color: Colors.purple,
             ),
-            SettingsButton(CommunityMaterialIcons.logout_variant, "Ausloggen",
+            SettingsButton(CommunityMaterialIcons.logout_variant, 'Ausloggen',
                 () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Logout()),
+                MaterialPageRoute(builder: (context) => const Logout()),
               );
             }),
           ],

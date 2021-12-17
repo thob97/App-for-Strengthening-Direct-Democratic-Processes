@@ -14,7 +14,7 @@ class _StartState extends State<Start> {
   Scaffold build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar('Start'),
-      bottomNavigationBar: CustomBottomNavigationBar(selectedIndex: 0),
+      bottomNavigationBar: const CustomBottomNavigationBar(selectedIndex: 0),
       body: _myBody(),
       floatingActionButton: _myFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -23,15 +23,15 @@ class _StartState extends State<Start> {
 
   Widget _myBody() {
     return const Center(
-      child: Text("Hallo das ist die Seite Start"),
+      child: Text('Hallo das ist die Seite Start'),
     );
   }
 
   Widget _myFloatingActionButton() {
     return FloatingActionButton(
-      child: const Icon(Icons.add),
       onPressed: () {},
       backgroundColor: Theme.of(context).primaryColor,
+      child: const Icon(Icons.add),
     );
   }
 }

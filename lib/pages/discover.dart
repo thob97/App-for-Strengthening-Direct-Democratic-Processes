@@ -12,11 +12,11 @@ class Discover extends StatefulWidget {
 class _DiscoverState extends State<Discover> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar('Discover'),
+    return const Scaffold(
+      appBar: CustomAppBar('Discover'),
       bottomNavigationBar: CustomBottomNavigationBar(selectedIndex: 1),
-      body: const Center(
-        child: Text("Hallo das ist die Seite Discover"),
+      body: Center(
+        child: Text('Hallo das ist die Seite Discover'),
       ),
     );
   }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SettingsButton extends StatelessWidget {
+  const SettingsButton(this.icon, this.title, this.onPressed);
+
   final IconData icon;
   final String title;
   final Function()? onPressed;
-
-  SettingsButton(this.icon, this.title, this.onPressed);
 
   @override
   Widget build(BuildContext context) {

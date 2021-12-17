@@ -12,11 +12,11 @@ class News extends StatefulWidget {
 class _NewsState extends State<News> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar('News'),
+    return const Scaffold(
+      appBar: CustomAppBar('News'),
       bottomNavigationBar: CustomBottomNavigationBar(selectedIndex: 2),
-      body: const Center(
-        child: Text("Hallo das ist die Seite News"),
+      body: Center(
+        child: Text('Hallo das ist die Seite News'),
       ),
     );
   }
