@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/pages/config/route_generator.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  CustomBottomNavigationBar({required this.selectedIndex});
+  const CustomBottomNavigationBar({required this.selectedIndex});
 
   final int selectedIndex;
 
@@ -22,19 +22,19 @@ class _MyBottomNavigationBar extends State<CustomBottomNavigationBar> {
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: "Start",
+          label: 'Start',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search),
-          label: "Discover",
+          label: 'Discover',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.notifications),
-          label: "News",
+          label: 'News',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
-          label: "Settings",
+          label: 'Settings',
         ),
       ],
     );
@@ -44,23 +44,31 @@ class _MyBottomNavigationBar extends State<CustomBottomNavigationBar> {
     setState(() {
       switch (index) {
         case 0:
-          Navigator.of(context).pushReplacementNamed('/home',
-              arguments: const NavigationArguments());
+          Navigator.of(context).pushReplacementNamed(
+            '/home',
+            arguments: const NavigationArguments(),
+          );
           break;
 
         case 1:
-          Navigator.of(context).pushReplacementNamed('/discover',
-              arguments: const NavigationArguments());
+          Navigator.of(context).pushReplacementNamed(
+            '/discover',
+            arguments: const NavigationArguments(),
+          );
           break;
 
         case 2:
-          Navigator.of(context).pushReplacementNamed('/news',
-              arguments: const NavigationArguments());
+          Navigator.of(context).pushReplacementNamed(
+            '/news',
+            arguments: const NavigationArguments(),
+          );
           break;
 
         case 3:
-          Navigator.of(context).pushReplacementNamed('/settings',
-              arguments: const NavigationArguments());
+          Navigator.of(context).pushReplacementNamed(
+            '/settings',
+            arguments: const NavigationArguments(),
+          );
           break;
       }
     });

@@ -14,7 +14,7 @@ class _LogoutState extends State<Logout> {
     return const Scaffold(
       appBar: CustomAppBar('Ausloggen'),
       body: Center(
-        child: Text("Hallo das ist die Ausloggen Seite"),
+        child: Text('Hallo das ist die Ausloggen Seite'),
       ),
     );
   }

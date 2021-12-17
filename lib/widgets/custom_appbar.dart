@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 //here we can customize the AppBar widget!
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
-
   const CustomAppBar(
     this.title,
   );
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {

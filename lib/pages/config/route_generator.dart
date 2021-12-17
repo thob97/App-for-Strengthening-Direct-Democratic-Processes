@@ -10,6 +10,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     return MaterialPageRoute(builder: (_) => ErrorPage());
   }
 
+  // ignore:unused_local_variable
   final args = settings.arguments! as NavigationArguments;
 
   switch (settings.name) {
