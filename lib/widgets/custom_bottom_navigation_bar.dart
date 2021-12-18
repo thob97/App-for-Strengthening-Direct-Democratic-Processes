@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/pages/config/route_generator.dart';
+import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({required this.selectedIndex});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
-import 'package:swp_direktdem_verf_app/pages/config/route_generator.dart';
+import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 import 'package:swp_direktdem_verf_app/pages/start.dart';
 
 void main() {
