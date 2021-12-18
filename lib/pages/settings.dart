@@ -1,9 +1,9 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/pages/logout.dart';
-import 'package:swp_direktdem_verf_app/widgets/settingsbuttom.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
+import 'package:swp_direktdem_verf_app/widgets/custom_bottom_navigation_bar.dart';
+import 'package:swp_direktdem_verf_app/widgets/settingsbuttom.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -17,6 +17,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar('Settings'),
+      bottomNavigationBar: CustomBottomNavigationBar(selectedIndex: 3),
       body: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),

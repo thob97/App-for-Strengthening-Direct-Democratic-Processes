@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:swp_direktdem_verf_app/pages/config/route_generator.dart';
+import 'package:swp_direktdem_verf_app/pages/start.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Volksbegehren Berlin',
+      home: const Start(),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -26,7 +34,8 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.purple[300],
         brightness: Brightness.dark,
       ),
-      home: const Home(),
+      initialRoute: '/',
+      onGenerateRoute: generateRoute,
     );
   }
 }
