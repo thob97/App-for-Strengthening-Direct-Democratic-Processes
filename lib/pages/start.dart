@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swp_direktdem_verf_app/widgets/card_statistic.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_bottom_navigation_bar.dart';
 
@@ -23,7 +24,11 @@ class _StartState extends State<Start> {
 
   Widget _myBody() {
     return const Center(
-      child: Text('Hallo das ist die Seite Start'),
+      child: CardStatistic(
+        title: 'title',
+        description: 'description',
+        followed: true,
+      ),
     );
   }
 
