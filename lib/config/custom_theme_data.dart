@@ -66,6 +66,14 @@ class CustomThemeData {
       overflow: _textOverflow,
     ),
 
+    ///card body
+    bodyText2: TextStyle(
+      fontFamily: 'Poppins',
+      fontWeight: _semiBold,
+      fontSize: 14,
+      overflow: _textOverflow,
+    ),
+
     ///card headline
     headline2: TextStyle(
       fontFamily: 'Poppins',
