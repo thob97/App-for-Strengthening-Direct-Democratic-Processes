@@ -1,11 +1,13 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/pages/datasecurity.dart';
-import 'package:swp_direktdem_verf_app/pages/logout.dart';
-import 'package:swp_direktdem_verf_app/pages/profilesettings.dart';
-import 'package:swp_direktdem_verf_app/widgets/settingsbuttom.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/datasecurity.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilesettings.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermanagement.dart';
+import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
+import 'package:swp_direktdem_verf_app/widgets/settingsbuttom.dart';
+
+import 'settings_subpages/logout.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -26,38 +28,45 @@ class _SettingsState extends State<Settings> {
           children: [
             SettingsButton(Icons.notes, "Datenschutzbestimmungen", () {
               Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => DataSecurity()),
-            );
+                context,
+                MaterialPageRoute(builder: (context) => const DataSecurity()),
+              );
             }),
-            const Divider(
-              color: Colors.purple,
+            Divider(
+              color: Theme.of(context).primaryColor,
             ),
-            SettingsButton(CommunityMaterialIcons.account_edit,
-                "Profileinstellungen", () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EditProfilePage()),
-                  );
-                }),
-            const Divider(
-              color: Colors.purple,
+            SettingsButton(
+                CommunityMaterialIcons.account_edit, "Profileinstellungen", () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const EditProfilePage(UserPreferences.myUser)),
+              );
+            }),
+            Divider(
+              color: Theme.of(context).primaryColor,
             ),
             SettingsButton(CommunityMaterialIcons.archive_outline,
                 "Meine Verfahren", () {}),
-            const Divider(
-              color: Colors.purple,
+            Divider(
+              color: Theme.of(context).primaryColor,
             ),
-            SettingsButton(Icons.admin_panel_settings_outlined,
-                "Benutzerverwaltung", () {}),
-            const Divider(
-              color: Colors.purple,
+            SettingsButton(
+                Icons.admin_panel_settings_outlined, "Benutzerverwaltung", () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const UserScreen()),
+              );
+            }),
+            Divider(
+              color: Theme.of(context).primaryColor,
             ),
             SettingsButton(CommunityMaterialIcons.logout_variant, "Ausloggen",
                 () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Logout()),
+                MaterialPageRoute(builder: (context) => const Logout()),
               );
             }),
           ],
