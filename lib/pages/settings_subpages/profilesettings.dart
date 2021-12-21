@@ -17,7 +17,7 @@ class EditProfilePage extends StatelessWidget {
         child: ListView(
           children: [
             ProfileWidget(
-              imagePath: user.imagePath,
+              imagePath: user.picture,
               isEdit: true,
               onClicked: () async {},
             ),
