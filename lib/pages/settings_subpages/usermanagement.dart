@@ -15,124 +15,118 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  TextEditingController editingController = TextEditingController();
-  List<String> items = [];
-  List<String> duplicateItems = [];
-  List<User> users = [];
-  Future<List<User>> _getUsers() async {
-    //for http input
-    final response = await http.get(
-        "https://jsonplaceholder.typicode.com/users"); //rootBundle.loadString('assets/generated.json");
-    final jsonData = await json.decode(response.body);
+  TextEditingController controller = new TextEditingController();
 
-    // for directory file input
-    //var response = await rootBundle.loadString("assets/generated.json");
-    //final jsonData = await json.decode(response);
+  // Get json result and convert it to model. Then add
+  Future<void> getUserDetails() async {
+    final response = await http.get(url);
+    final responseJson = json.decode(response.body);
 
-    for (var u in jsonData) {
-      User user = User(
-          index: u["id"],
-          name: u["name"],
-          email: u["email"],
-          //password: u["password"], //comment for http
-          picture:
-              "https://banner2.cleanpng.com/20180516/zq/kisspng-computer-icons-google-account-icon-design-login-5afc02dab4a218.0950785215264652427399.jpg");
-      // picture: u["picture"]); //comment for http, use instead "https://banner2.cleanpng.com/20180516/zq/kisspng-computer-icons-google-account-icon-design-login-5afc02dab4a218.0950785215264652427399.jpg");
-      users.add(user);
-      duplicateItems.add(u["name"]);
-    }
-
-    print(users.length);
-    return users;
+    setState(() {
+      for (Map user in responseJson) {
+        _userDetails.add(User.fromJson(user.cast()));
+      }
+    });
   }
 
   @override
   void initState() {
-    items.addAll(duplicateItems);
     super.initState();
-  }
-
-  void filterSearchResults(String query) {
-    List<String> dummySearchList = <String>[];
-    dummySearchList.addAll(duplicateItems);
-    print(dummySearchList[1]);
-    if (query.isNotEmpty) {
-      List<String> dummyListData = <String>[];
-      dummySearchList.forEach((item) {
-        if (item.contains(query)) {
-          dummyListData.add(item);
-        }
-      });
-      setState(() {
-        items.clear();
-        items.addAll(dummyListData);
-      });
-      return;
-    } else {
-      setState(() {
-        items.clear();
-        items.addAll(duplicateItems);
-      });
-    }
+    getUserDetails();
+    _userDetails.clear();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: const CustomAppBar('Benutzerverwaltung'),
-        body: Container(
-            child: Column(children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              onChanged: (value) {
-                filterSearchResults(value);
-              },
-              controller: editingController,
-              decoration: const InputDecoration(
-                  labelText: "Search",
-                  hintText: "Search",
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+    return new Scaffold(
+      appBar: const CustomAppBar('Benutzerverwaltung'),
+      body: new Column(
+        children: <Widget>[
+          new Container(
+            color: Theme.of(context).primaryColor,
+            child: new Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: new Card(
+                child: new ListTile(
+                  leading: new Icon(Icons.search),
+                  title: new TextField(
+                    controller: controller,
+                    decoration: new InputDecoration(
+                        hintText: 'Suche', border: InputBorder.none),
+                    onChanged: onSearchTextChanged,
+                  ),
+                  trailing: IconButton(icon: const Icon(Icons.cancel), onPressed: () {
+                    controller.clear();
+                    onSearchTextChanged('');
+                  },),
+                ),
+              ),
             ),
           ),
-          Expanded(
-            child: FutureBuilder(
-              future: _getUsers(),
-              builder: (BuildContext context,AsyncSnapshot snapshot) {
-                if (snapshot.data == null) {
-                  return Container(
-                    child: const Center(
-                      child: Text("Loading..."),
-                    ),
-                  );
-                } else {
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage:
-                              NetworkImage(snapshot.data[index].picture),
-                        ),
-                        title: Text(items[index]),
-                        subtitle: Text(snapshot.data[index].email),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ProfilePage(snapshot.data[index])));
-                        },
-                      );
+          new Expanded(
+            child:  _searchResult.length != 0 || controller.text.isNotEmpty
+                ? new ListView.builder(
+              itemCount: _searchResult.length,
+              itemBuilder: (context, i) {
+                return new Card(
+                  child: new ListTile(
+                    leading: new CircleAvatar(backgroundImage: NetworkImage(_searchResult[i].picture,),),
+                    title: new Text(_searchResult[i].name.split(" ").first + ' ' + _searchResult[i].name.split(" ").last),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ProfilePage(_searchResult[i])));
                     },
-                  );
-                }
+                  ),
+                  margin: const EdgeInsets.all(0.0),
+                );
+              },
+            )
+                : new ListView.builder(
+              itemCount: _userDetails.length,
+              itemBuilder: (context, index) {
+                return new Card(
+                  child: new ListTile(
+                    leading: new CircleAvatar(backgroundImage: NetworkImage(_userDetails[index].picture,),),
+                    title: new Text(_userDetails[index].name.split(" ").first + ' ' + _userDetails[index].name.split(" ").last),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ProfilePage(_userDetails[index])));
+                    },
+                  ),
+                  margin: const EdgeInsets.all(0.0),
+                );
               },
             ),
           ),
-        ])));
+        ],
+      ),
+    );
+  }
+
+  onSearchTextChanged(String text) async {
+    _searchResult.clear();
+    if (text.isEmpty) {
+      setState(() {});
+      return;
+    }
+
+    for (var userDetail in _userDetails) {
+      if (userDetail.name.split(" ").first.contains(text) || userDetail.name.split(" ").last.contains(text)) {
+        _searchResult.add(userDetail);
+      }
+    }
+    setState(() {});
   }
 }
+
+List<User> _searchResult = [];
+
+List<User> _userDetails = [];
+
+const String url = 'https://jsonplaceholder.typicode.com/users';
