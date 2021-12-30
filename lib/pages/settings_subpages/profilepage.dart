@@ -19,7 +19,7 @@ class ProfilePage extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             children: [
               ProfileWidget(
-                imagePath: user.picture,
+                imagePath: user.imagePath,
                 onClicked: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(

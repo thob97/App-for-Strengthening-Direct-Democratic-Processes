@@ -15,7 +15,7 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  TextEditingController controller = new TextEditingController();
+  TextEditingController controller = TextEditingController();
 
   // Get json result and convert it to model. Then add
   Future<void> getUserDetails() async {
@@ -38,20 +38,20 @@ class _UserScreenState extends State<UserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       appBar: const CustomAppBar('Benutzerverwaltung'),
-      body: new Column(
+      body: Column(
         children: <Widget>[
-          new Container(
+          Container(
             color: Theme.of(context).primaryColor,
-            child: new Padding(
+            child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: new Card(
-                child: new ListTile(
-                  leading: new Icon(Icons.search),
-                  title: new TextField(
+              child: Card(
+                child: ListTile(
+                  leading: Icon(Icons.search),
+                  title: TextField(
                     controller: controller,
-                    decoration: new InputDecoration(
+                    decoration: const InputDecoration(
                         hintText: 'Suche', border: InputBorder.none),
                     onChanged: onSearchTextChanged,
                   ),
@@ -63,15 +63,15 @@ class _UserScreenState extends State<UserScreen> {
               ),
             ),
           ),
-          new Expanded(
-            child:  _searchResult.length != 0 || controller.text.isNotEmpty
-                ? new ListView.builder(
+          Expanded(
+            child:  _searchResult.isNotEmpty || controller.text.isNotEmpty
+                ? ListView.builder(
               itemCount: _searchResult.length,
               itemBuilder: (context, i) {
-                return new Card(
-                  child: new ListTile(
-                    leading: new CircleAvatar(backgroundImage: NetworkImage(_searchResult[i].picture,),),
-                    title: new Text(_searchResult[i].name.split(" ").first + ' ' + _searchResult[i].name.split(" ").last),
+                return Card(
+                  child: ListTile(
+                    leading: CircleAvatar(backgroundImage: NetworkImage(_searchResult[i].imagePath,),),
+                    title: Text(_searchResult[i].name.split(" ").first + ' ' + _searchResult[i].name.split(" ").last),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -84,13 +84,13 @@ class _UserScreenState extends State<UserScreen> {
                 );
               },
             )
-                : new ListView.builder(
+                : ListView.builder(
               itemCount: _userDetails.length,
               itemBuilder: (context, index) {
-                return new Card(
-                  child: new ListTile(
-                    leading: new CircleAvatar(backgroundImage: NetworkImage(_userDetails[index].picture,),),
-                    title: new Text(_userDetails[index].name.split(" ").first + ' ' + _userDetails[index].name.split(" ").last),
+                return Card(
+                  child: ListTile(
+                    leading: CircleAvatar(backgroundImage: NetworkImage(_userDetails[index].imagePath,),),
+                    title: Text(_userDetails[index].name.split(" ").first + ' ' + _userDetails[index].name.split(" ").last),
                     onTap: () {
                       Navigator.push(
                           context,
