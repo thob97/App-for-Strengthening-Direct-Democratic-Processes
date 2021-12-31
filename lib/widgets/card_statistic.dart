@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 
 class CardStatistic extends StatefulWidget {
   const CardStatistic({
@@ -78,7 +79,10 @@ class _CardStatisticState extends State<CardStatistic> {
       bottom: -10,
       right: 5,
       child: TextButton(
-        onPressed: () {}, //todo add function
+        onPressed: () => Navigator.of(context).pushNamed(
+          '/selected_process',
+          arguments: const NavigationArguments(),
+        ), //todo change function
         child: Text(
           'MEHR ERFAHREN',
           style: Theme.of(context)

@@ -3,6 +3,7 @@ import 'package:swp_direktdem_verf_app/main.dart';
 import 'package:swp_direktdem_verf_app/pages/discover.dart';
 import 'package:swp_direktdem_verf_app/pages/error_page.dart';
 import 'package:swp_direktdem_verf_app/pages/news.dart';
+import 'package:swp_direktdem_verf_app/pages/selected_process.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -28,6 +29,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case '/settings':
       return PageRouteBuilder(pageBuilder: (_, __, ___) => const Settings());
+
+    case '/selected_process':
+      return MaterialPageRoute(builder: (_) => SelectedProcess());
 
     ///With animation
     //return MaterialPageRoute(builder: (_) => const Settings());
