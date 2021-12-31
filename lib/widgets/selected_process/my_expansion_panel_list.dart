@@ -24,7 +24,9 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
       itemCount: widget.topics.length,
       itemBuilder: (context, index) {
         final Topic topic = widget.topics[index];
+        final GlobalKey expansionTileKey = GlobalKey();
         return ExpansionTile(
+          key: expansionTileKey,
           title: _myHeader(topic.header),
           tilePadding: const EdgeInsets.symmetric(
             horizontal: MyConstants.horPagePadding,
@@ -36,6 +38,11 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
           //when expanded
           textColor: Theme.of(context).colorScheme.onBackground,
           iconColor: Theme.of(context).colorScheme.onBackground,
+          onExpansionChanged: (isExpanded) {
+            if (isExpanded) {
+              _scrollToSelectedContent(expansionTileKey);
+            }
+          },
           children: [topic.expandedWidget],
         );
       },
@@ -55,6 +62,20 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
         overflow: _theme.overflow,
       ),
     );
+  }
+
+  void _scrollToSelectedContent(GlobalKey expansionTileKey) {
+    final keyContext = expansionTileKey.currentContext;
+    if (keyContext != null) {
+      //Wait for expansion
+      Future.delayed(kThemeAnimationDuration).then((value) {
+        Scrollable.ensureVisible(
+          keyContext,
+          //scroll duration
+          duration: const Duration(milliseconds: 200),
+        );
+      });
+    }
   }
 }
 
