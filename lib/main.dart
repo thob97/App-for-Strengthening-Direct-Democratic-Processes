@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:swp_direktdem_verf_app/pages/provider/email_sign_in.dart';
+import 'package:swp_direktdem_verf_app/pages/provider/google_sign_in.dart';
 import 'home.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  static final String title = 'Google SignIn';
   const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context) => MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
+      ChangeNotifierProvider(create: (context) => EmailSignInProvider()),
+    ],
+
+    child: MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Volksbegehren Berlin',
       theme: ThemeData(
         // This is the theme of your application.
@@ -27,6 +40,6 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       home: const Home(),
-    );
-  }
+  ),
+  );
 }

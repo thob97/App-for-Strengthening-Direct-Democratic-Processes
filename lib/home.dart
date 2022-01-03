@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:swp_direktdem_verf_app/pages/loginscreen.dart';
 import 'pages/start.dart';
 import 'pages/discover.dart';
 import 'pages/news.dart';
-import 'pages/settings.dart';
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -11,7 +11,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Widget> _pages = [Start(), Discover(), News(), Settings()];
+  List<Widget> _pages = [Start(), Discover(), News(), LoginScreen()];
   int _selectedIndex = 0;
 
   @override
