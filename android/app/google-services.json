@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "756030278002",
+    "project_id": "signin-295df",
+    "storage_bucket": "signin-295df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756030278002:android:2c762bd2aa97e81e8135eb",
+        "android_client_info": {
+          "package_name": "imp.fub.de.swp_direktdem_verf_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756030278002-h0j09hmomku6in5opvschs6jt52jmcto.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "imp.fub.de.swp_direktdem_verf_app",
+            "certificate_hash": "6ea0dc44f38ae1882bd443b2ea3eaf405438dd13"
+          }
+        },
+        {
+          "client_id": "756030278002-uvnvmabh363bigut0dj9skeiamg2gf03.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmQd1hyGdTZ5PuD0vtudICaUDR8kLOCN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756030278002-uvnvmabh363bigut0dj9skeiamg2gf03.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

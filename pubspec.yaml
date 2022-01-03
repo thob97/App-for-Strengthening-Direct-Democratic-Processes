@@ -33,10 +33,22 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  http: ^0.12.0
+  cupertino_icons: ^1.0.4
+  http: ^0.13.4
   community_material_icon: ^5.9.55
-  liquid_progress_indicator: ^0.3.2
+  liquid_progress_indicator: ^0.4.0
+
+  # google & email signin
+  firebase_auth: ^3.3.4
+  firebase_core: ^1.0.4
+  # google sign in
+  google_sign_in: ^5.0.3
+
+  # state management
+  provider: ^6.0.2
+
+  # logo of google
+  font_awesome_flutter: ^9.0.0
 
 dev_dependencies:
   flutter_test:
@@ -47,7 +59,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.0
+  flutter_lints: ^1.0.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
