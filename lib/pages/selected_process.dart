@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
+import 'package:swp_direktdem_verf_app/widgets/selected_process/data_list_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_process/my_expansion_panel_list.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_process/process_description.dart';
 
@@ -25,14 +26,33 @@ class SelectedProcess extends StatelessWidget {
     ]
   ];
 
+  final List<Data> _pdfUrls = [
+    Data(
+      title: 'Pdf1',
+      url:
+          'https://www.fu-berlin.de/studium/docs/studium/auslaufende/informatik-1.pdf',
+    ),
+    Data(
+      title: 'Pdf2',
+      url:
+          'https://www.fu-berlin.de/studium/docs/studium/auslaufende/informatik-1.pdf',
+    ),
+    Data(
+      title: 'Error PDF',
+      url: 'error',
+    )
+  ];
+
   late final List<Topic> _topics = [
     Topic(
       header: 'Phase',
       expandedWidget: const SizedBox.shrink(),
     ),
     Topic(
-      header: 'Dateien',
-      expandedWidget: const SizedBox.shrink(),
+      expandedWidget: DataListView(
+        dataList: _pdfUrls,
+      ),
+      header: 'Datein',
     ),
     Topic(
       header: 'Wahl Ergebnisse',
