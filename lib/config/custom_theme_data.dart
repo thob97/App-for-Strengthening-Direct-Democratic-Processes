@@ -9,14 +9,18 @@ class CustomThemeData {
   static final Color _darkFocusColor = Colors.white.withOpacity(0.12);
 
   static final ColorScheme _lightColorScheme = ColorScheme(
-    primary: const Color(0xFF194C76), //Primary
+    primary: const Color(0xFF194C76),
+    //Primary
     secondary: _lightFillColor,
-    background: const Color(0xFFCBE0F4), //Background
-    surface: _lightFillColor,
-    onBackground: const Color(0xFF4389C8), //Background accent
+    background: const Color(0xFFCBE0F4),
+    //Background
+    surface: Colors.white,
+    //The background color for widgets like Card
+    onBackground: const Color(0xFF4389C8),
+    //Background accent
     error: _lightFillColor,
-    onError: _lightFillColor,
-    onPrimary: _lightFillColor,
+    onError: Colors.red,
+    onPrimary: Colors.white,
     onSecondary: _lightFillColor,
     onSurface: _lightFillColor,
     primaryVariant: _lightFillColor,
@@ -109,8 +113,22 @@ class CustomThemeData {
         unselectedIconTheme: IconThemeData(color: colorScheme.onBackground),
       ),
 
+      ///DividerTheme
+      dividerTheme: const DividerThemeData(
+        space: 0,
+        thickness: 1.5,
+      ),
+
+      ///CardTheme
+      cardTheme: CardTheme(
+        color: colorScheme.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(MyConstants.borderRadius),
+        ),
+      ),
+
       ///etc
-      iconTheme: IconThemeData(color: colorScheme.onPrimary),
+      iconTheme: IconThemeData(color: colorScheme.onBackground),
       canvasColor: colorScheme.background,
       scaffoldBackgroundColor: colorScheme.background,
       highlightColor: Colors.transparent,
@@ -130,5 +148,6 @@ class CustomThemeData {
 }
 
 class MyConstants {
+  static const double borderRadius = 8;
   static const double horPagePadding = 16;
 }
