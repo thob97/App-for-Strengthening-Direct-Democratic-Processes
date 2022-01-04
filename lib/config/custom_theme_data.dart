@@ -128,3 +128,7 @@ class CustomThemeData {
     );
   }
 }
+
+class MyConstants {
+  static const double horPagePadding = 16;
+}
