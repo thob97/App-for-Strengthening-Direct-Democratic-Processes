@@ -19,7 +19,7 @@ class _UserScreenState extends State<UserScreen> {
 
   // Get json result and convert it to model. Then add
   Future<void> getUserDetails() async {
-    final response = await http.get(url);
+    final response = await http.get(Uri.parse(url));
     final responseJson = json.decode(response.body);
 
     setState(() {
