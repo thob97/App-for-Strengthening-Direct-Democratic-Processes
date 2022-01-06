@@ -13,7 +13,7 @@ class _DataSecurityState extends State<DataSecurity> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const CustomAppBar('Datenschutzbestimmungen'),
-        body: Column(
+        body: ListView(
           children: [
             Image.asset("images/padlock.png", height: 200, width: 200),
             Divider(
