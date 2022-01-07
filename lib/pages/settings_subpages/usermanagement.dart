@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:async';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
