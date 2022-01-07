@@ -12,7 +12,7 @@ class CustomThemeData {
     primary: const Color(0xFF194C76), //Primary
     secondary: _lightFillColor,
     background: const Color(0xFFCBE0F4), //Background
-    surface: _lightFillColor,
+    surface: Colors.white,
     onBackground: const Color(0xFF4389C8), //Background accent
     error: _lightFillColor,
     onError: _lightFillColor,
