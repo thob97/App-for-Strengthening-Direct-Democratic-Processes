@@ -15,45 +15,35 @@ class _DataSecurityState extends State<DataSecurity> {
         appBar: const CustomAppBar('Datenschutzbestimmungen'),
         body: ListView(
           children: [
-            Image.asset("images/padlock.png", height: 200, width: 200),
+            Image.asset('images/padlock.png', height: 200, width: 200),
             Divider(
               color: Theme.of(context).primaryColor,
               thickness: 2,
             ),
-            const Text("ZUSAMMENFASSUNG DER DATENSCHUTZERKLÄRUNG",
+            Text('ZUSAMMENFASSUNG DER DATENSCHUTZERKLÄRUNG',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                )),
+                style: TextTheme().headline2),
             Divider(
               color: Theme.of(context).primaryColor,
               thickness: 2,
             ),
             const SizedBox(height: 20),
-            const Text(
-              "Personenbezogene Daten, die für die folgenden Zwecke und unter Nutzung der folgenden Dienste erhoben werden:",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
+            Text(
+              'Personenbezogene Daten, die für die folgenden Zwecke und\nunter Nutzung der folgenden Dienste erhoben werden:',
+                textAlign: TextAlign.center,
+                style: TextTheme().headline2
             ),
             const SizedBox(height: 20),
             Wrap(
               children: [
                 ListTile(
-                  title: const Text(
+                  title: Text(
                     'Statistik',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
+                    style: TextTheme().bodyText2,
                   ),
-                  subtitle: const Text(
-                    'Personenbezogene Daten: Cookies und Nutzungsdaten',
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
+                  subtitle: Text(
+                    'Personenbezogene Daten: Cookies und\n Nutzungsdaten',
+                    style: TextTheme().bodyText2,
                   ),
                   leading: Icon(
                     Icons.auto_graph,
@@ -61,19 +51,13 @@ class _DataSecurityState extends State<DataSecurity> {
                   ),
                 ),
                 ListTile(
-                  title: const Text(
+                  title: Text(
                     'Kontaktaufnahme mit dem Nutzer',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
+                      style: TextTheme().bodyText2,
                   ),
-                  subtitle: const Text(
-                    'Mailingliste oder Newsletter'
-                    'Persönliche Daten: E-Mail Adresse',
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
+                  subtitle: Text(
+                    'Mailingliste oder Newsletter\nPersönliche Daten: E-Mail Adresse',
+                      style: TextTheme().bodyText2
                   ),
                   leading: Icon(
                     Icons.contact_mail,
