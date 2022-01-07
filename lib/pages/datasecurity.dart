@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-import 'package:swp_direktdem_verf_app/pages/settings.dart';
-import 'package:swp_direktdem_verf_app/pages/start.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
 class DataSecurity extends StatefulWidget {
