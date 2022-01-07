@@ -24,13 +24,13 @@ class EditProfilePage extends StatelessWidget {
             const SizedBox(
               height: 35,
             ),
-            buildTextField("Vorname", user.name.split(" ").first),
-            buildTextField("Nachname", user.name.split(" ").last),
-            buildTextField("Email", user.email),
+            buildTextField('Vorname', user.name.split(' ').first),
+            buildTextField('Nachname', user.name.split(' ').last),
+            buildTextField('Email', user.email),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
                   onPressed: () {
                     showDialog(
                         context: context,
@@ -44,36 +44,35 @@ class EditProfilePage extends StatelessWidget {
                               width: 360.0,
                               child: ListView(
                                 children: <Widget>[
-                                  const Center(
+                                  Center(
                                     child: Text(
-                                      "Passwort ändern",
-                                      style: TextStyle(
-                                          fontSize: 17, color: Colors.white),
+                                      'Passwort ändern',
+                                      style: TextTheme().headline2,
                                     ),
                                   ),
                                   const SizedBox(height: 10),
                                   buildTextField(
-                                      "Altes Passwort", "Altes Passwort"),
+                                      'Altes Passwort', 'Altes Passwort'),
                                   const SizedBox(height: 10),
-                                  const Text(
-                                    "Neues Passwort",
-                                    style: TextStyle(fontSize: 17),
+                                  Text(
+                                    'Neues Passwort',
+                                    style: TextTheme().headline2,
                                   ),
-                                  buildTextField("Passwort", "Passwort"),
-                                  buildTextField("Passwort wiederholen",
-                                      "Passwort wiederholen"),
-                                  RaisedButton(
+                                  buildTextField('Passwort', 'Passwort'),
+                                  buildTextField('Passwort wiederholen',
+                                      'Passwort wiederholen'),
+                                  ElevatedButton(
                                     onPressed: () {},
-                                    color: Theme.of(context).primaryColor,
+                                    style: ElevatedButton.styleFrom(
+                                      primary: ColorScheme.light().primary,
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 50),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadius.circular(20)),
-                                    child: const Text(
-                                      "Speichern",
-                                      style: TextStyle(
-                                          fontSize: 14, letterSpacing: 2.2),
+                                            BorderRadius.circular(20)),),
+                                    child: Text(
+                                      'Speichern',
+                                      style: TextTheme().bodyText2,
                                     ),
                                   )
                                 ],
@@ -82,27 +81,22 @@ class EditProfilePage extends StatelessWidget {
                           );
                         });
                   },
-                  color: Theme.of(context).primaryColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  child: const Text(
-                    "PASSWORT ÄNDERN",
-                    style: TextStyle(
-                      fontSize: 14,
-                      letterSpacing: 2.2,
-                    ),
+                  style: ElevatedButton.styleFrom(
+                      primary: ColorScheme.light().primary,
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20))),
+                  child: Text(
+                    'PASSWORT ÄNDERN',
+                    style: TextTheme().bodyText2,
                   ),
                 )
               ],
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              const Text(
-                "Email Adresse sichtbar machen",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
+              Text(
+                'Email Adresse sichtbar machen',
+                style: TextTheme().bodyText2,
               ),
               Transform.scale(
                   scale: 0.7,
@@ -117,34 +111,33 @@ class EditProfilePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                OutlineButton(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
+                ElevatedButton(
                   onPressed: () {},
-                  child: const Text("ABBRECHEN",
-                      style: TextStyle(
-                        fontSize: 14,
-                        letterSpacing: 2.2,
-                      )),
+                  style: ElevatedButton.styleFrom(
+                      primary: ColorScheme.light().primary,
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  child: Text(
+                    'ABBRECHEN',
+                    style: TextTheme().bodyText2,
+                  ),
                 ),
-                RaisedButton(
+                ElevatedButton(
                   onPressed: () {},
-                  color: Theme.of(context).primaryColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  child: const Text(
-                    "SPEICHERN",
-                    style: TextStyle(
-                      fontSize: 14,
-                      letterSpacing: 2.2,
-                    ),
+                  style: ElevatedButton.styleFrom(
+                      primary: ColorScheme.light().primary,
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20))),
+                  child: Text(
+                    'SPEICHERN',
+                    style: TextTheme().bodyText2,
                   ),
                 )
               ],
             )
-          ],
+      ],
         ),
       ),
     );
@@ -169,17 +162,12 @@ class EditProfilePage extends StatelessWidget {
                     borderSide: BorderSide(width: 2),
                   ),
                   contentPadding: const EdgeInsets.only(bottom: 3),
-                  labelText: "  " + labelText,
+                  labelText: '  ' + labelText,
                   floatingLabelBehavior: FloatingLabelBehavior.always,
-                  hintText: "  " + placeholder,
-                  labelStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  hintStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  )),
+                  hintText: '  ' + placeholder,
+                  labelStyle: TextTheme().headline2,
+                  hintStyle: TextTheme().headline2,
+              ),
             ),
           ),
         ),
