@@ -17,14 +17,14 @@ class _DataSecurityState extends State<DataSecurity> {
           children: [
             Image.asset('images/padlock.png', height: 200, width: 200),
             Divider(
-              color: Theme.of(context).primaryColor,
+              color: ColorScheme.light().primary,
               thickness: 2,
             ),
             Text('ZUSAMMENFASSUNG DER DATENSCHUTZERKLÄRUNG',
                 textAlign: TextAlign.center,
                 style: TextTheme().headline2),
             Divider(
-              color: Theme.of(context).primaryColor,
+              color: ColorScheme.light().primary,
               thickness: 2,
             ),
             const SizedBox(height: 20),
@@ -47,7 +47,7 @@ class _DataSecurityState extends State<DataSecurity> {
                   ),
                   leading: Icon(
                     Icons.auto_graph,
-                    color: Theme.of(context).primaryColor,
+                    color: ColorScheme.light().primary,
                   ),
                 ),
                 ListTile(
@@ -61,7 +61,7 @@ class _DataSecurityState extends State<DataSecurity> {
                   ),
                   leading: Icon(
                     Icons.contact_mail,
-                    color: Theme.of(context).primaryColor,
+                    color: ColorScheme.light().primary,
                   ),
                 ),
               ],
