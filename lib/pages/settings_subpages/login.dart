@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/register.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
@@ -25,24 +24,25 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 15,
             ),
-            buildTextField("Email", "name@domain.com", false),
-            buildTextField("Passwort", "******", true),
+            buildTextField('Email', 'name@domain.com', false),
+            buildTextField('Passwort', '******', true),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Settings()),
                     );
                   },
-                  color: Theme.of(context).primaryColor,
+                  style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).primaryColor,
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
+                      borderRadius: BorderRadius.circular(20)),),
                   child: const Text(
-                    "LOGIN",
+                    'LOGIN',
                     style: TextStyle(fontSize: 14, letterSpacing: 2.2),
                   ),
                 )
@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const [
-                  Text("oder"),
+                  Text('oder'),
                 ]),
             const SizedBox(
               height: 15,
@@ -62,19 +62,20 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => RegisterPage()),
                     );
                   },
-                  color: Theme.of(context).primaryColor,
+                  style: ElevatedButton.styleFrom(
+                  primary: ColorScheme.light().primary,
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
+                      borderRadius: BorderRadius.circular(20)),),
                   child: const Text(
-                    "REGISTRIEREN",
+                    'REGISTRIEREN',
                     style: TextStyle(
                       fontSize: 14,
                       letterSpacing: 2.2,
@@ -123,20 +124,15 @@ class _LoginPageState extends State<LoginPage> {
                     borderSide: BorderSide(width: 2),
                   ),
                   contentPadding: const EdgeInsets.only(bottom: 3),
-                  labelText: "  " + labelText,
+                  labelText: '  ' + labelText,
                   floatingLabelBehavior: FloatingLabelBehavior.always,
-                  hintText: "  " + placeholder,
-                  labelStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  hintStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  )),
+                  hintText: '  ' + placeholder,
+                  labelStyle: TextTheme().headline2,
+                  hintStyle: TextTheme().headline2,
             ),
           ),
         ),
+      )
       )
     ]);
   }

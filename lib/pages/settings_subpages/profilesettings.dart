@@ -4,9 +4,8 @@ import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/profilewidget.dart';
 
 class EditProfilePage extends StatelessWidget {
-  final User user;
   const EditProfilePage(this.user, {Key? key}) : super(key: key);
-
+  final User user;
   @override
   Widget build(BuildContext context) {
     bool switchValue = false;

@@ -26,7 +26,7 @@ class _SettingsState extends State<Settings> {
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
         child: ListView(
           children: [
-            SettingsButton(Icons.notes, "Datenschutzbestimmungen", () {
+            SettingsButton(Icons.notes, 'Datenschutzbestimmungen', () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const DataSecurity()),
@@ -36,7 +36,7 @@ class _SettingsState extends State<Settings> {
               color: Theme.of(context).primaryColor,
             ),
             SettingsButton(
-                CommunityMaterialIcons.account_edit, "Profileinstellungen", () {
+                CommunityMaterialIcons.account_edit, 'Profileinstellungen', () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -48,12 +48,12 @@ class _SettingsState extends State<Settings> {
               color: Theme.of(context).primaryColor,
             ),
             SettingsButton(CommunityMaterialIcons.archive_outline,
-                "Meine Verfahren", () {}),
+                'Meine Verfahren', () {}),
             Divider(
               color: Theme.of(context).primaryColor,
             ),
             SettingsButton(
-                Icons.admin_panel_settings_outlined, "Benutzerverwaltung", () {
+                Icons.admin_panel_settings_outlined, 'Benutzerverwaltung', () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const UserScreen()),
@@ -62,7 +62,7 @@ class _SettingsState extends State<Settings> {
             Divider(
               color: Theme.of(context).primaryColor,
             ),
-            SettingsButton(CommunityMaterialIcons.logout_variant, "Ausloggen",
+            SettingsButton(CommunityMaterialIcons.logout_variant, 'Ausloggen',
                     () {
                   Navigator.push(
                     context,

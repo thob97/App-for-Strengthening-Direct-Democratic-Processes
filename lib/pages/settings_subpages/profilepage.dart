@@ -5,8 +5,8 @@ import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/profilewidget.dart';
 
 class ProfilePage extends StatelessWidget {
-  final User user;
   const ProfilePage(this.user, {Key? key}) : super(key: key);
+  final User user;
   @override
   Widget build(BuildContext context) {
     // const user = UserPreferences.myUser;
@@ -39,12 +39,12 @@ class ProfilePage extends StatelessWidget {
   Widget buildName(User user) => Column(
         children: [
           Text(
-            user.name.split(" ").first,
+            user.name.split(' ').first,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
           const SizedBox(height: 4),
           Text(
-            user.name.split(" ").last,
+            user.name.split(' ').last,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
           const SizedBox(height: 4),

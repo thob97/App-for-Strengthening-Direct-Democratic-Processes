@@ -35,19 +35,19 @@ class _HomeState extends State<Home> {
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: "Start",
+          label: 'Start',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search),
-          label: "Discover",
+          label: 'Discover',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.notifications),
-          label: "News",
+          label: 'News',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
-          label: "Settings",
+          label: 'Settings',
         ),
       ],
     );

@@ -70,7 +70,7 @@ class _UserScreenState extends State<UserScreen> {
                 return Card(
                   child: ListTile(
                     leading: CircleAvatar(backgroundImage: NetworkImage(_searchResult[i].imagePath,),),
-                    title: Text(_searchResult[i].name.split(" ").first + ' ' + _searchResult[i].name.split(" ").last),
+                    title: Text(_searchResult[i].name.split(' ').first + ' ' + _searchResult[i].name.split(' ').last),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -89,7 +89,7 @@ class _UserScreenState extends State<UserScreen> {
                 return Card(
                   child: ListTile(
                     leading: CircleAvatar(backgroundImage: NetworkImage(_userDetails[index].imagePath,),),
-                    title: Text(_userDetails[index].name.split(" ").first + ' ' + _userDetails[index].name.split(" ").last),
+                    title: Text(_userDetails[index].name.split(' ').first + ' ' + _userDetails[index].name.split(' ').last),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -116,7 +116,7 @@ class _UserScreenState extends State<UserScreen> {
     }
 
     for (var userDetail in _userDetails) {
-      if (userDetail.name.split(" ").first.contains(text) || userDetail.name.split(" ").last.contains(text)) {
+      if (userDetail.name.split(' ').first.contains(text) || userDetail.name.split(' ').last.contains(text)) {
         _searchResult.add(userDetail);
       }
     }

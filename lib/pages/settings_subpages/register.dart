@@ -23,22 +23,24 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(
               height: 15,
             ),
-            buildTextField("Vorname", UserPreferences.myUser.name.split(" ").first, false),
-            buildTextField("Nachname", UserPreferences.myUser.name.split(" ").last, false),
-            buildTextField("Email", UserPreferences.myUser.email, false),
-            buildTextField("Passwort", "******", true),
-            buildTextField("Passwort wiederholen", "******", true),
+            buildTextField('Vorname', UserPreferences.myUser.name.split(' ').first, false),
+            buildTextField('Nachname', UserPreferences.myUser.name.split(' ').last, false),
+            buildTextField('Email', UserPreferences.myUser.email, false),
+            buildTextField('Passwort', '******', true),
+            buildTextField('Passwort wiederholen', '******', true),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
                   onPressed: () {},
-                  color: Theme.of(context).primaryColor,
+                  style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
+                  primary: ColorScheme.light().primary,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
+                      borderRadius: BorderRadius.circular(20))
+                  ),
                   child: const Text(
-                    "REGISTRIEREN",
+                    'REGISTRIEREN',
                     style: TextStyle(
                       fontSize: 14,
                       letterSpacing: 2.2,
@@ -86,9 +88,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     borderSide: BorderSide(width: 2),
                   ),
                   contentPadding: const EdgeInsets.only(bottom: 3),
-                  labelText: "  " + labelText,
+                  labelText: '  ' + labelText,
                   floatingLabelBehavior: FloatingLabelBehavior.always,
-                  hintText: "  " + placeholder,
+                  hintText: '  ' + placeholder,
                   labelStyle: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

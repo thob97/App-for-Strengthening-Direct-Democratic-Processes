@@ -1,18 +1,15 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 class ProfileWidget extends StatelessWidget {
-  final String imagePath;
-  final bool isEdit;
-  final VoidCallback onClicked;
-
   const ProfileWidget({
     Key? key,
     required this.imagePath,
     this.isEdit = false,
     required this.onClicked,
-}) : super(key: key);
+  }) : super(key: key);
+  final String imagePath;
+  final bool isEdit;
+  final VoidCallback onClicked;
 
   @override
   Widget build(BuildContext context) {
