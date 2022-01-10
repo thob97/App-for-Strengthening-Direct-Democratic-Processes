@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/main.dart';
 import 'package:swp_direktdem_verf_app/pages/discover.dart';
 import 'package:swp_direktdem_verf_app/pages/error_page.dart';
+import 'package:swp_direktdem_verf_app/pages/introduction.dart';
 import 'package:swp_direktdem_verf_app/pages/news.dart';
 import 'package:swp_direktdem_verf_app/pages/selected_process.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
+import 'package:swp_direktdem_verf_app/pages/start.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   if (settings.arguments == null || settings.name == null) {
@@ -15,11 +16,15 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   final args = settings.arguments! as NavigationArguments;
 
   switch (settings.name) {
+    /*
     case '/':
-      return PageRouteBuilder(pageBuilder: (_, __, ___) => const MyApp());
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => const MyApp(shouldShowIntroductionScreen: false,));
+    */
+    case '/intro':
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => const Introduction());
 
     case '/home':
-      return PageRouteBuilder(pageBuilder: (_, __, ___) => const MyApp());
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => const Start());
 
     case '/discover':
       return PageRouteBuilder(pageBuilder: (_, __, ___) => const Discover());

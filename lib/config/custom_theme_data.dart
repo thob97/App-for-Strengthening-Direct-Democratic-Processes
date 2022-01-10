@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 // ignore:avoid_classes_with_only_static_members
 class CustomThemeData {
   ///ColorSchemes
-  static final _lightFillColor = Colors.black;
+  static const _lightFillColor = Colors.black;
   static const _darkFillColor = Colors.white;
   static final Color _lightFocusColor = Colors.black.withOpacity(0.12);
   static final Color _darkFocusColor = Colors.white.withOpacity(0.12);
 
-  static final ColorScheme _lightColorScheme = ColorScheme(
-    primary: const Color(0xFF194C76), //Primary
+  static const ColorScheme _lightColorScheme = ColorScheme(
+    primary: Color(0xFF194C76), //Primary
     secondary: _lightFillColor,
-    background: const Color(0xFFCBE0F4), //Background
+    background: Color(0xFFCBE0F4), //Background
     surface: Colors.white,
-    onBackground: const Color(0xFF4389C8), //Background accent
+    onBackground: Color(0xFF4389C8), //Background accent
     error: _lightFillColor,
     onError: _lightFillColor,
     onPrimary: _lightFillColor,
