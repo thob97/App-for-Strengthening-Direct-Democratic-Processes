@@ -22,7 +22,7 @@ class _StartState extends State<Start> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const NewProcedure()),
+            MaterialPageRoute(builder: (context) => const NewProcedure1()),
           );
         },
         backgroundColor: Theme.of(context).primaryColor,
