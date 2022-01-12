@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/pages/NewProcedure.dart';
+import 'package:swp_direktdem_verf_app/pages/NewProcedure1.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
 class Start extends StatefulWidget {
