@@ -81,7 +81,7 @@ class _CardStatisticState extends State<CardStatistic> {
       right: 5,
       child: TextButton(
         onPressed: () => Navigator.of(context).pushNamed(
-          '/selected_process',
+          '/selected_procedure',
           arguments: const NavigationArguments(),
         ), //todo change function
         child: Text(
