@@ -1,3 +1,5 @@
+import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/data_list_view.dart';
+
 mixin MockedSelectedProcedureService {
   static const String title = 'Lorem Ipsum';
   static const String descriptionContent =
@@ -6,6 +8,25 @@ mixin MockedSelectedProcedureService {
   static const String decisionTitle = 'Beschlusstext';
   static const String decisionContent =
       'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics';
+
+  static List<Data> getPdfUrls() {
+    return [
+      Data(
+        title: 'Pdf1',
+        url:
+            'https://www.fu-berlin.de/studium/docs/studium/auslaufende/informatik-1.pdf',
+      ),
+      Data(
+        title: 'Pdf2',
+        url:
+            'https://www.fu-berlin.de/studium/docs/studium/auslaufende/informatik-1.pdf',
+      ),
+      Data(
+        title: 'Error PDF',
+        url: 'error',
+      )
+    ];
+  }
 
   static List<List<String>> getCategoryContent() {
     return [
