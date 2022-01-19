@@ -1,19 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/register.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
+import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage(this.user, {Key? key}) : super(key: key);
+  final User user;
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String email = 'name@domain.de';
-  String password = '******';
-  bool showPassword = true;
-  bool showConfirmPassword = true;
+  _LoginPageState();
+  final _formkey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,53 +33,89 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 16.0),
         child: Center(
-          child: Column(
-            children: <Widget>[
-              const SizedBox(
-                height: 15,
-              ),
-              const TextfieldLoginRegister(
-                'Email',
-                'name@domain.com',
-              ),
-              const TextfieldLoginRegister(
-                'Passwort',
-                '******',
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Settings()),
-                  );
-                },
-                child: Text(
-                  'LOGIN',
-                  style: Theme.of(context).textTheme.bodyText2,
+          child: Form(
+            key: _formkey,
+            child: Column(
+              children: <Widget>[
+                const SizedBox(
+                  height: 15,
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const Text('oder'),
-              const SizedBox(
-                height: 15,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RegisterPage(),
-                    ),
-                  );
-                },
-                child: Text(
-                  'REGISTRIEREN',
-                  style: Theme.of(context).textTheme.bodyText2,
+                TextfieldLoginRegister(
+                  'Email',
+                  UserPreferences.myUser.email,
+                  emailController,
                 ),
-              ),
-            ],
+                TextfieldLoginRegister(
+                  'Passwort',
+                  '******',
+                  passwordController,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (_formkey.currentState!.validate()) {
+                      final form = _formkey.currentState!;
+
+                      if (form.validate()) {
+                        TextInput.finishAutofillContext();
+
+                        ScaffoldMessenger.of(context)
+                          ..removeCurrentSnackBar()
+                          ..showSnackBar(
+                            const SnackBar(
+                              content: Text('Erfolgreich eingeloggt'),
+                            ),
+                          );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Settings(),
+                          ),
+                        );
+                      } else {
+                        TextInput.finishAutofillContext();
+
+                        ScaffoldMessenger.of(context)
+                          ..removeCurrentSnackBar()
+                          ..showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Das Einloggen ist fehlgeschlagen. Überprüfe die Mail-Adresse  und das Passwort',
+                              ),
+                            ),
+                          );
+                      }
+                    }
+                  },
+                  child: Text(
+                    'LOGIN',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                const Text('oder'),
+                const SizedBox(
+                  height: 15,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterPage(
+                          user: UserPreferences.myUser,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'REGISTRIEREN',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

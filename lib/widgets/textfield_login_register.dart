@@ -1,9 +1,16 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextfieldLoginRegister extends StatefulWidget {
-  const TextfieldLoginRegister(this.labelText, this.placeholder);
+  const TextfieldLoginRegister(
+    this.labelText,
+    this.placeholder,
+    this.controller,
+  );
   final String placeholder;
   final String labelText;
+  final TextEditingController controller;
   @override
   _TextfieldLoginRegisterState createState() => _TextfieldLoginRegisterState();
 }
@@ -11,19 +18,37 @@ class TextfieldLoginRegister extends StatefulWidget {
 class _TextfieldLoginRegisterState extends State<TextfieldLoginRegister> {
   bool isHidden = false;
   @override
+  void initState() {
+    super.initState();
+
+    widget.controller.addListener(onListen);
+  }
+
+  @override
+  void dispose() {
+    widget.controller.removeListener(onListen);
+    super.dispose();
+  }
+
+  void onListen() => setState(() {});
+  @override
   Widget build(BuildContext context) {
-    return buildTextField(widget.labelText, widget.placeholder);
+    return buildTextField(
+      widget.labelText,
+      widget.placeholder,
+      widget.controller,
+    );
   }
 
   Widget buildTextField(
     String labelText,
     String placeholder,
+    TextEditingController controller,
   ) {
     Widget child;
-    if (labelText == 'Passwort' ||
-        labelText == 'Passwort wiederholen' ||
-        labelText == 'Altes Passwort') {
+    if (labelText == 'Passwort' || labelText == 'Altes Passwort') {
       child = TextFormField(
+        controller: controller,
         onTap: () {},
         obscureText: isHidden,
         decoration: InputDecoration(
@@ -44,9 +69,39 @@ class _TextfieldLoginRegisterState extends State<TextfieldLoginRegister> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        keyboardType: TextInputType.visiblePassword,
+        autofillHints: const [AutofillHints.password],
+        onEditingComplete: () => TextInput.finishAutofillContext(),
+        validator: (password) => password != null && password.length < 5
+            ? 'Your old password is incorrect. Enter min. 5 characters'
+            : null,
+      );
+    } else if (labelText == 'Email') {
+      child = TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          hintText: 'Email',
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          prefixIcon: const Icon(Icons.mail),
+          suffixIcon: widget.controller.text.isEmpty
+              ? Container(width: 0)
+              : IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () => widget.controller.clear(),
+                ),
+        ),
+        keyboardType: TextInputType.emailAddress,
+        autofillHints: const [AutofillHints.email],
+        autofocus: true,
+        validator: (email) => email != null && !EmailValidator.validate(email)
+            ? 'Enter a valid email'
+            : null,
       );
     } else {
       child = TextFormField(
+        controller: controller,
         onTap: () {},
         decoration: InputDecoration(
           labelText: '  $labelText',
@@ -59,7 +114,19 @@ class _TextfieldLoginRegisterState extends State<TextfieldLoginRegister> {
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
+          suffixIcon: widget.controller.text.isEmpty
+              ? Container(width: 0)
+              : IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () => widget.controller.clear(),
+                ),
         ),
+        keyboardType: TextInputType.name,
+        autofillHints: const [AutofillHints.name],
+        autofocus: true,
+        validator: (password) => password != null && password.length < 5
+            ? 'Your name is incorrect. Enter min. 5 characters'
+            : null,
       );
     }
     return Container(
