@@ -48,61 +48,82 @@ class _UserScreenState extends State<UserScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Card(
                 child: ListTile(
-                  leading: Icon(Icons.search),
+                  leading: const Icon(Icons.search),
                   title: TextField(
                     controller: controller,
                     decoration: const InputDecoration(
-                        hintText: 'Suche', border: InputBorder.none,),
+                      hintText: 'Suche',
+                      border: InputBorder.none,
+                    ),
                     onChanged: onSearchTextChanged,
                   ),
-                  trailing: IconButton(icon: const Icon(Icons.cancel), onPressed: () {
-                    controller.clear();
-                    onSearchTextChanged('');
-                  },),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.cancel),
+                    onPressed: () {
+                      controller.clear();
+                      onSearchTextChanged('');
+                    },
+                  ),
                 ),
               ),
             ),
           ),
           Expanded(
-            child:  _searchResult.isNotEmpty || controller.text.isNotEmpty
+            child: _searchResult.isNotEmpty || controller.text.isNotEmpty
                 ? ListView.builder(
-              itemCount: _searchResult.length,
-              itemBuilder: (context, i) {
-                return Card(
-                  margin: const EdgeInsets.all(0.0),
-                  child: ListTile(
-                    leading: CircleAvatar(backgroundImage: NetworkImage(_searchResult[i].imagePath,),),
-                    title: Text('${_searchResult[i].name.split(" ").first} ${_searchResult[i].name.split(" ").last}'),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ProfilePage(_searchResult[i]),),);
+                    itemCount: _searchResult.length,
+                    itemBuilder: (context, i) {
+                      return Card(
+                        margin: EdgeInsets.zero,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                              _searchResult[i].imagePath,
+                            ),
+                          ),
+                          title: Text(
+                            '${_searchResult[i].name.split(" ").first} ${_searchResult[i].name.split(" ").last}',
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ProfilePage(_searchResult[i]),
+                              ),
+                            );
+                          },
+                        ),
+                      );
                     },
-                  ),
-                );
-              },
-            )
+                  )
                 : ListView.builder(
-              itemCount: _userDetails.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  margin: const EdgeInsets.all(0.0),
-                  child: ListTile(
-                    leading: CircleAvatar(backgroundImage: NetworkImage(_userDetails[index].imagePath,),),
-                    title: Text('${_userDetails[index].name.split(" ").first} ${_userDetails[index].name.split(" ").last}'),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ProfilePage(_userDetails[index]),),);
+                    itemCount: _userDetails.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        margin: EdgeInsets.zero,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                              _userDetails[index].imagePath,
+                            ),
+                          ),
+                          title: Text(
+                            '${_userDetails[index].name.split(" ").first} ${_userDetails[index].name.split(" ").last}',
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ProfilePage(_userDetails[index]),
+                              ),
+                            );
+                          },
+                        ),
+                      );
                     },
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),
@@ -117,7 +138,8 @@ class _UserScreenState extends State<UserScreen> {
     }
 
     for (final userDetail in _userDetails) {
-      if (userDetail.name.split(' ').first.contains(text) || userDetail.name.split(' ').last.contains(text)) {
+      if (userDetail.name.split(' ').first.contains(text) ||
+          userDetail.name.split(' ').last.contains(text)) {
         _searchResult.add(userDetail);
       }
     }

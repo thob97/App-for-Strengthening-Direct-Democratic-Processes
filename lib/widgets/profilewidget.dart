@@ -13,7 +13,7 @@ class ProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color =Theme.of(context).primaryColor;
+    final color = Theme.of(context).primaryColor;
 
     return Center(
       child: Stack(
@@ -22,7 +22,7 @@ class ProfileWidget extends StatelessWidget {
           Positioned(
             bottom: 0,
             right: 4,
-            child: buildEditIcon(color),
+            child: buildEditIcon(color, context),
           ),
         ],
       ),
@@ -46,19 +46,19 @@ class ProfileWidget extends StatelessWidget {
     );
   }
 
-  Widget buildEditIcon(Color color) => buildCircle(
-    color: Colors.white,
-    all: 3,
-    child: buildCircle(
-      color: color,
-      all: 8,
-      child: Icon(
-        isEdit ? Icons.add_a_photo : Icons.edit,
-        color: Colors.white,
-        size: 20,
-      ),
-    ),
-  );
+  Widget buildEditIcon(Color color, BuildContext context) => buildCircle(
+        color: Theme.of(context).colorScheme.surface,
+        all: 3,
+        child: buildCircle(
+          color: color,
+          all: 8,
+          child: Icon(
+            isEdit ? Icons.add_a_photo : Icons.edit,
+            color: Theme.of(context).colorScheme.surface,
+            size: 20,
+          ),
+        ),
+      );
 
   Widget buildCircle({
     required Widget child,
