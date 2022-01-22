@@ -5,53 +5,53 @@ import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/profilewidget.dart';
 
 class ProfilePage extends StatelessWidget {
-  final User user;
   const ProfilePage(this.user, {Key? key}) : super(key: key);
+  final User user;
+
   @override
   Widget build(BuildContext context) {
     // const user = UserPreferences.myUser;
 
-    return Container(
-      child: Builder(
-        builder: (context) => Scaffold(
-          appBar: const CustomAppBar('Profil'),
-          body: ListView(
-            physics: const BouncingScrollPhysics(),
-            children: [
-              ProfileWidget(
-                imagePath: user.imagePath,
-                onClicked: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (context) => EditProfilePage(user),),
-                  );
-                },
-              ),
-              const SizedBox(height: 24),
-              buildName(user),
-            ],
-          ),
+    return Builder(
+      builder: (context) => Scaffold(
+        appBar: const CustomAppBar('Profil'),
+        body: ListView(
+          physics: const BouncingScrollPhysics(),
+          children: [
+            ProfileWidget(
+              imagePath: user.imagePath,
+              onClicked: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => EditProfilePage(user),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 24),
+            buildName(user, context),
+          ],
         ),
       ),
     );
   }
 
-  Widget buildName(User user) => Column(
-    children: [
-      Text(
-        user.name.split(' ').first,
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-      ),
-      const SizedBox(height: 4),
-      Text(
-        user.name.split(' ').last,
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-      ),
-      const SizedBox(height: 4),
-      Text(
-        user.email,
-        style: const TextStyle(color: Colors.grey),
-      )
-    ],
-  );
+  Widget buildName(User user, BuildContext context) => Column(
+        children: [
+          Text(
+            user.name.split(' ').first,
+            style: Theme.of(context).textTheme.headline2,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            user.name.split(' ').last,
+            style: Theme.of(context).textTheme.headline2,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            user.email,
+            style: Theme.of(context).textTheme.bodyText2,
+          )
+        ],
+      );
 }
