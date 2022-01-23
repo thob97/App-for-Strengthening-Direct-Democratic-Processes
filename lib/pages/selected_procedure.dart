@@ -7,6 +7,7 @@ import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/elemen
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/data_list_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/decision_description.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/process_description.dart';
+import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/social_media_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/vote_results_view.dart';
 
 class SelectedProcedure extends StatelessWidget {
@@ -61,6 +62,12 @@ class SelectedProcedure extends StatelessWidget {
         header: 'Wahl Ergebnisse',
         expandedWidget: VoteResultsView(
           widgetList: _getWidgetsForVoteResultsView(),
+        ),
+      ),
+      Topic(
+        header: 'Social Media',
+        expandedWidget: SocialMediaView(
+          socialMediaList: MockedSelectedProcedureService.getSocialMedia(),
         ),
       ),
     ];

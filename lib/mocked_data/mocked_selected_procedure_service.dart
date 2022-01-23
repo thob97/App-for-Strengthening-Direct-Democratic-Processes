@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/model/chart_model.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/data_list_view.dart';
+import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/social_media_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/what_happens_next.dart';
 
 mixin MockedSelectedProcedureService {
@@ -91,6 +92,27 @@ mixin MockedSelectedProcedureService {
         '10.12.2021',
         '13.02.2022',
       ],
+    ];
+  }
+
+  static List<SocialMedia> getSocialMedia() {
+    return [
+      SocialMedia(
+        type: SocialMediaType.facebook,
+        url: 'https:www.facebook.com',
+      ),
+      SocialMedia(
+        type: SocialMediaType.twitter,
+        url: 'https:www.facebook.com',
+      ),
+      SocialMedia(
+        type: SocialMediaType.instagram,
+        url: 'https:www.facebook.com',
+      ),
+      SocialMedia(
+        type: SocialMediaType.website,
+        url: 'https:www.google.com',
+      ),
     ];
   }
 
