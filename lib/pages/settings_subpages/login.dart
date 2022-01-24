@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/register.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/register.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,21 +11,27 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String email = 'name@domain.de';
   String password = '******';
-  bool showPassword = false;
-
+  bool showPassword = true;
+  bool showConfirmPassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar('Login'),
       body: Container(
-        padding: EdgeInsets.only(top: 16.0),
+        padding: const EdgeInsets.only(top: 16.0),
         child: ListView(
           children: <Widget>[
             const SizedBox(
               height: 15,
             ),
-            buildTextField('Email', 'name@domain.com', false),
-            buildTextField('Passwort', '******', true),
+            buildTextField(
+              'Email',
+              'name@domain.com',
+            ),
+            buildTextField(
+              'Passwort',
+              '******',
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -33,17 +39,19 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Settings()),
+                      MaterialPageRoute(builder: (context) => const Settings()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).primaryColor,
+                    primary: Theme.of(context).colorScheme.primary,
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),),
-                  child: const Text(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  child: Text(
                     'LOGIN',
-                    style: TextStyle(fontSize: 14, letterSpacing: 2.2),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 )
               ],
@@ -52,10 +60,11 @@ class _LoginPageState extends State<LoginPage> {
               height: 15,
             ),
             Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  Text('oder'),
-                ]),
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Text('oder'),
+              ],
+            ),
             const SizedBox(
               height: 15,
             ),
@@ -66,20 +75,21 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => RegisterPage()),
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterPage(),
+                      ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: ColorScheme.light().primary,
+                    primary: Theme.of(context).colorScheme.primary,
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),),
-                  child: const Text(
-                    'REGISTRIEREN',
-                    style: TextStyle(
-                      fontSize: 14,
-                      letterSpacing: 2.2,
+                      borderRadius: BorderRadius.circular(20),
                     ),
+                  ),
+                  child: Text(
+                    'REGISTRIEREN',
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 )
               ],
@@ -91,50 +101,98 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
-    return Column(children: [
-      Padding(
+    String labelText,
+    String placeholder,
+  ) {
+    Widget child;
+    if (labelText == 'Passwort') {
+      child = TextField(
+        onTap: () {},
+        obscureText: showPassword,
+        decoration: InputDecoration(
+          labelText: '  $labelText',
+          suffixIcon: IconButton(
+            icon: const Icon(Icons.remove_red_eye),
+            onPressed: () => setState(
+              () => showPassword = !showPassword,
+            ),
+          ),
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(width: 2),
+          ),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintText: '  $placeholder',
+          labelStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          hintStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
+    } else if (labelText == 'Passwort wiederholen') {
+      child = TextField(
+        onTap: () {},
+        obscureText: showConfirmPassword,
+        decoration: InputDecoration(
+          labelText: '  $labelText',
+          suffixIcon: IconButton(
+            icon: const Icon(Icons.remove_red_eye),
+            onPressed: () => setState(
+              () => showConfirmPassword = !showConfirmPassword,
+            ),
+          ),
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(width: 2),
+          ),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintText: '  $placeholder',
+          labelStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          hintStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
+    } else {
+      child = TextField(
+        onTap: () {},
+        decoration: InputDecoration(
+          labelText: '  $labelText',
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(width: 2),
+          ),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintText: '  $placeholder',
+          labelStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          hintStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
+    }
+    return Column(
+      children: [
+        Padding(
           padding: const EdgeInsets.only(
             bottom: 35.0,
           ),
           child: SizedBox(
             height: 60,
             width: 350,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                autofocus: false,
-                onTap: () {},
-                obscureText: isPasswordTextField ? showPassword : false,
-                decoration: InputDecoration(
-                  suffix: isPasswordTextField
-                      ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        showPassword = !showPassword;
-                      });
-                    },
-                    icon: const Icon(
-                      Icons.remove_red_eye,
-                      color: Colors.grey,
-                    ),
-                  )
-                      : null,
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(width: 2),
-                  ),
-                  contentPadding: const EdgeInsets.only(bottom: 3),
-                  labelText: '  ' + labelText,
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  hintText: '  ' + placeholder,
-                  labelStyle: TextTheme().headline2,
-                  hintStyle: TextTheme().headline2,
-                ),
-              ),
-            ),
-          )
-      )
-    ]);
+            child: child,
+          ),
+        ),
+      ],
+    );
   }
 }
-
