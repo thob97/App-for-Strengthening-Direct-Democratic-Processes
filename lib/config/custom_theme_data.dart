@@ -109,6 +109,17 @@ class CustomThemeData {
         unselectedIconTheme: IconThemeData(color: colorScheme.onBackground),
       ),
 
+      ///ElevatedButtonTheme
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          primary: colorScheme.primary,
+          padding: const EdgeInsets.symmetric(horizontal: 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ),
+
       ///etc
       iconTheme: IconThemeData(color: colorScheme.onPrimary),
       canvasColor: colorScheme.background,
