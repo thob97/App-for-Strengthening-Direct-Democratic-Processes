@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/card_procedure.dart';
 import 'package:swp_direktdem_verf_app/widgets/card_statistic.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
-import 'package:swp_direktdem_verf_app/widgets/custom_bottom_navigation_bar.dart';
 
 class Start extends StatefulWidget {
   const Start({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class _StartState extends State<Start> {
   Scaffold build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar('Start'),
-      bottomNavigationBar: const CustomBottomNavigationBar(selectedIndex: 0),
+      bottomNavigationBar: const AnimatedNavBar(selectedIndex: 0),
       body: _myBody(),
       floatingActionButton: _myFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
