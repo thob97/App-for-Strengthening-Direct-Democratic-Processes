@@ -24,11 +24,15 @@ class _CardStatisticState extends State<CardStatistic> {
     return Container(
       height: 300,
       width: 350,
+      margin: const EdgeInsets.symmetric(
+        horizontal: 10.0,
+        vertical: 10.0,
+      ),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(19),
       ),
-      padding: const EdgeInsets.all(4),
+      padding: const EdgeInsets.only(left: 15, top: 10, right: 10, bottom: 10),
       child: Stack(
         children: <Widget>[
           _myStatisticInfo(),
@@ -40,23 +44,20 @@ class _CardStatisticState extends State<CardStatistic> {
   }
 
   Widget _myStatisticInfo() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 40, top: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _myTitle(),
-          const SizedBox(height: 10.0),
-          _myDescription(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _myTitle(),
+        const SizedBox(height: 10.0),
+        _myDescription(),
+      ],
     );
   }
 
   Widget _myStarIcon() {
     return Positioned(
-      top: 2,
-      right: 10,
+      top: -10,
+      right: -5,
       child: IconButton(
         splashRadius: 0.1,
         icon: Icon(
@@ -88,7 +89,7 @@ class _CardStatisticState extends State<CardStatistic> {
           style: Theme.of(context)
               .textTheme
               .bodyText2
-              ?.apply(color: Theme.of(context).primaryColor),
+              ?.apply(color: Theme.of(context).colorScheme.primary),
         ),
       ),
     );
@@ -103,10 +104,13 @@ class _CardStatisticState extends State<CardStatistic> {
   }
 
   Widget _myTitle() {
-    return Text(
-      widget.title,
-      style: Theme.of(context).textTheme.headline2,
-      maxLines: 2,
+    return Padding(
+      padding: const EdgeInsets.only(right: 40.0),
+      child: Text(
+        widget.title,
+        style: Theme.of(context).textTheme.headline2,
+        maxLines: 2,
+      ),
     );
   }
 }
