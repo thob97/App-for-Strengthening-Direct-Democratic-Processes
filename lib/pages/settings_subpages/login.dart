@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/custom_textfield.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/register.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
+class LoginPage extends StatelessWidget {
+  final String email = 'name@domain.de';
+  final String password = '******';
 
-class _LoginPageState extends State<LoginPage> {
-  String email = 'name@domain.de';
-  String password = '******';
-  bool showPassword = true;
-  bool showConfirmPassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,14 +19,11 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 15,
             ),
-            buildTextField(
-              'Email',
-              'name@domain.com',
+            const CustomWidget(
+              labelText: 'Email',
+              placeholder: 'name@domain.com',
             ),
-            buildTextField(
-              'Passwort',
-              '******',
-            ),
+            const CustomWidget(labelText: 'Passwort', placeholder: '******'),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -97,102 +89,6 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget buildTextField(
-    String labelText,
-    String placeholder,
-  ) {
-    Widget child;
-    if (labelText == 'Passwort') {
-      child = TextField(
-        onTap: () {},
-        obscureText: showPassword,
-        decoration: InputDecoration(
-          labelText: '  $labelText',
-          suffixIcon: IconButton(
-            icon: const Icon(Icons.remove_red_eye),
-            onPressed: () => setState(
-              () => showPassword = !showPassword,
-            ),
-          ),
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(width: 2),
-          ),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          hintText: '  $placeholder',
-          labelStyle: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          hintStyle: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      );
-    } else if (labelText == 'Passwort wiederholen') {
-      child = TextField(
-        onTap: () {},
-        obscureText: showConfirmPassword,
-        decoration: InputDecoration(
-          labelText: '  $labelText',
-          suffixIcon: IconButton(
-            icon: const Icon(Icons.remove_red_eye),
-            onPressed: () => setState(
-              () => showConfirmPassword = !showConfirmPassword,
-            ),
-          ),
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(width: 2),
-          ),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          hintText: '  $placeholder',
-          labelStyle: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          hintStyle: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      );
-    } else {
-      child = TextField(
-        onTap: () {},
-        decoration: InputDecoration(
-          labelText: '  $labelText',
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(width: 2),
-          ),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          hintText: '  $placeholder',
-          labelStyle: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          hintStyle: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      );
-    }
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            bottom: 35.0,
-          ),
-          child: SizedBox(
-            height: 60,
-            width: 350,
-            child: child,
-          ),
-        ),
-      ],
     );
   }
 }
