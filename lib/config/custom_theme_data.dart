@@ -127,7 +127,7 @@ class CustomThemeData {
       ///etc
       checkboxTheme: const CheckboxThemeData(shape: CircleBorder()),
       primaryIconTheme: IconThemeData(color: colorScheme.onBackground),
-      iconTheme: IconThemeData(color: colorScheme.onPrimary),
+      iconTheme: IconThemeData(color: colorScheme.onBackground),
       canvasColor: colorScheme.background,
       scaffoldBackgroundColor: colorScheme.background,
       highlightColor: Colors.transparent,
