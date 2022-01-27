@@ -9,14 +9,15 @@ class CustomThemeData {
   static final Color _darkFocusColor = Colors.white.withOpacity(0.12);
 
   static final ColorScheme _lightColorScheme = ColorScheme(
-    primary: const Color(0xFF194C76), //Primary
+    primary: const Color(0xFF194C76),
+    //Primary
     secondary: _lightFillColor,
     background: const Color(0xFFCBE0F4), //Background
     surface: Colors.white,
     onBackground: const Color(0xFF4389C8), //Background accent
     error: _lightFillColor,
     onError: _lightFillColor,
-    onPrimary: _lightFillColor,
+    onPrimary: Colors.white,
     onSecondary: _lightFillColor,
     onSurface: _lightFillColor,
     primaryVariant: _lightFillColor,
@@ -109,7 +110,23 @@ class CustomThemeData {
         unselectedIconTheme: IconThemeData(color: colorScheme.onBackground),
       ),
 
+      ///DividerTheme
+      dividerTheme: const DividerThemeData(
+        space: 0,
+        thickness: 1.5,
+      ),
+
+      ///CardTheme
+      cardTheme: CardTheme(
+        color: colorScheme.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(MyConstants.borderRadius),
+        ),
+      ),
+
       ///etc
+      checkboxTheme: const CheckboxThemeData(shape: CircleBorder()),
+      primaryIconTheme: IconThemeData(color: colorScheme.onBackground),
       iconTheme: IconThemeData(color: colorScheme.onPrimary),
       canvasColor: colorScheme.background,
       scaffoldBackgroundColor: colorScheme.background,
@@ -130,5 +147,11 @@ class CustomThemeData {
 }
 
 class MyConstants {
+  static const double borderRadius = 8;
   static const double horPagePadding = 16;
+  static const double verPagePadding = 30;
+  static const EdgeInsets pagePadding = EdgeInsets.symmetric(
+    vertical: 30,
+    horizontal: 16,
+  );
 }

@@ -72,7 +72,7 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
         Scrollable.ensureVisible(
           keyContext,
           //scroll duration
-          duration: const Duration(milliseconds: 200),
+          duration: kThemeAnimationDuration,
         );
       });
     }

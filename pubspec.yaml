@@ -38,6 +38,9 @@ dependencies:
   google_nav_bar: ^5.0.5
 
 
+  path_provider: ^2.0.1
+  #Weir error with ^1.2.1
+  flutter_pdfview: 1.1.0
 
 dev_dependencies:
   lint: ^1.0.0
