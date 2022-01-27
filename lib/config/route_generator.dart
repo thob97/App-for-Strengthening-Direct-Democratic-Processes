@@ -31,7 +31,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => const Settings());
 
     case '/selected_procedure':
-      return MaterialPageRoute(builder: (_) => SelectedProcess());
+      return MaterialPageRoute(builder: (_) => SelectedProcedure());
 
     ///With animation
     //return MaterialPageRoute(builder: (_) => const Settings());
