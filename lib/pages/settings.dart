@@ -1,6 +1,7 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/datasecurity.dart';
 import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/settingsbutton.dart';
@@ -23,7 +24,12 @@ class _SettingsState extends State<Settings> {
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
         child: ListView(
           children: [
-            SettingsButton(Icons.notes, 'Datenschutzbestimmungen', () {}),
+            SettingsButton(Icons.notes, 'Datenschutzbestimmungen', () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const DataSecurity()),
+              );
+            }),
             const Divider(),
             SettingsButton(
               CommunityMaterialIcons.account_edit,
