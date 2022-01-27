@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/model/chart_model.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/data_list_view.dart';
+import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/what_happens_next.dart';
 
 mixin MockedSelectedProcedureService {
   static const String title = 'Lorem Ipsum';
@@ -90,6 +91,27 @@ mixin MockedSelectedProcedureService {
         '10.12.2021',
         '13.02.2022',
       ],
+    ];
+  }
+
+  static List<Instructions> getDummyWhatHappensNextInstructions() {
+    return [
+      Instructions(
+        title: 'Überprüfung',
+        subtitle: 'Ihr Antrag wird von uns auf Fehler überprüft.',
+        asset: 'assets/what_happens_next/receive.png',
+      ),
+      Instructions(
+        title: 'Bearbeitung',
+        subtitle:
+            'Nach erfolgreicher Prüfung werden wir Ihr Verfahren in eine Phase einordnen.',
+        asset: 'assets/what_happens_next/confirmed.png',
+      ),
+      Instructions(
+        title: 'Veröffentlichung',
+        subtitle: 'Im Anschluss wird Ihr Verfahren veröffentlicht.',
+        asset: 'assets/what_happens_next/ready.png',
+      ),
     ];
   }
 }

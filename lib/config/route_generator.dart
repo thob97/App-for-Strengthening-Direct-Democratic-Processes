@@ -5,6 +5,7 @@ import 'package:swp_direktdem_verf_app/pages/error_page.dart';
 import 'package:swp_direktdem_verf_app/pages/news.dart';
 import 'package:swp_direktdem_verf_app/pages/selected_procedure.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
+import 'package:swp_direktdem_verf_app/pages/what_happens_next/what_happens_next_showcase.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   if (settings.arguments == null || settings.name == null) {
@@ -32,6 +33,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case '/selected_procedure':
       return MaterialPageRoute(builder: (_) => SelectedProcedure());
+
+    case '/what_happens_next':
+      return MaterialPageRoute(builder: (_) => const WhatHappensNextShowcase());
 
     ///With animation
     //return MaterialPageRoute(builder: (_) => const Settings());

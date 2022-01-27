@@ -34,7 +34,10 @@ class _SettingsState extends State<Settings> {
             SettingsButton(
               CommunityMaterialIcons.archive_outline,
               'Meine Verfahren',
-              () {},
+              () => Navigator.of(context).pushNamed(
+                '/what_happens_next',
+                arguments: const NavigationArguments(),
+              ),
             ),
             const Divider(),
             SettingsButton(
