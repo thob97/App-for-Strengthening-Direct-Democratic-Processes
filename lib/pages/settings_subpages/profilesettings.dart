@@ -218,7 +218,7 @@ class EditProfilePage extends StatelessWidget {
             height: 60,
             width: 350,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(2.0),
               child: TextField(
                 onTap: () {},
                 decoration: InputDecoration(
@@ -229,7 +229,6 @@ class EditProfilePage extends StatelessWidget {
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                   hintText: '  $placeholder',
                   labelStyle: Theme.of(context).textTheme.headline2,
-                  hintStyle: Theme.of(context).textTheme.headline2,
                 ),
               ),
             ),
