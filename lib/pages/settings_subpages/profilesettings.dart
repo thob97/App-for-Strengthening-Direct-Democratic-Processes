@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
+import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/profilewidget.dart';
 
@@ -36,20 +37,44 @@ class EditProfilePage extends StatelessWidget {
                       context: context,
                       builder: (context) {
                         return Dialog(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.background,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40),
+                            borderRadius: BorderRadius.circular(10),
                           ),
                           elevation: 16,
                           child: SizedBox(
-                            height: 400.0,
-                            width: 360.0,
+                            height: 450.0,
+                            width: 400.0,
                             child: ListView(
+                              padding: const EdgeInsets.all(10.0),
                               children: <Widget>[
+                                IconButton(
+                                  icon: const Icon(Icons.cancel),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const EditProfilePage(
+                                          UserPreferences.myUser,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  alignment: Alignment.centerRight,
+                                ),
                                 Center(
                                   child: Text(
                                     'Passwort ändern',
-                                    style:
-                                        Theme.of(context).textTheme.headline2,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        ?.apply(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
                                   ),
                                 ),
                                 const SizedBox(height: 10),
@@ -59,34 +84,46 @@ class EditProfilePage extends StatelessWidget {
                                   context,
                                 ),
                                 const SizedBox(height: 10),
-                                Text(
-                                  'Neues Passwort',
-                                  style: Theme.of(context).textTheme.headline2,
+                                Center(
+                                  child: Text(
+                                    'Neues Passwort',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        ?.apply(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                  ),
                                 ),
+                                const SizedBox(height: 10),
                                 buildTextField('Passwort', 'Passwort', context),
                                 buildTextField(
                                   'Passwort wiederholen',
                                   'Passwort wiederholen',
                                   context,
                                 ),
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                    primary:
-                                        Theme.of(context).colorScheme.primary,
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 50,
+                                Align(
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      primary:
+                                          Theme.of(context).colorScheme.primary,
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 50,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
                                     ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
+                                    child: Text(
+                                      'Speichern',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
                                     ),
                                   ),
-                                  child: Text(
-                                    'Speichern',
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2,
-                                  ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -175,7 +212,7 @@ class EditProfilePage extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(
-            bottom: 35.0,
+            bottom: 20.0,
           ),
           child: SizedBox(
             height: 60,
