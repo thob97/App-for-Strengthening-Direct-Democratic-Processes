@@ -43,7 +43,7 @@ class _UserScreenState extends State<UserScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            color: Theme.of(context).primaryColor,
+
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
