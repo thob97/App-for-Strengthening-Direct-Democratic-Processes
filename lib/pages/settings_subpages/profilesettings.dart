@@ -106,16 +106,7 @@ class EditProfilePage extends StatelessWidget {
                                 Align(
                                   child: ElevatedButton(
                                     onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      primary:
-                                          Theme.of(context).colorScheme.primary,
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 50,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                    ),
+                                    style:  Theme.of(context).elevatedButtonTheme.style,
                                     child: Text(
                                       'Speichern',
                                       style:
@@ -130,13 +121,7 @@ class EditProfilePage extends StatelessWidget {
                       },
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).colorScheme.primary,
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
+                  style:  Theme.of(context).elevatedButtonTheme.style,
                   child: Text(
                     'PASSWORT ÄNDERN',
                     style: Theme.of(context).textTheme.bodyText2,
@@ -168,13 +153,7 @@ class EditProfilePage extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).colorScheme.primary,
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
+                  style: Theme.of(context).elevatedButtonTheme.style,
                   child: Text(
                     'ABBRECHEN',
                     style: Theme.of(context).textTheme.bodyText2,
@@ -182,13 +161,7 @@ class EditProfilePage extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).colorScheme.primary,
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
+                  style: Theme.of(context).elevatedButtonTheme.style,
                   child: Text(
                     'SPEICHERN',
                     style: Theme.of(context).textTheme.bodyText2,
