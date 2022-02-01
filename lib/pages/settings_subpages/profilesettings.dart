@@ -45,7 +45,7 @@ class EditProfilePage extends StatelessWidget {
                           ),
                           elevation: 16,
                           child: SizedBox(
-                            height: 450.0,
+                            height: 500.0,
                             width: 400.0,
                             child: ListView(
                               padding: const EdgeInsets.all(10.0),
