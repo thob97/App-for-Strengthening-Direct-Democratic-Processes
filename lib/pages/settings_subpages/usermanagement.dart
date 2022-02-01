@@ -42,28 +42,25 @@ class _UserScreenState extends State<UserScreen> {
       appBar: const CustomAppBar('Benutzerverwaltung'),
       body: Column(
         children: <Widget>[
-          Container(
-
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
-                child: ListTile(
-                  leading: const Icon(Icons.search),
-                  title: TextField(
-                    controller: controller,
-                    decoration: const InputDecoration(
-                      hintText: 'Suche',
-                      border: InputBorder.none,
-                    ),
-                    onChanged: onSearchTextChanged,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              child: ListTile(
+                leading: const Icon(Icons.search),
+                title: TextField(
+                  controller: controller,
+                  decoration: const InputDecoration(
+                    hintText: 'Suche',
+                    border: InputBorder.none,
                   ),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.cancel),
-                    onPressed: () {
-                      controller.clear();
-                      onSearchTextChanged('');
-                    },
-                  ),
+                  onChanged: onSearchTextChanged,
+                ),
+                trailing: IconButton(
+                  icon: const Icon(Icons.cancel),
+                  onPressed: () {
+                    controller.clear();
+                    onSearchTextChanged('');
+                  },
                 ),
               ),
             ),

@@ -79,7 +79,7 @@ class EditProfilePage extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                                TextfieldLoginRegister(
+                                const TextfieldLoginRegister(
                                   'Altes Passwort',
                                   'Altes Passwort',
                                 ),
@@ -98,15 +98,20 @@ class EditProfilePage extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                                TextfieldLoginRegister('Passwort', 'Passwort'),
-                                TextfieldLoginRegister(
+                                const TextfieldLoginRegister(
+                                  'Passwort',
+                                  'Passwort',
+                                ),
+                                const TextfieldLoginRegister(
                                   'Passwort wiederholen',
                                   'Passwort wiederholen',
                                 ),
                                 Align(
                                   child: ElevatedButton(
                                     onPressed: () {},
-                                    style:  Theme.of(context).elevatedButtonTheme.style,
+                                    style: Theme.of(context)
+                                        .elevatedButtonTheme
+                                        .style,
                                     child: Text(
                                       'Speichern',
                                       style:
@@ -121,7 +126,7 @@ class EditProfilePage extends StatelessWidget {
                       },
                     );
                   },
-                  style:  Theme.of(context).elevatedButtonTheme.style,
+                  style: Theme.of(context).elevatedButtonTheme.style,
                   child: Text(
                     'PASSWORT ÄNDERN',
                     style: Theme.of(context).textTheme.bodyText2,
