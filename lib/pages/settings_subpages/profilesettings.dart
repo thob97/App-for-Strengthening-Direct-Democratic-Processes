@@ -3,6 +3,7 @@ import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
 import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/profilewidget.dart';
+import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage(this.user, {Key? key}) : super(key: key);
@@ -25,9 +26,9 @@ class EditProfilePage extends StatelessWidget {
             const SizedBox(
               height: 35,
             ),
-            buildTextField('Vorname', user.name.split(' ').first, context),
-            buildTextField('Nachname', user.name.split(' ').last, context),
-            buildTextField('Email', user.email, context),
+            TextfieldLoginRegister('Vorname', user.name.split(' ').first),
+            TextfieldLoginRegister('Nachname', user.name.split(' ').last),
+            TextfieldLoginRegister('Email', user.email),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -78,10 +79,9 @@ class EditProfilePage extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                                buildTextField(
+                                TextfieldLoginRegister(
                                   'Altes Passwort',
                                   'Altes Passwort',
-                                  context,
                                 ),
                                 const SizedBox(height: 10),
                                 Center(
@@ -98,11 +98,10 @@ class EditProfilePage extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                                buildTextField('Passwort', 'Passwort', context),
-                                buildTextField(
+                                TextfieldLoginRegister('Passwort', 'Passwort'),
+                                TextfieldLoginRegister(
                                   'Passwort wiederholen',
                                   'Passwort wiederholen',
-                                  context,
                                 ),
                                 Align(
                                   child: ElevatedButton(
@@ -200,41 +199,6 @@ class EditProfilePage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget buildTextField(
-    String labelText,
-    String placeholder,
-    BuildContext context,
-  ) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            bottom: 20.0,
-          ),
-          child: SizedBox(
-            height: 60,
-            width: 350,
-            child: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: TextField(
-                onTap: () {},
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(width: 2),
-                  ),
-                  labelText: '  $labelText',
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  hintText: '  $placeholder',
-                  labelStyle: Theme.of(context).textTheme.headline2,
-                ),
-              ),
-            ),
-          ),
-        )
-      ],
     );
   }
 }
