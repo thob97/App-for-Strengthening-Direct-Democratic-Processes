@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/main.dart';
-import 'package:swp_direktdem_verf_app/pages/discover.dart';
 import 'package:swp_direktdem_verf_app/pages/error_page.dart';
+import 'package:swp_direktdem_verf_app/pages/favorite.dart';
 import 'package:swp_direktdem_verf_app/pages/news.dart';
 import 'package:swp_direktdem_verf_app/pages/selected_procedure.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
-import 'package:swp_direktdem_verf_app/pages/what_happens_next/what_happens_next_showcase.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   if (settings.arguments == null || settings.name == null) {
@@ -22,20 +22,24 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/home':
       return PageRouteBuilder(pageBuilder: (_, __, ___) => const MyApp());
 
-    case '/discover':
-      return PageRouteBuilder(pageBuilder: (_, __, ___) => const Discover());
+    case '/favorite':
+      return PageRouteBuilder(
+        pageBuilder: (_, __, ___) => const FavoritePage(),
+      );
 
     case '/news':
-      return PageRouteBuilder(pageBuilder: (_, __, ___) => const News());
+      return PageRouteBuilder(
+        pageBuilder: (_, __, ___) => const News(),
+      );
 
     case '/settings':
       return PageRouteBuilder(pageBuilder: (_, __, ___) => const Settings());
 
-    case '/selected_procedure':
-      return MaterialPageRoute(builder: (_) => SelectedProcedure());
+    case '/my_procedures':
+      return MaterialPageRoute(builder: (_) => const MyProcedures());
 
-    case '/what_happens_next':
-      return MaterialPageRoute(builder: (_) => const WhatHappensNextShowcase());
+    case '/selected_procedure':
+      return MaterialPageRoute(builder: (_) => const SelectedProcedure());
 
     ///With animation
     //return MaterialPageRoute(builder: (_) => const Settings());

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
-import 'package:swp_direktdem_verf_app/pages/start.dart';
+import 'package:swp_direktdem_verf_app/pages/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Volksbegehren Berlin',
       theme: CustomThemeData.lightThemeData,
-      home: const Start(),
+      home: const Home(),
       initialRoute: '/',
       onGenerateRoute: generateRoute,
     );
