@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/datasecurity.dart';
-import 'package:swp_direktdem_verf_app/pages/what_happens_next/what_happens_next_showcase.dart';
+import 'package:swp_direktdem_verf_app/pages/what_happens_next.dart';
 import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/settingsbutton.dart';

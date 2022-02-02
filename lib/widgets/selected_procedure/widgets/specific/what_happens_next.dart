@@ -15,31 +15,59 @@ class WhatHappensNext extends StatefulWidget {
   const WhatHappensNext({
     required this.title,
     required this.instructions,
+    required this.index,
     required this.state,
-    this.indexShowCase = 0,
-    this.indexError = 0,
-    this.indexWaiting = 0,
   });
+
+  factory WhatHappensNext.showcase({
+    required String title,
+    required List<Instructions> instructions,
+  }) {
+    return WhatHappensNext(
+      title: title,
+      instructions: instructions,
+      index: 0,
+      state: PageState.showcase,
+    );
+  }
+
+  factory WhatHappensNext.error({
+    required String title,
+    required List<Instructions> instructions,
+    required int index,
+  }) {
+    return WhatHappensNext(
+      title: title,
+      instructions: instructions,
+      index: index,
+      state: PageState.error,
+    );
+  }
+
+  factory WhatHappensNext.waiting({
+    required String title,
+    required List<Instructions> instructions,
+    required int index,
+  }) {
+    return WhatHappensNext(
+      title: title,
+      instructions: instructions,
+      index: index,
+      state: PageState.waiting,
+    );
+  }
 
   final String title;
   final List<Instructions> instructions;
+  final int index;
   final PageState state;
-
-  //for PageState showCase (index where showCase starts)
-  final int indexShowCase;
-
-  //for PageState error (index where error occurred)
-  final int indexError;
-
-  //for PageState waiting (index where its waiting)
-  final int indexWaiting;
 
   @override
   State<WhatHappensNext> createState() => _WhatHappensNextState();
 }
 
 class _WhatHappensNextState extends State<WhatHappensNext> {
-  int currentIndex = 0;
+  late int currentIndex;
 
   //TODO
   void _onContinue() {}
@@ -52,7 +80,7 @@ class _WhatHappensNextState extends State<WhatHappensNext> {
   @override
   void initState() {
     super.initState();
-    currentIndex = _getRightIndex();
+    currentIndex = widget.index;
     if (widget.state == PageState.showcase) {
       _incrementShowcase();
     }
@@ -64,17 +92,6 @@ class _WhatHappensNextState extends State<WhatHappensNext> {
       setState(() {
         currentIndex++;
       });
-    }
-  }
-
-  int _getRightIndex() {
-    switch (widget.state) {
-      case PageState.showcase:
-        return widget.indexShowCase;
-      case PageState.waiting:
-        return widget.indexWaiting;
-      case PageState.error:
-        return widget.indexError;
     }
   }
 
@@ -117,15 +134,14 @@ class _WhatHappensNextState extends State<WhatHappensNext> {
   List<TimeLineProcess> _widgetsToTimeLineProcess(List<Widget> widgets) {
     return widgets.mapIndexed((index, widget) {
       return TimeLineProcess(
-        state: _getState(index),
+        state: _getTimeLineState(index),
         child: widget,
       );
     }).toList();
   }
 
-  TimeLineState _getState(int index) {
+  TimeLineState _getTimeLineState(int index) {
     TimeLineState _state = TimeLineState.doing;
-    //get fitting TimeLineState
     switch (widget.state) {
       case PageState.showcase:
       case PageState.waiting:
