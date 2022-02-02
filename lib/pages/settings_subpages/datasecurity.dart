@@ -23,7 +23,7 @@ class _DataSecurityState extends State<DataSecurity> {
           Text(
             'ZUSAMMENFASSUNG DER \nDATENSCHUTZERKLÄRUNG',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.headline5,
           ),
           Divider(
             color: Theme.of(context).colorScheme.primary,

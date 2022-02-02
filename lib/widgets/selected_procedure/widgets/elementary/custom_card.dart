@@ -4,9 +4,10 @@ import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 ///Looks like card, but it prevents ripple / splash effects
 /// to overflow over the cards edges.
 class CustomCard extends StatelessWidget {
-  const CustomCard({required this.child});
+  const CustomCard({required this.child, this.onTap});
 
   final Widget child;
+  final VoidCallback? onTap;
 
   ///Style
   static const double _horPad = 10;
@@ -19,7 +20,10 @@ class CustomCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(MyConstants.borderRadius),
         child: Material(
           color: Theme.of(context).cardTheme.color,
-          child: child,
+          child: InkWell(
+            onTap: onTap,
+            child: child,
+          ),
         ),
       ),
     );

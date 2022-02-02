@@ -50,14 +50,14 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
   }
 
   Widget _myHeader(String content) {
-    final TextStyle _theme = Theme.of(context).textTheme.headline5!;
+    final TextStyle _theme = Theme.of(context).textTheme.headline6!;
     return Text(
       content,
       //TextStyle called this way so that no color is specified for
       //'ExpansionTile textColor'. So that expansion changes color
       style: TextStyle(
         fontFamily: _theme.fontFamily,
-        fontWeight: _theme.fontWeight,
+        //fontWeight: _theme.fontWeight,
         fontSize: _theme.fontSize,
         overflow: _theme.overflow,
       ),

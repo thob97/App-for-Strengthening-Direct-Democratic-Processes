@@ -37,7 +37,10 @@ class DataListView extends StatelessWidget {
   Text _itemText(BuildContext context, String text) {
     return Text(
       text,
-      style: Theme.of(context).textTheme.headline2,
+      style: Theme.of(context)
+          .textTheme
+          .caption
+          ?.copyWith(fontSize: Theme.of(context).textTheme.bodyText2?.fontSize),
     );
   }
 

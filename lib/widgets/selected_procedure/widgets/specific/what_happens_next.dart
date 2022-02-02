@@ -146,10 +146,7 @@ class _WhatHappensNextState extends State<WhatHappensNext> {
   Widget _continueButton() {
     return ElevatedButton(
       onPressed: _onContinue,
-      child: Text(
-        _continueButtonText,
-        style: Theme.of(context).textTheme.bodyText2,
-      ),
+      child: const Text(_continueButtonText),
     );
   }
 
@@ -159,8 +156,8 @@ class _WhatHappensNextState extends State<WhatHappensNext> {
       textAlign: TextAlign.center,
       style: Theme.of(context)
           .textTheme
-          .headline5!
-          .copyWith(overflow: TextOverflow.visible),
+          .headline5
+          ?.copyWith(overflow: TextOverflow.visible),
     );
   }
 }
