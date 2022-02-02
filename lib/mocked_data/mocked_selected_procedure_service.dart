@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/widgets/selected_procedure/model/chart_model.dart';
+import 'package:swp_direktdem_verf_app/widgets/charts/chart_model.dart';
+import 'package:swp_direktdem_verf_app/widgets/home/overview_procedure_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/data_list_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/social_media_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/what_happens_next.dart';
 
 mixin MockedSelectedProcedureService {
+  static const String imgUrl = 'assets/procedure/politics.jpg';
+  static const bool isFollowed = false;
   static const String title = 'Lorem Ipsum';
   static const String descriptionContent =
-      'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
+      'is simply procedure text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard procedure text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
 
   static List<Data> getPdfUrls() {
     return [
@@ -133,6 +136,90 @@ mixin MockedSelectedProcedureService {
         title: 'Veröffentlichung',
         subtitle: 'Im Anschluss wird Ihr Verfahren veröffentlicht.',
         asset: 'assets/what_happens_next/ready.png',
+      ),
+    ];
+  }
+
+  static List<ProcedureOverview> getAllProcedures() {
+    return [
+      ProcedureOverview(
+        title: 'Politics',
+        description: 'Help us with the climate change',
+        state: 1,
+        img: 'assets/procedure/politics.jpg',
+      ),
+      ProcedureOverview(
+        title: 'World',
+        description: 'Stop the currency race',
+        state: 2,
+        img: 'assets/procedure/currency.jpg',
+      ),
+      ProcedureOverview(
+        title: 'Army',
+        description:
+            'Reform the green Army from within. Join us now! We are located at the following',
+        state: 3,
+        img: 'assets/procedure/army.jpg',
+      ),
+      ProcedureOverview(
+        title: 'Politics',
+        description: 'Help us with the climate change',
+        state: 1,
+        img: 'assets/procedure/politics.jpg',
+      ),
+      ProcedureOverview(
+        title: 'World',
+        description: 'Stop the currency race',
+        state: 2,
+        img: 'assets/procedure/currency.jpg',
+      ),
+      ProcedureOverview(
+        title: 'Army',
+        description:
+            'Reform the green Army from within. Join us now! We are located at the following',
+        state: 3,
+        img: 'assets/procedure/army.jpg',
+      ),
+      ProcedureOverview(
+        title: 'Politics',
+        description: 'Help us with the climate change',
+        state: 1,
+        img: 'assets/procedure/politics.jpg',
+      ),
+      ProcedureOverview(
+        title: 'World',
+        description: 'Stop the currency race',
+        state: 2,
+        img: 'assets/procedure/currency.jpg',
+      ),
+      ProcedureOverview(
+        title: 'Army',
+        description:
+            'Reform the green Army from within. Join us now! We are located at the following',
+        state: 3,
+        img: 'assets/procedure/army.jpg',
+      ),
+    ];
+  }
+
+  static List<ProcedureOverview> getFavProcedures() {
+    return [
+      ProcedureOverview(
+        title: 'Politics',
+        description: 'Help us with the climate change',
+        state: 1,
+        img: 'assets/procedure/politics.jpg',
+      ),
+    ];
+  }
+
+  static List<ProcedureOverview> getMyProcedures() {
+    return [
+      ProcedureOverview(
+        title: 'Politics',
+        description: 'Help us with the climate change',
+        state: 1,
+        img: 'assets/procedure/politics.jpg',
       ),
     ];
   }
