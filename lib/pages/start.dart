@@ -3,6 +3,8 @@ import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.da
 import 'package:swp_direktdem_verf_app/widgets/card_procedure.dart';
 import 'package:swp_direktdem_verf_app/widgets/card_statistic.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
+import 'package:swp_direktdem_verf_app/pages/NewProcedure1.dart';
+
 
 class Start extends StatefulWidget {
   const Start({Key? key}) : super(key: key);
@@ -41,7 +43,12 @@ class _StartState extends State<Start> {
 
   Widget _myFloatingActionButton() {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const NewProcedure1()),
+        );
+      },
       backgroundColor: Theme.of(context).colorScheme.primary,
       child: Icon(Icons.add, color: Theme.of(context).colorScheme.background),
     );
