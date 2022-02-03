@@ -49,8 +49,8 @@ class _MyAnimatedNavBar extends State<AnimatedNavBar> {
             text: 'Entdecke',
           ),
           GButton(
-            icon: Icons.notifications,
-            text: 'Neuigkeiten',
+            icon: Icons.question_answer,
+            text: 'FAQ',
           ),
           GButton(
             icon: Icons.settings,
@@ -80,7 +80,7 @@ class _MyAnimatedNavBar extends State<AnimatedNavBar> {
 
         case 2:
           Navigator.of(context).pushReplacementNamed(
-            '/news',
+            '/faq',
             arguments: const NavigationArguments(),
           );
           break;

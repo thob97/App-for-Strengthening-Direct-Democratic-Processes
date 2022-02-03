@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/main.dart';
 import 'package:swp_direktdem_verf_app/pages/discover.dart';
 import 'package:swp_direktdem_verf_app/pages/error_page.dart';
-import 'package:swp_direktdem_verf_app/pages/news.dart';
+import 'package:swp_direktdem_verf_app/pages/faq.dart';
 import 'package:swp_direktdem_verf_app/pages/selected_procedure.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 import 'package:swp_direktdem_verf_app/pages/what_happens_next/what_happens_next_showcase.dart';
@@ -25,8 +25,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/discover':
       return PageRouteBuilder(pageBuilder: (_, __, ___) => const Discover());
 
-    case '/news':
-      return PageRouteBuilder(pageBuilder: (_, __, ___) => const News());
+    case '/faq':
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => const FAQ());
 
     case '/settings':
       return PageRouteBuilder(pageBuilder: (_, __, ___) => const Settings());
