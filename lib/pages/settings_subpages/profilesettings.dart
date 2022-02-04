@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/change_password.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
-import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/profilewidget.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
@@ -32,96 +32,10 @@ class EditProfilePage extends StatelessWidget {
               TextfieldLoginRegister('Email', user.email),
               ElevatedButton(
                 onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.background,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        elevation: 16,
-                        child: SizedBox(
-                          height: 500.0,
-                          width: 400.0,
-                          child: ListView(
-                            padding: const EdgeInsets.all(10.0),
-                            children: <Widget>[
-                              IconButton(
-                                icon: const Icon(Icons.cancel),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const EditProfilePage(
-                                        UserPreferences.myUser,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                alignment: Alignment.centerRight,
-                              ),
-                              Center(
-                                child: Text(
-                                  'Passwort ändern',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline2
-                                      ?.apply(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                      ),
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              const TextfieldLoginRegister(
-                                'Altes Passwort',
-                                'Altes Passwort',
-                              ),
-                              const SizedBox(height: 10),
-                              Center(
-                                child: Text(
-                                  'Neues Passwort',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline2
-                                      ?.apply(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                      ),
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              const TextfieldLoginRegister(
-                                'Passwort',
-                                'Passwort',
-                              ),
-                              const TextfieldLoginRegister(
-                                'Passwort wiederholen',
-                                'Passwort wiederholen',
-                              ),
-                              Align(
-                                child: ElevatedButton(
-                                  onPressed: () {},
-                                  style: Theme.of(context)
-                                      .elevatedButtonTheme
-                                      .style,
-                                  child: Text(
-                                    'Speichern',
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChangePasswordPage(user),),
                   );
                 },
                 style: Theme.of(context).elevatedButtonTheme.style,
