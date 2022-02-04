@@ -124,6 +124,17 @@ class CustomThemeData {
         ),
       ),
 
+      ///ElevatedButtonTheme
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          primary: colorScheme.primary,
+          padding: const EdgeInsets.symmetric(horizontal: 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ),
+
       ///etc
       checkboxTheme: const CheckboxThemeData(shape: CircleBorder()),
       primaryIconTheme: IconThemeData(color: colorScheme.onBackground),
