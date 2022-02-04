@@ -22,8 +22,8 @@ class CustomThemeData {
     onPrimary: Colors.white,
     onSecondary: _lightFillColor,
     onSurface: _lightFillColor,
-    primaryVariant: _lightFillColor,
-    secondaryVariant: _lightFillColor,
+    primaryContainer: _lightFillColor,
+    secondaryContainer: _lightFillColor,
     brightness: Brightness.light,
   );
 
@@ -32,14 +32,15 @@ class CustomThemeData {
     secondary: _darkFillColor,
     background: _darkFillColor,
     surface: _darkFillColor,
-    onBackground: _darkFillColor, // White with 0.05 opacity
+    onBackground: _darkFillColor,
+    // White with 0.05 opacity
     error: _darkFillColor,
     onError: _darkFillColor,
     onPrimary: _darkFillColor,
     onSecondary: _darkFillColor,
     onSurface: _darkFillColor,
-    primaryVariant: _darkFillColor,
-    secondaryVariant: _darkFillColor,
+    primaryContainer: _darkFillColor,
+    secondaryContainer: _darkFillColor,
     brightness: Brightness.dark,
   );
 
