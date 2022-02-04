@@ -35,7 +35,8 @@ class EditProfilePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ChangePasswordPage(user),),
+                      builder: (context) => ChangePasswordPage(user),
+                    ),
                   );
                 },
                 style: Theme.of(context).elevatedButtonTheme.style,
@@ -51,13 +52,10 @@ class EditProfilePage extends StatelessWidget {
                     'Email Adresse sichtbar machen',
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
-                  Transform.scale(
-                    scale: 0.7,
-                    child: Switch(
-                      value: switchValue,
-                      onChanged: (value) {},
-                    ),
-                  )
+                  Switch(
+                    value: switchValue,
+                    onChanged: (value) {},
+                  ),
                 ],
               ),
               const SizedBox(
