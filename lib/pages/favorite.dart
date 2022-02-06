@@ -12,7 +12,7 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SearchAppBar(title: 'Favoriten', onSearch: onSearch),
-      bottomNavigationBar: const AnimatedNavBar(selectedIndex: 1),
+      bottomNavigationBar: const AnimatedNavBar(selectedIndex: 2),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[

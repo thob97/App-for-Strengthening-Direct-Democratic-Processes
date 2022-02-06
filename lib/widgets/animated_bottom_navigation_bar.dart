@@ -44,21 +44,21 @@ class AnimatedNavBar extends StatelessWidget {
           },
         ),
         GButton(
-          icon: Icons.favorite,
-          text: 'Favoriten',
+          icon: Icons.bar_chart,
+          text: 'Dashboard',
           onPressed: () {
             Navigator.of(context).pushReplacementNamed(
-              '/favorite',
+              '/dashboard',
               arguments: const NavigationArguments(),
             );
           },
         ),
         GButton(
-          icon: Icons.bar_chart,
-          text: 'Dashboard',
+          icon: Icons.favorite,
+          text: 'Favoriten',
           onPressed: () {
             Navigator.of(context).pushReplacementNamed(
-              '/news',
+              '/favorite',
               arguments: const NavigationArguments(),
             );
           },
