@@ -34,7 +34,10 @@ class DecisionDescription extends StatelessWidget {
   Widget _myTitle(BuildContext context) {
     return Text(
       titleContent,
-      style: Theme.of(context).textTheme.headline5,
+      style: Theme.of(context)
+          .textTheme
+          .headline6
+          ?.copyWith(fontWeight: FontWeight.normal),
       maxLines: 1,
     );
   }
@@ -43,8 +46,8 @@ class DecisionDescription extends StatelessWidget {
     return Flexible(
       child: Text(
         descriptionContent,
-        style: Theme.of(context).textTheme.bodyText1,
-        overflow: TextOverflow.fade,
+        style: Theme.of(context).textTheme.bodyText2,
+        textAlign: TextAlign.justify,
       ),
     );
   }

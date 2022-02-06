@@ -10,6 +10,7 @@ class VoteResultsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPageView(
       widgetList: widgetList,
+      pageViewHeight: 250,
     );
   }
 }

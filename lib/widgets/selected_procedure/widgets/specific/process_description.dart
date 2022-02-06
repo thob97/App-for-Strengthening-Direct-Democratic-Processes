@@ -14,8 +14,8 @@ class ProcessDescription extends StatelessWidget {
 
   ///Style
   static const double _verPad = 18;
-  static const double _distanceBetweenTitleAndDescription = 8;
-  static const double _distanceBetweenDescriptionAndCategories = 15;
+  static const double _distanceBetweenTitleAndDescription = 10;
+  static const double _distanceBetweenDescriptionAndCategories = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,8 @@ class ProcessDescription extends StatelessWidget {
   Widget _myDescription(BuildContext context) {
     return Text(
       descriptionContent,
-      style: Theme.of(context).textTheme.bodyText1,
+      textAlign: TextAlign.justify,
+      style: Theme.of(context).textTheme.bodyText2,
       overflow: TextOverflow.visible,
     );
   }
@@ -83,7 +84,7 @@ class MyCategories extends StatelessWidget {
         _categoryList,
         Theme.of(context)
             .textTheme
-            .bodyText1!
+            .caption!
             .copyWith(color: Theme.of(context).colorScheme.onBackground),
       ),
     );
@@ -94,7 +95,7 @@ class MyCategories extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: _textListBuilder(
         _contentList,
-        Theme.of(context).textTheme.bodyText1,
+        Theme.of(context).textTheme.caption,
       ),
     );
   }

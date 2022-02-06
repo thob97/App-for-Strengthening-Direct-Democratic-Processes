@@ -13,4 +13,5 @@ Future<PlatformFile?> filePicker() async {
   }
   // User canceled the picker
   else {}
+  return null;
 }

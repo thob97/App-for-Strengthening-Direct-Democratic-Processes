@@ -79,5 +79,6 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
     if (value == null) {
       return 'Please select something';
     }
+    return null;
   }
 }

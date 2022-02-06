@@ -3,25 +3,27 @@ import 'package:flutter/material.dart';
 // ignore:avoid_classes_with_only_static_members
 class CustomThemeData {
   ///ColorSchemes
-  static final _lightFillColor = Colors.black;
+  static const _lightFillColor = Colors.black;
   static const _darkFillColor = Colors.white;
   static final Color _lightFocusColor = Colors.black.withOpacity(0.12);
   static final Color _darkFocusColor = Colors.white.withOpacity(0.12);
 
-  static final ColorScheme _lightColorScheme = ColorScheme(
-    primary: const Color(0xFF194C76),
+  static const ColorScheme _lightColorScheme = ColorScheme(
+    primary: Color(0xFF194C76),
     //Primary
     secondary: _lightFillColor,
-    background: const Color(0xFFCBE0F4), //Background
+    background: Color(0xFFCBE0F4),
+    //Background
     surface: Colors.white,
-    onBackground: const Color(0xFF4389C8), //Background accent
+    onBackground: Color(0xFF4389C8),
+    //Background accent
     error: _lightFillColor,
     onError: _lightFillColor,
     onPrimary: Colors.white,
     onSecondary: _lightFillColor,
     onSurface: _lightFillColor,
-    primaryVariant: _lightFillColor,
-    secondaryVariant: _lightFillColor,
+    primaryContainer: _lightFillColor,
+    secondaryContainer: _lightFillColor,
     brightness: Brightness.light,
   );
 
@@ -30,57 +32,25 @@ class CustomThemeData {
     secondary: _darkFillColor,
     background: _darkFillColor,
     surface: _darkFillColor,
-    onBackground: _darkFillColor, // White with 0.05 opacity
+    onBackground: _darkFillColor,
+    // White with 0.05 opacity
     error: _darkFillColor,
     onError: _darkFillColor,
     onPrimary: _darkFillColor,
     onSecondary: _darkFillColor,
     onSurface: _darkFillColor,
-    primaryVariant: _darkFillColor,
-    secondaryVariant: _darkFillColor,
+    primaryContainer: _darkFillColor,
+    secondaryContainer: _darkFillColor,
     brightness: Brightness.dark,
   );
 
   ///TextTheme
-  static const _regular = FontWeight.w400;
-  // ignore:unused_field
-  static const _medium = FontWeight.w500;
-  // ignore:unused_field
-  static const _semiBold = FontWeight.w600;
-  static const _bold = FontWeight.w700;
-  static const _textOverflow = TextOverflow.ellipsis;
-
   static const TextTheme _textTheme = TextTheme(
-    ///body text
-    bodyText1: TextStyle(
-      fontFamily: 'Poppins',
-      fontWeight: _regular,
-      fontSize: 20,
-      overflow: _textOverflow,
-    ),
-
-    ///large headline
-    headline5: TextStyle(
-      fontFamily: 'Poppins',
-      fontWeight: _bold,
-      fontSize: 42,
-      overflow: _textOverflow,
-    ),
-
-    ///card body
     bodyText2: TextStyle(
-      fontFamily: 'Poppins',
-      fontWeight: _semiBold,
-      fontSize: 14,
-      overflow: _textOverflow,
+      letterSpacing: 0.25,
     ),
-
-    ///card headline
-    headline2: TextStyle(
-      fontFamily: 'Poppins',
-      fontWeight: _bold,
-      fontSize: 20,
-      overflow: _textOverflow,
+    subtitle1: TextStyle(
+      fontSize: 16,
     ),
   );
 
@@ -151,7 +121,6 @@ class CustomThemeData {
           _lightFillColor.withOpacity(0.80),
           _darkFillColor,
         ),
-        contentTextStyle: _textTheme.subtitle1?.apply(color: _darkFillColor),
       ),
     );
   }
@@ -160,7 +129,10 @@ class CustomThemeData {
 class MyConstants {
   static const double borderRadius = 8;
   static const double horPagePadding = 16;
-  static const double verPagePadding = 30;
+  static const double botPagePadding = 15;
+  static const EdgeInsets verPagePadding = EdgeInsets.symmetric(
+    vertical: 30,
+  );
   static const EdgeInsets pagePadding = EdgeInsets.symmetric(
     vertical: 30,
     horizontal: 16,

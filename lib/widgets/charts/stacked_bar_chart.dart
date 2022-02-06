@@ -1,9 +1,9 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/widgets/selected_procedure/model/chart_model.dart';
+import 'package:swp_direktdem_verf_app/widgets/charts/chart_model.dart';
 
-class MyBarChart extends StatelessWidget {
-  const MyBarChart({required this.votingList});
+class StackedBarChart extends StatelessWidget {
+  const StackedBarChart({required this.votingList});
 
   //First element decides position of bar.
   // Its group will be on the most left side.
@@ -11,14 +11,14 @@ class MyBarChart extends StatelessWidget {
 
   ///Style
   static const int _animationDurationMS = 500;
-  static const int _barWidth = 80;
-  static const double barChartHeight = 300;
+  static const int _barWidth = 60;
+  static const double _maxBarChartHeight = 250;
   static const double _horizontalPadding = 16;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: barChartHeight,
+      height: _maxBarChartHeight,
       padding: const EdgeInsets.symmetric(horizontal: _horizontalPadding),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -60,11 +60,11 @@ class MyBarChart extends StatelessWidget {
             labelAnchor: charts.BarLabelAnchor.middle,
             //inside label style
             insideLabelStyleSpec: charts.TextStyleSpec(
-              fontSize: Theme.of(context).textTheme.bodyText1!.fontSize!.ceil(),
+              fontSize: Theme.of(context).textTheme.caption?.fontSize?.ceil(),
               //color: charts.ColorUtil.fromDartColor(Theme.of(context).colorScheme),
               fontWeight:
-                  Theme.of(context).textTheme.bodyText1!.fontWeight.toString(),
-              fontFamily: Theme.of(context).textTheme.bodyText1!.fontFamily,
+                  Theme.of(context).textTheme.caption?.fontWeight.toString(),
+              fontFamily: Theme.of(context).textTheme.caption?.fontFamily,
             ),
             //outside label style
             //Bugged
@@ -166,7 +166,7 @@ class _Legend extends StatelessWidget {
     return Text(
       content,
       textAlign: TextAlign.center,
-      style: Theme.of(context).textTheme.bodyText1,
+      style: Theme.of(context).textTheme.caption,
     );
   }
 

@@ -66,8 +66,8 @@ class _SocialMediaButton extends StatelessWidget {
             _getTitle(),
             style: Theme.of(context)
                 .textTheme
-                .bodyText2!
-                .copyWith(color: Colors.white),
+                .bodyText2
+                ?.copyWith(color: Colors.white),
           ),
           leading: Icon(_getIcon(), color: Colors.white),
           onTap: _launchURL,

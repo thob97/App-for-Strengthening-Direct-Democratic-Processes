@@ -1,23 +1,24 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/widgets/selected_procedure/model/chart_model.dart';
+import 'package:swp_direktdem_verf_app/widgets/charts/chart_model.dart';
 
-class MyPieChart extends StatelessWidget {
-  const MyPieChart({required this.votingList, required this.totalVotes});
+class LabeledPieChart extends StatelessWidget {
+  const LabeledPieChart({required this.votingList, required this.totalVotes});
 
   final List<ChartModel> votingList;
   final int totalVotes;
 
   ///Style
   static const int _animationDurationMS = 500;
-  static const double _pieChartSize = 300;
+  static const double _maxPieChartSize = 250;
   static const double _distBetweenChartAndLegend = 10;
   static const double _horizontalPadding = 16;
+  static const int _middleOpeningSize = 50;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: _pieChartSize,
+      height: _maxPieChartSize,
       padding: const EdgeInsets.symmetric(horizontal: _horizontalPadding),
       child: Column(
         children: [
@@ -74,7 +75,7 @@ class MyPieChart extends StatelessWidget {
       ],*/
       defaultRenderer: charts.ArcRendererConfig(
         //chart hole width
-        arcWidth: 60,
+        arcWidth: _middleOpeningSize,
         //inside label decorator
         arcRendererDecorators: [charts.ArcLabelDecorator()],
       ),
@@ -103,7 +104,7 @@ class MyPieChart extends StatelessWidget {
     return Text(
       content,
       textAlign: TextAlign.center,
-      style: Theme.of(context).textTheme.bodyText1,
+      style: Theme.of(context).textTheme.bodyText2,
     );
   }
 }
@@ -114,7 +115,7 @@ class Legend extends StatelessWidget {
   final List<ChartModel> votingList;
 
   ///Style
-  static const double _leadingCircleRadius = 6;
+  static const double _leadingCircleRadius = 4.5;
   static const double _distBetweenCircleAndText = 8;
 
   @override
@@ -151,7 +152,7 @@ class Legend extends StatelessWidget {
   Widget _legendText(BuildContext context, ChartModel _voting) {
     return Text(
       '${_voting.label}: ${_voting.votes}',
-      style: Theme.of(context).textTheme.bodyText1,
+      style: Theme.of(context).textTheme.caption,
     );
   }
 }

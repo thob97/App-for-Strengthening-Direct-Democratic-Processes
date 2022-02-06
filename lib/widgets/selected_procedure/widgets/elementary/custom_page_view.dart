@@ -3,7 +3,7 @@ import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/elemen
 
 ///like page view but uses MyPageIndicator
 class CustomPageView extends StatelessWidget {
-  CustomPageView({required this.widgetList, this.pageViewHeight = 300});
+  CustomPageView({required this.widgetList, required this.pageViewHeight});
 
   final List<Widget> widgetList;
 
