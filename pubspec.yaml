@@ -37,6 +37,12 @@ dependencies:
   file_picker: ^4.3.1
   animations: ^2.0.2
   flutter_slidable: 1.2.0
+
+  flutter_map: any
+  flutter_map_marker_popup: ^2.1.1
+  latlong2: ^0.8.1
+  tuple: ^2.0.0
+
   flutter_staggered_grid_view: ^0.6.1
   url_launcher: ^6.0.18
   # The following adds the Cupertino Icons font to your application.
@@ -128,3 +134,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: SignatureIcon
+      fonts:
+        - asset: fonts/SignatureIcon.ttf
