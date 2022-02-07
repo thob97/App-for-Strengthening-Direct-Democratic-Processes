@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_new
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/pages/NewProcedure3.dart';
@@ -35,7 +34,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
           context: context,
           initialDate: selectedDate,
           firstDate: DateTime(2015, 8),
-          lastDate: DateTime(2101));
+          lastDate: DateTime(2101)),
       if (picked != null && picked != selectedDate)
         setState(() {
           selectedDate = picked;
