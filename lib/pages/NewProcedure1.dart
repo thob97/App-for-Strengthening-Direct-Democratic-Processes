@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/pages/NewProcedure3.dart';
-import 'package:swp_direktdem_verf_app/pages/start.dart';
+import 'package:swp_direktdem_verf_app/pages/home.dart';
 import 'package:intl/intl.dart';
 
 TextEditingController textEditingControllerBeschreibung = TextEditingController();
@@ -62,7 +62,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Start()),
+                          builder: (context) => const Home()),
                     );
                   },
                   child: Text("ZURÜCK",
