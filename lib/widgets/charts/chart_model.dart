@@ -15,3 +15,10 @@ class ChartModel {
   final int votes;
   final Color color;
 }
+
+class DashboardModel {
+  DashboardModel({required this.month, required this.num});
+
+  final int month;
+  final int num;
+}

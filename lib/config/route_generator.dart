@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/main.dart';
+import 'package:swp_direktdem_verf_app/pages/dashboard.dart';
 import 'package:swp_direktdem_verf_app/pages/error_page.dart';
 import 'package:swp_direktdem_verf_app/pages/favorite.dart';
-import 'package:swp_direktdem_verf_app/pages/news.dart';
 import 'package:swp_direktdem_verf_app/pages/selected_procedure.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
@@ -27,9 +27,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         pageBuilder: (_, __, ___) => const FavoritePage(),
       );
 
-    case '/news':
+    case '/dashboard':
       return PageRouteBuilder(
-        pageBuilder: (_, __, ___) => const News(),
+        pageBuilder: (_, __, ___) => const DashboardPage(),
       );
 
     case '/settings':
