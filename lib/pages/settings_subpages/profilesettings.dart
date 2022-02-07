@@ -22,7 +22,9 @@ class EditProfilePage extends StatelessWidget {
               ProfileWidget(
                 imagePath: user.imagePath,
                 isEdit: true,
-                onClicked: () async {},
+                onClicked: () async {
+                  Navigator.pop(context);
+                },
               ),
               const SizedBox(
                 height: 35,
