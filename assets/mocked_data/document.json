@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "document": "https://images.unsplash.com/photo-1644262241670-75fa18e00750?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80",
+    "procedure_id": 1,
+    "uploaded_by_id": 1,
+    "category": "title_image"
+  },
+  {
+    "id": 2,
+    "document": "https://images.unsplash.com/photo-1644076778363-c7f68d2d0ade?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+    "procedure_id": 2,
+    "uploaded_by_id": 2,
+    "category": "title_image"
+  },
+  {
+    "id": 3,
+    "document": "https://images.unsplash.com/photo-1644077382090-f8a1fda81a9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80",
+    "procedure_id": 3,
+    "uploaded_by_id": 3,
+    "category": "title_image"
+  },
+  {
+    "id": 4,
+    "document": "https://images.unsplash.com/photo-1644072980122-22f4365d4519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    "procedure_id": 4,
+    "uploaded_by_id": 4,
+    "category": "title_image"
+  },
+  {
+    "id": 5,
+    "document": "https://images.unsplash.com/photo-1644004344649-346f960fceac?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80",
+    "procedure_id": 5,
+    "uploaded_by_id": 5,
+    "category": "title_image"
+  },
+  {
+    "id": 6,
+    "document": "https://images.unsplash.com/photo-1644345553435-a8b092362058?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    "procedure_id": 6,
+    "uploaded_by_id": 6,
+    "category": "title_image"
+  },
+  {
+    "id": 7,
+    "document": "https://www.orimi.com/pdf-test.pdf",
+    "procedure_id": 1,
+    "uploaded_by_id": 7,
+    "category": "official_document"
+  },
+  {
+    "id": 8,
+    "document": "https://www.orimi.com/pdf-test.pdf",
+    "procedure_id": 2,
+    "uploaded_by_id": 8,
+    "category": "official_document"
+  },
+  {
+    "id": 10,
+    "document": "https://www.orimi.com/pdf-test.pdf",
+    "procedure_id": 4,
+    "uploaded_by_id": 10,
+    "category": "official_document"
+  },
+  {
+    "id": 11,
+    "document": "https://www.orimi.com/pdf-test.pdf",
+    "procedure_id": 5,
+    "uploaded_by_id": 11,
+    "category": "official_document"
+  },
+  {
+    "id": 12,
+    "document": "https://www.orimi.com/pdf-test.pdf",
+    "procedure_id": 6,
+    "uploaded_by_id": 12,
+    "category": "official_document"
+  },
+  {
+    "id": 13,
+    "document": "https://www.americanexpress.com/content/dam/amex/us/staticassets/pdf/GCO/Test_PDF.pdf",
+    "procedure_id": 1,
+    "uploaded_by_id": 13,
+    "category": "official_document"
+  },
+  {
+    "id": 14,
+    "document": "https://www.americanexpress.com/content/dam/amex/us/staticassets/pdf/GCO/Test_PDF.pdf",
+    "procedure_id": 2,
+    "uploaded_by_id": 14,
+    "category": "official_document"
+  },
+  {
+    "id": 15,
+    "document": "https://www.americanexpress.com/content/dam/amex/us/staticassets/pdf/GCO/Test_PDF.pdf",
+    "procedure_id": 3,
+    "uploaded_by_id": 15,
+    "category": "official_document"
+  },
+  {
+    "id": 16,
+    "document": "https://www.americanexpress.com/content/dam/amex/us/staticassets/pdf/GCO/Test_PDF.pdf",
+    "procedure_id": 4,
+    "uploaded_by_id": 16,
+    "category": "official_document"
+  },
+  {
+    "id": 19,
+    "document": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+    "procedure_id": 1,
+    "uploaded_by_id": 19,
+    "category": "official_document"
+  },
+  {
+    "id": 20,
+    "document": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+    "procedure_id": 2,
+    "uploaded_by_id": 20,
+    "category": "official_document"
+  },
+  {
+    "id": 21,
+    "document": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+    "procedure_id": 3,
+    "uploaded_by_id": 21,
+    "category": "official_document"
+  }
+]

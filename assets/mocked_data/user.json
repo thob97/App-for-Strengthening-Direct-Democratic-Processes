@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "first_name": "Karlis",
+    "last_name": "Redington",
+    "email": "kredington0@purevolume.com",
+    "password": "r7tmSg8Iii",
+    "last_login": "2021-08-25",
+    "is_superuser": true,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-02-27"
+  },
+  {
+    "id": 2,
+    "first_name": "Christiana",
+    "last_name": "Brinkworth",
+    "email": "cbrinkworth1@simplemachines.org",
+    "password": "hH57FzrbSsJ",
+    "last_login": null,
+    "is_superuser": true,
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2021-03-30"
+  },
+  {
+    "id": 3,
+    "first_name": "Sherrie",
+    "last_name": "Stirton",
+    "email": "sstirton2@quantcast.com",
+    "password": "2IhgJBvOsisU",
+    "last_login": "2022-01-28",
+    "is_superuser": true,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-02-25"
+  },
+  {
+    "id": 4,
+    "first_name": "Fannie",
+    "last_name": "Knappen",
+    "email": "fknappen3@1688.com",
+    "password": "dP2ysz1EqA",
+    "last_login": "2021-02-06",
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-09-03"
+  },
+  {
+    "id": 5,
+    "first_name": "Skipper",
+    "last_name": "Skowcraft",
+    "email": "sskowcraft4@google.co.jp",
+    "password": "5IiWN1Fqt",
+    "last_login": "2021-05-25",
+    "is_superuser": true,
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2021-03-01"
+  },
+  {
+    "id": 6,
+    "first_name": "Durante",
+    "last_name": "Stroud",
+    "email": "dstroud5@springer.com",
+    "password": "CSRPFDmK",
+    "last_login": "2021-03-10",
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2022-01-26"
+  },
+  {
+    "id": 7,
+    "first_name": "Leese",
+    "last_name": "Bafford",
+    "email": "lbafford6@google.it",
+    "password": "vdf40nsXkQy0",
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": true,
+    "is_active": false,
+    "date_joined": "2021-11-16"
+  },
+  {
+    "id": 8,
+    "first_name": "Felicity",
+    "last_name": "Gaddie",
+    "email": "fgaddie7@amazon.com",
+    "password": "MW7N1Q1a3",
+    "last_login": "2021-08-30",
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2021-06-07"
+  },
+  {
+    "id": 9,
+    "first_name": "Diandra",
+    "last_name": "Bottelstone",
+    "email": "dbottelstone8@so-net.ne.jp",
+    "password": "dty0s3bG5mC",
+    "last_login": null,
+    "is_superuser": true,
+    "is_staff": true,
+    "is_active": false,
+    "date_joined": "2021-04-03"
+  },
+  {
+    "id": 10,
+    "first_name": "Austin",
+    "last_name": "Rupke",
+    "email": "arupke9@a8.net",
+    "password": "40W6ow",
+    "last_login": null,
+    "is_superuser": true,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-03-28"
+  }
+]

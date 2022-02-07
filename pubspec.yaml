@@ -117,6 +117,8 @@ flutter:
     - assets/procedure/
     - assets/what_happens_next/
     - images/
+    - assets/mocked_data/
+
   # To add assets to your application, add an assets section, like this:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
