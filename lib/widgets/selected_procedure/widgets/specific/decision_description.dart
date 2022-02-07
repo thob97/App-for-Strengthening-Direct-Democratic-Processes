@@ -34,10 +34,7 @@ class DecisionDescription extends StatelessWidget {
   Widget _myTitle(BuildContext context) {
     return Text(
       titleContent,
-      style: Theme.of(context)
-          .textTheme
-          .headline6
-          ?.copyWith(fontWeight: FontWeight.normal),
+      style: Theme.of(context).textTheme.headline6,
       maxLines: 1,
     );
   }

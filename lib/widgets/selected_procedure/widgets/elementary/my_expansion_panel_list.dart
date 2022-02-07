@@ -57,7 +57,7 @@ class _MyExpansionPanelListState extends State<MyExpansionPanelList> {
       //'ExpansionTile textColor'. So that expansion changes color
       style: TextStyle(
         fontFamily: _theme.fontFamily,
-        //fontWeight: _theme.fontWeight,
+        fontWeight: _theme.fontWeight,
         fontSize: _theme.fontSize,
         overflow: _theme.overflow,
       ),
