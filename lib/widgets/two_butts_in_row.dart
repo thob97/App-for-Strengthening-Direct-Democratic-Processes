@@ -6,7 +6,7 @@ class TwoButtInRow extends StatefulWidget {
     required this.buttonNameOne,
     required this.buttonNameTwo,
     required this.functionOne,
-    required this.functionTwo,
+    required this.functionTwo
   }) : super(key: key);
   final String buttonNameOne;
   final String buttonNameTwo;
@@ -19,49 +19,35 @@ class TwoButtInRow extends StatefulWidget {
 class _TwoButtInRowState extends State<TwoButtInRow> {
   @override
   Widget build(BuildContext context) {
-    return twoButtRow(
-      widget.buttonNameOne,
-      widget.buttonNameTwo,
-      widget.functionOne,
-      widget.functionTwo,
-    );
+    return twoButtRow(widget.buttonNameOne, widget.buttonNameTwo,
+        widget.functionOne, widget.functionTwo,);
   }
 
   Widget twoButtRow(
     String buttonNameOne,
-    String buttonNameTwo,
-    VoidCallback functionOne,
-    VoidCallback functionTwo,
+    String buttonNameTwo, void functionOne, void functionTwo,
   ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 5.0, right: 2.5),
-            child: ElevatedButton(
-              onPressed: functionOne,
-              style: Theme.of(context).elevatedButtonTheme.style,
-              child: Text(
-                buttonNameOne,
-                textAlign: TextAlign.center,
-              ),
-            ),
+        ElevatedButton(
+          onPressed: () {},
+          style: Theme.of(context).elevatedButtonTheme.style,
+          child: Text(
+            buttonNameOne,
+            style: Theme.of(context).textTheme.bodyText2,
           ),
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 2.5, right: 5.0),
-            child: ElevatedButton(
-              onPressed: functionTwo,
-              style: Theme.of(context).elevatedButtonTheme.style,
-              child: Text(
-                buttonNameTwo,
-                textAlign: TextAlign.center,
-              ),
-            ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          style: Theme.of(context).elevatedButtonTheme.style,
+          child: Text(
+            buttonNameTwo,
+            style: Theme.of(context).textTheme.bodyText2,
           ),
-        ),
+        )
       ],
     );
   }
