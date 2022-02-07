@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 import 'package:swp_direktdem_verf_app/pages/home.dart';
+import 'package:swp_direktdem_verf_app/service/service_mocked.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    Provider<ServiceMocked>(
+      create: (_) => ServiceMocked(),
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() {
-    return _MyAppState();
-  }
-}
-
-class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
