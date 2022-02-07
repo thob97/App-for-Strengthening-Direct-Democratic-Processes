@@ -6,7 +6,7 @@ class TwoButtInRow extends StatefulWidget {
     required this.buttonNameOne,
     required this.buttonNameTwo,
     required this.functionOne,
-    required this.functionTwo
+    required this.functionTwo,
   }) : super(key: key);
   final String buttonNameOne;
   final String buttonNameTwo;
@@ -19,19 +19,25 @@ class TwoButtInRow extends StatefulWidget {
 class _TwoButtInRowState extends State<TwoButtInRow> {
   @override
   Widget build(BuildContext context) {
-    return twoButtRow(widget.buttonNameOne, widget.buttonNameTwo,
-        widget.functionOne, widget.functionTwo,);
+    return twoButtRow(
+      widget.buttonNameOne,
+      widget.buttonNameTwo,
+      widget.functionOne,
+      widget.functionTwo,
+    );
   }
 
   Widget twoButtRow(
     String buttonNameOne,
-    String buttonNameTwo, void functionOne, void functionTwo,
+    String buttonNameTwo,
+    VoidCallback functionOne,
+    VoidCallback functionTwo,
   ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ElevatedButton(
-          onPressed: () {},
+          onPressed: functionOne,
           style: Theme.of(context).elevatedButtonTheme.style,
           child: Text(
             buttonNameOne,
@@ -39,9 +45,7 @@ class _TwoButtInRowState extends State<TwoButtInRow> {
           ),
         ),
         ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: functionTwo,
           style: Theme.of(context).elevatedButtonTheme.style,
           child: Text(
             buttonNameTwo,
