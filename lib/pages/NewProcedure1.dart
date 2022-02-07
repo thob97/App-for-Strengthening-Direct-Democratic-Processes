@@ -175,29 +175,6 @@ class _NewProcedureState1 extends State<NewProcedure1> {
                 ),
               ),
 
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: vehicles.length,
-                padding: EdgeInsets.only(right: 10, bottom: 30),
-                itemBuilder: (context, i) {
-                  return new ExpansionTile(
-                    title: new Text(
-                      vehicles[i].title,
-                      style: const TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic),
-                    ),
-                    children: <Widget>[
-                      new Column(
-                        children: _buildExpandableContent(vehicles[i]),
-                      ),
-                    ],
-                  );
-                },
-              ),
-
 
               new Padding(
                 padding: EdgeInsets.only(
