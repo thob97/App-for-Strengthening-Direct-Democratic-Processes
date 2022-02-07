@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 //here we can customize the AppBar widget!
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar(this.title);
+  const CustomAppBar(this.title, {this.trailing});
+
   final String title;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         style: _theme.textTheme.headline5
             ?.copyWith(color: _theme.colorScheme.onPrimary),
       ),
+      actions: [
+        if (trailing != null) trailing!,
+      ],
     );
   }
 

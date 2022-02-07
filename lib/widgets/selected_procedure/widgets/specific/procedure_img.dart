@@ -1,6 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:swp_direktdem_verf_app/pages/new_procedure.dart';
+import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/elementary/share_button.dart';
 
 class ProcedureImg extends StatelessWidget {
   const ProcedureImg({
@@ -22,7 +24,12 @@ class ProcedureImg extends StatelessWidget {
       child: Stack(
         children: [
           _loadImage(),
-          _TopIcons(isFollowed: isFollowed, showEdit: showEdit),
+          _TopIcons(
+            isFollowed: isFollowed,
+            showEdit: showEdit,
+            onFollow: _onFollow,
+            onShare: _onShare,
+          ),
         ],
       ),
     );
@@ -34,13 +41,29 @@ class ProcedureImg extends StatelessWidget {
       fit: BoxFit.cover,
     );
   }
+
+  ///TODO database
+  Future<void> _onShare() async {
+    const urlPreview = 'www.google.com';
+    await Share.share('This is an example \n$urlPreview');
+  }
+
+  ///TODO database
+  void _onFollow() {}
 }
 
 class _TopIcons extends StatefulWidget {
-  const _TopIcons({required this.isFollowed, required this.showEdit});
+  const _TopIcons({
+    required this.isFollowed,
+    required this.showEdit,
+    required this.onShare,
+    required this.onFollow,
+  });
 
   final bool isFollowed;
   final bool showEdit;
+  final VoidCallback onShare;
+  final VoidCallback onFollow;
 
   ///style
   static const Color _iconColor = Colors.black54;
@@ -78,15 +101,9 @@ class _TopIconsState extends State<_TopIcons> {
   }
 
   Widget _shareButton() {
-    return Material(
-      //material for ripple effect over img
-      color: Colors.transparent,
-      child: IconButton(
-        splashRadius: Theme.of(context).iconTheme.size, //standard icon size
-        color: _TopIcons._iconColor,
-        onPressed: _onPressedShare,
-        icon: const Icon(Icons.share),
-      ),
+    return ShareButton(
+      onShare: widget.onShare,
+      iconColor: _TopIcons._iconColor,
     );
   }
 
@@ -119,12 +136,8 @@ class _TopIconsState extends State<_TopIcons> {
   }
 
   void _onPressedFavorite() {
-    //TODO upload to data base
+    widget.onFollow();
     setState(() => isFollowed = !isFollowed);
-  }
-
-  void _onPressedShare() {
-    //TODO
   }
 }
 
