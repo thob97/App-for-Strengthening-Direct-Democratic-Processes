@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:swp_direktdem_verf_app/widgets/charts/chart_model.dart';
 import 'package:swp_direktdem_verf_app/widgets/home/overview_procedure_view.dart';
+import 'package:swp_direktdem_verf_app/widgets/map/point_of_interest.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/data_list_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/social_media_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/what_happens_next.dart';
+import 'package:tuple/tuple.dart';
 
 mixin MockedSelectedProcedureService {
   static const String imgUrl = 'assets/procedure/politics.jpg';
@@ -223,4 +226,13 @@ mixin MockedSelectedProcedureService {
       ),
     ];
   }
+
+  // List with points of interest to pass to MapView
+  static List<Tuple2<LatLng, PointOfInterest>> get pointsOfInterestList => [
+        Tuple2(LatLng(52.3, 13.2), const PointOfInterest(location: 'Straße 1')),
+        Tuple2(LatLng(52.4, 13.3), const PointOfInterest(location: 'Straße 2')),
+        Tuple2(LatLng(52.5, 13.4), const PointOfInterest(location: 'Platz X')),
+        Tuple2(LatLng(52.6, 13.5), const PointOfInterest(location: 'Straße 4')),
+        Tuple2(LatLng(52.7, 13.6), const PointOfInterest(location: 'Straße 5')),
+      ];
 }
