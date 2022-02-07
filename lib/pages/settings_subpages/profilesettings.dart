@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/change_password.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/profilewidget.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
+import 'package:swp_direktdem_verf_app/widgets/two_butts_in_row.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage(this.user, {Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const bool switchValue = false;
+
     return Scaffold(
       appBar: const CustomAppBar('Profileinstellungen'),
       body: SingleChildScrollView(
@@ -63,26 +66,25 @@ class EditProfilePage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: Theme.of(context).elevatedButtonTheme.style,
-                    child: Text(
-                      'ABBRECHEN',
-                      style: Theme.of(context).textTheme.bodyText2,
+              TwoButtInRow(
+                buttonNameOne: 'Abbrechen',
+                buttonNameTwo: 'Speichern',
+                functionOne: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfilePage(user),
                     ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: Theme.of(context).elevatedButtonTheme.style,
-                    child: Text(
-                      'SPEICHERN',
-                      style: Theme.of(context).textTheme.bodyText2,
+                  );
+                },
+                functionTwo: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfilePage(user),
                     ),
-                  )
-                ],
+                  );
+                },
               ),
             ],
           ),
