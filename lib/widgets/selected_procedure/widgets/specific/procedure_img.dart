@@ -42,6 +42,9 @@ class _TopIcons extends StatefulWidget {
   final bool isFollowed;
   final bool showEdit;
 
+  ///style
+  static const Color _iconColor = Colors.black54;
+
   @override
   _TopIconsState createState() => _TopIconsState();
 }
@@ -57,15 +60,19 @@ class _TopIconsState extends State<_TopIcons> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        _cancelButton(),
-        const Spacer(),
-        if (widget.showEdit == false)
-          _favoriteIcon()
-        else
+        Row(
+          children: [
+            _cancelButton(),
+            const Spacer(),
+            _favoriteIcon(),
+            _shareButton(),
+          ],
+        ),
+        if (widget.showEdit)
           const _TransitionSettingsButton(openChild: NewProcedurePage()),
-        _shareButton(),
       ],
     );
   }
@@ -75,8 +82,8 @@ class _TopIconsState extends State<_TopIcons> {
       //material for ripple effect over img
       color: Colors.transparent,
       child: IconButton(
-        splashRadius: 24, //standard icon size
-        color: Colors.black54,
+        splashRadius: Theme.of(context).iconTheme.size, //standard icon size
+        color: _TopIcons._iconColor,
         onPressed: _onPressedShare,
         icon: const Icon(Icons.share),
       ),
@@ -88,8 +95,8 @@ class _TopIconsState extends State<_TopIcons> {
     return Material(
       color: Colors.transparent,
       child: IconButton(
-        splashRadius: 24, //standard icon size
-        color: Colors.black54,
+        splashRadius: Theme.of(context).iconTheme.size, //standard icon size
+        color: _TopIcons._iconColor,
         onPressed: () => Navigator.of(context).pop(),
         icon: const Icon(Icons.clear_rounded),
       ),
@@ -101,7 +108,7 @@ class _TopIconsState extends State<_TopIcons> {
     return Material(
       color: Colors.transparent,
       child: IconButton(
-        splashRadius: 24, //standard icon size
+        splashRadius: Theme.of(context).iconTheme.size, //standard icon size
         color: Colors.pinkAccent,
         onPressed: _onPressedFavorite,
         icon: isFollowed == false
@@ -151,10 +158,11 @@ class _TransitionSettingsButton extends StatelessWidget {
 
   Widget _settingIcon(BuildContext context, VoidCallback openContainer) {
     return IconButton(
+      splashRadius: Theme.of(context).iconTheme.size,
       onPressed: openContainer,
       icon: const Icon(
         Icons.settings,
-        color: Colors.black54,
+        color: _TopIcons._iconColor,
       ),
     );
   }
