@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilesettings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
-import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
+import 'package:swp_direktdem_verf_app/widgets/two_butts_in_row.dart';
 
 class ChangePasswordPage extends StatelessWidget {
   const ChangePasswordPage(this.user, {Key? key}) : super(key: key);
@@ -44,35 +44,25 @@ class ChangePasswordPage extends StatelessWidget {
                 'Passwort wiederholen',
                 'Passwort wiederholen',
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const EditProfilePage(
-                            UserPreferences.myUser,
-                          ),
-                        ),
-                      );
-                    },
-                    style: Theme.of(context).elevatedButtonTheme.style,
-                    child: Text(
-                      'ABBRECHEN',
-                      style: Theme.of(context).textTheme.bodyText2,
+              TwoButtInRow(
+                buttonNameOne: 'Abbrechen',
+                buttonNameTwo: 'Speichern',
+                functionOne: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditProfilePage(user),
                     ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: Theme.of(context).elevatedButtonTheme.style,
-                    child: Text(
-                      'SPEICHERN',
-                      style: Theme.of(context).textTheme.bodyText2,
+                  );
+                },
+                functionTwo: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditProfilePage(user),
                     ),
-                  ),
-                ],
+                  );
+                },
               ),
             ],
           ),
