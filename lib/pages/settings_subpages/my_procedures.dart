@@ -74,12 +74,6 @@ class _TransitionFloatingActionButton extends StatelessWidget {
 
   Widget _floatingActionButton(BuildContext context) {
     return SizedBox(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const NewProcedure1()),
-        );
-      },
       height: _floatingActionButtonSize,
       width: _floatingActionButtonSize,
       child: Icon(
