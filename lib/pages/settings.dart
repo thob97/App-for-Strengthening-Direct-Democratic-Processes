@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/datasecurity.dart';
-import 'package:swp_direktdem_verf_app/pages/what_happens_next.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
+import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/settingsbutton.dart';
@@ -32,10 +33,11 @@ class Settings extends StatelessWidget {
             CommunityMaterialIcons.account_edit,
             'Profileinstellungen',
             () {
-              return Navigator.of(context).push(
+              Navigator.push(
+                context,
                 MaterialPageRoute(
-                  builder: (_) => WhatHappensNextPage.showcase(),
-                ),
+                    builder: (context) =>
+                        const ProfilePage(UserPreferences.myUser),),
               );
             },
           ),
