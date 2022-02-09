@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "facebook": "http://amazon.co.uk",
+    "twitter": "http://creativecommons.org",
+    "instagram": "https://ibm.com",
+    "whatsapp": "https://hubpages.com",
+    "website": "http://nsw.gov.au"
+  },
+  {
+    "id": 2,
+    "facebook": "https://abc.net.au",
+    "twitter": "https://clickbank.net",
+    "instagram": "https://tamu.edu",
+    "whatsapp": "http://youtube.com",
+    "website": "https://msu.edu"
+  },
+  {
+    "id": 3,
+    "facebook": "https://fastcompany.com",
+    "twitter": "http://google.nl",
+    "instagram": "https://uiuc.edu",
+    "whatsapp": "https://wiley.com",
+    "website": "https://foxnews.com"
+  },
+  {
+    "id": 4,
+    "facebook": "http://indiatimes.com",
+    "twitter": "https://chronoengine.com",
+    "instagram": "http://state.gov",
+    "whatsapp": "https://paginegialle.it",
+    "website": "https://google.it"
+  },
+  {
+    "id": 5,
+    "facebook": "http://biblegateway.com",
+    "twitter": "https://t-online.de",
+    "instagram": "https://g.co",
+    "whatsapp": "http://jiathis.com",
+    "website": "https://artisteer.com"
+  },
+  {
+    "id": 6,
+    "facebook": "https://bigcartel.com",
+    "twitter": "http://newyorker.com",
+    "instagram": "http://github.io",
+    "whatsapp": "http://msn.com",
+    "website": "http://surveymonkey.com"
+  }
+]

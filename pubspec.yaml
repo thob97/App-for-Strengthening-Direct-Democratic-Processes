@@ -29,6 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  #for dependency injection (service)
+  provider: ^6.0.2
 
   timeline_tile: ^2.0.0
   collection: ^1.15.0
@@ -51,6 +53,10 @@ dependencies:
   community_material_icon: ^5.9.55
   google_nav_bar: ^5.0.5
 
+  #json_serializable
+  #run with:
+  #flutter packages pub run build_runner build
+  json_annotation: ^4.3.0
   #to format datetime
   intl: ^0.17.0
   #for share buttons
@@ -64,6 +70,10 @@ dev_dependencies:
   lint: ^1.0.0
   flutter_test:
     sdk: flutter
+
+  #json_serializable
+  build_runner: ^2.0.0
+  json_serializable: ^6.0.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -109,6 +119,8 @@ flutter:
     - assets/procedure/
     - assets/what_happens_next/
     - images/
+    - assets/mocked_data/
+
   # To add assets to your application, add an assets section, like this:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
