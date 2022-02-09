@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/datasecurity.dart';
-import 'package:swp_direktdem_verf_app/pages/what_happens_next.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
+import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/settingsbutton.dart';
@@ -32,9 +33,11 @@ class Settings extends StatelessWidget {
             CommunityMaterialIcons.account_edit,
             'Profileinstellungen',
             () {
-              return Navigator.of(context).push(
+              Navigator.push(
+                context,
                 MaterialPageRoute(
-                  builder: (_) => WhatHappensNextPage.showcase(),
+                  builder: (context) =>
+                      const ProfilePage(UserPreferences.myUser),
                 ),
               );
             },
@@ -46,74 +49,8 @@ class Settings extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const DataSecurity()),
             );
           }),
-          const Divider(),
-          SettingsButton(CommunityMaterialIcons.logout_variant, 'Ausloggen',
-              () {
-            _showMyDialog(context);
-          }),
         ],
       ),
-    );
-  }
-
-  Future<void> _showMyDialog(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(
-            'Ausloggen',
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1
-                ?.apply(color: Theme.of(context).colorScheme.primary),
-          ),
-          content: Text(
-            'Möchten Sie Ihre Sitzung wirklich beenden?',
-            style: Theme.of(context)
-                .textTheme
-                .bodyText2
-                ?.apply(color: Theme.of(context).colorScheme.primary),
-          ),
-          actions: <Widget>[
-            _cancelButton(context),
-            _confirmButton(context),
-          ],
-          elevation: 24.0,
-          backgroundColor: Theme.of(context).colorScheme.background,
-        );
-      },
-    );
-  }
-
-  Widget _cancelButton(BuildContext context) {
-    return TextButton(
-      onPressed: () => Navigator.pop(context, 'Abbrechen'),
-      style: ButtonStyle(
-        textStyle: MaterialStateProperty.all(
-          Theme.of(context).textTheme.bodyText2?.apply(
-                color: Theme.of(context).colorScheme.onBackground,
-              ),
-        ),
-      ),
-      child: const Text('Abbrechen'),
-    );
-  }
-
-  Widget _confirmButton(BuildContext context) {
-    return TextButton(
-      onPressed: () => Navigator.of(context).pushNamed(
-        '/home',
-        arguments: const NavigationArguments(),
-      ), //todo push to login view
-      style: ButtonStyle(
-        textStyle: MaterialStateProperty.all(
-          Theme.of(context).textTheme.bodyText2?.apply(
-                color: Theme.of(context).colorScheme.onBackground,
-              ),
-        ),
-      ),
-      child: const Text('Ja'),
     );
   }
 }
