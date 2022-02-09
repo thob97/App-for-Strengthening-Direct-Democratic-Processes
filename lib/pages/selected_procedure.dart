@@ -6,6 +6,7 @@ import 'package:swp_direktdem_verf_app/widgets/charts/stacked_bar_chart.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/elementary/my_expansion_panel_list.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/data_list_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/decision_description.dart';
+import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/phase_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/procedure_img.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/process_description.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/social_media_view.dart';
@@ -43,7 +44,8 @@ class SelectedProcedure extends StatelessWidget {
     return [
       Topic(
         header: 'Phase',
-        expandedWidget: const SizedBox(),
+        expandedWidget:
+            PhaseView(phases: MockedSelectedProcedureService.getPhases()),
       ),
       Topic(
         header: 'Datein',

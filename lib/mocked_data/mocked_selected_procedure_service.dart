@@ -4,6 +4,7 @@ import 'package:swp_direktdem_verf_app/widgets/charts/chart_model.dart';
 import 'package:swp_direktdem_verf_app/widgets/home/overview_procedure_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/map/point_of_interest.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/data_list_view.dart';
+import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/phase_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/social_media_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/what_happens_next.dart';
 import 'package:tuple/tuple.dart';
@@ -235,4 +236,36 @@ mixin MockedSelectedProcedureService {
         Tuple2(LatLng(52.6, 13.5), const PointOfInterest(location: 'Straße 4')),
         Tuple2(LatLng(52.7, 13.6), const PointOfInterest(location: 'Straße 5')),
       ];
+
+  static List<Phase> getPhases() {
+    return [
+      Phase(
+        title: 'Berlin 1',
+        started: DateTime.parse('2012-02-27'),
+        ended: DateTime.parse('2015-01-07'),
+        subtitle:
+            'and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics',
+        progress: 1,
+        completed: true,
+      ),
+      Phase(
+        title: 'Berlin 2',
+        started: DateTime.parse('2012-02-27'),
+        ended: null,
+        subtitle:
+            'and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics',
+        progress: 0.8,
+        completed: false,
+      ),
+      Phase(
+        title: 'Berlin 3',
+        started: null,
+        ended: null,
+        subtitle:
+            'and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics',
+        progress: 0,
+        completed: false,
+      )
+    ];
+  }
 }

@@ -133,6 +133,9 @@ class MyConstants {
   static const double borderRadius = 8;
   static const double horPagePadding = 16;
   static const double botPagePadding = 15;
+  static const EdgeInsets edgeHorPagePadding = EdgeInsets.symmetric(
+    horizontal: 16,
+  );
   static const EdgeInsets verPagePadding = EdgeInsets.symmetric(
     vertical: 30,
   );

@@ -2,7 +2,24 @@ import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
-///TODO take colors from theme data
+enum TimeLineState {
+  done,
+  doing,
+  todo,
+  failed,
+}
+
+class TimeLineProcess {
+  TimeLineProcess({
+    required this.child,
+    required this.state,
+    this.progress,
+  });
+
+  final Widget child;
+  final TimeLineState state;
+  final double? progress;
+}
 
 class TimeLine extends StatelessWidget {
   const TimeLine({required this.process});
@@ -11,7 +28,6 @@ class TimeLine extends StatelessWidget {
 
   ///Style
   static const double _indicatorSize = 30;
-  static const double _position = 0.1;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +38,6 @@ class TimeLine extends StatelessWidget {
       itemBuilder: (context, index) {
         final _currentProcess = process[index];
         return TimelineTile(
-          alignment: TimelineAlign.manual,
-          lineXY: _position,
           isFirst: index == 0,
           isLast: index == process.length - 1,
           beforeLineStyle: _beforeLineStyle(_currentProcess.state),
@@ -31,7 +45,7 @@ class TimeLine extends StatelessWidget {
           indicatorStyle: IndicatorStyle(
             width: TimeLine._indicatorSize,
             height: TimeLine._indicatorSize,
-            indicator: _indicator(_currentProcess.state, index),
+            indicator: _indicator(_currentProcess, index),
           ),
           endChild: _currentProcess.child,
         );
@@ -39,8 +53,8 @@ class TimeLine extends StatelessWidget {
     );
   }
 
-  Widget _indicator(TimeLineState state, int index) {
-    switch (state) {
+  Widget _indicator(TimeLineProcess process, int index) {
+    switch (process.state) {
 
       ///
       case TimeLineState.done:
@@ -54,21 +68,22 @@ class TimeLine extends StatelessWidget {
 
       ///
       case TimeLineState.doing:
-        return Container(
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: Color(0xFF2ACA8E),
-          ),
-          child: const Center(
-            child: Padding(
-              padding: EdgeInsets.all(6.0),
-              child: CircularProgressIndicator(
-                strokeWidth: 3,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              ),
-            ),
-          ),
-        );
+        return process.progress != null
+            ? _ProgressContainer(
+                backgroundColor: const Color(0xFF747888),
+                progress: process.progress!,
+                progressColor: const Color(0xFF2ACA8E),
+                child: Center(
+                  child: Text(
+                    '${index + 1}',
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              )
+            : const _CircularProgressIndicatorContainer(
+                backgroundColor: Color(0xFF2ACA8E),
+                strokeColor: Colors.white,
+              );
 
       ///
       case TimeLineState.todo:
@@ -123,31 +138,79 @@ class TimeLine extends StatelessWidget {
   }
 }
 
-enum TimeLineState {
-  done,
-  doing,
-  todo,
-  failed,
-}
+///new class
 
-class TimeLineProcess {
-  TimeLineProcess({
+class _ProgressContainer extends StatelessWidget {
+  const _ProgressContainer({
+    required this.backgroundColor,
+    required this.progressColor,
+    required this.progress,
     required this.child,
-    required this.state,
   });
 
+  final Color backgroundColor;
+  final Color progressColor;
+  final double progress;
   final Widget child;
-  final TimeLineState state;
 
-  bool isDone() {
-    return state == TimeLineState.done;
+  ///init for gradient
+  List<Color> get gradient => [
+        backgroundColor,
+        backgroundColor,
+        progressColor,
+        progressColor,
+      ];
+
+  double get stopFill => 1 - progress;
+
+  List<double> get stops => [0.0, stopFill, stopFill, 1.0];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          colors: gradient,
+          stops: stops,
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+        ),
+      ),
+      child: child,
+    );
   }
+}
 
-  bool isTodo() {
-    return state == TimeLineState.todo;
-  }
+class _CircularProgressIndicatorContainer extends StatelessWidget {
+  const _CircularProgressIndicatorContainer({
+    required this.backgroundColor,
+    required this.strokeColor,
+  });
 
-  bool isDoing() {
-    return state == TimeLineState.doing;
+  final Color backgroundColor;
+  final Color strokeColor;
+
+  ///style
+  static const double _padding = 6;
+  static const double _stokeWidth = 3;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: backgroundColor,
+      ),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(_padding),
+          child: CircularProgressIndicator(
+            strokeWidth: _stokeWidth,
+            valueColor: AlwaysStoppedAnimation<Color>(strokeColor),
+          ),
+        ),
+      ),
+    );
   }
 }
