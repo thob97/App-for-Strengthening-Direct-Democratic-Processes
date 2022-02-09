@@ -52,6 +52,9 @@ class CustomThemeData {
     subtitle1: TextStyle(
       fontSize: 16,
     ),
+    headline6: TextStyle(
+      fontWeight: FontWeight.normal,
+    ),
   );
 
   ///ThemeData
