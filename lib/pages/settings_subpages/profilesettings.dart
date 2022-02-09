@@ -18,11 +18,13 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   _EditProfilePageState();
+
   final _formkey = GlobalKey<FormState>();
   final controllerFirstName = TextEditingController();
   final controllerLastName = TextEditingController();
   final controllerEmail = TextEditingController();
   final controllerPassword = TextEditingController();
+
   @override
   void dispose() {
     controllerFirstName.dispose();
@@ -113,7 +115,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ..removeCurrentSnackBar()
                         ..showSnackBar(
                           const SnackBar(
-                            content: Text('Your data are saved'),
+                            content: Text('Ihre Daten werden gespeichert'),
                           ),
                         );
                       Navigator.push(
@@ -142,21 +144,5 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),
       ),
     );
-  }
-
-  void store() {
-    final form = _formkey.currentState!;
-
-    if (form.validate()) {
-      TextInput.finishAutofillContext();
-
-      ScaffoldMessenger.of(context)
-        ..removeCurrentSnackBar()
-        ..showSnackBar(
-          const SnackBar(
-            content: Text('Ihre Daten werden gespeichert'),
-          ),
-        );
-    }
   }
 }
