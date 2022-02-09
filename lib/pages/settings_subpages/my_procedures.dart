@@ -58,7 +58,7 @@ class _TransitionFloatingActionButton extends StatelessWidget {
       closedShape: _roundShape(),
       closedColor: Theme.of(context).colorScheme.primary,
       closedBuilder: (BuildContext context, VoidCallback openContainer) =>
-          _floatingActionButton(context),
+          _floatingActionButton(context, openContainer),
     );
   }
 
@@ -70,13 +70,14 @@ class _TransitionFloatingActionButton extends StatelessWidget {
     );
   }
 
-  Widget _floatingActionButton(BuildContext context) {
+  Widget _floatingActionButton(BuildContext context, VoidCallback openC) {
     return SizedBox(
       height: _floatingActionButtonSize,
       width: _floatingActionButtonSize,
-      child: Icon(
-        Icons.add,
+      child: IconButton(
         color: Theme.of(context).colorScheme.onPrimary,
+        onPressed: openC,
+        icon: const Icon(Icons.add),
       ),
     );
   }
