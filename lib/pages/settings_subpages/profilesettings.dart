@@ -24,6 +24,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final controllerLastName = TextEditingController();
   final controllerEmail = TextEditingController();
   final controllerPassword = TextEditingController();
+  bool isSwitched = false;
 
   @override
   void dispose() {
@@ -36,7 +37,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    const bool switchValue = false;
     return Scaffold(
       appBar: const CustomAppBar('Profileinstellungen'),
       body: SingleChildScrollView(
@@ -85,8 +85,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
                     Switch(
-                      value: switchValue,
-                      onChanged: (value) {},
+                      onChanged: (bool value) {
+                        if (isSwitched == false) {
+                          setState(() {
+                            isSwitched = true;
+                          });
+                        } else {
+                          setState(() {
+                            isSwitched = false;
+                          });
+                        }
+                      },
+                      value: isSwitched,
                     ),
                   ],
                 ),

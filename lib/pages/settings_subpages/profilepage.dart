@@ -12,7 +12,6 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // const user = UserPreferences.myUser;
-
     return Builder(
       builder: (context) => Scaffold(
         appBar: const CustomAppBar('Profil'),
@@ -44,24 +43,44 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget buildName(User user, BuildContext context) => Column(
-        children: [
-          Text(
-            user.name.split(' ').first,
-            style: Theme.of(context).textTheme.headline2,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            user.name.split(' ').last,
-            style: Theme.of(context).textTheme.headline2,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            user.email,
-            style: Theme.of(context).textTheme.bodyText2,
-          )
-        ],
-      );
+  Widget buildName(User user, BuildContext context) {
+    const bool isSwitched = true;
+    return Column(
+      children: [
+        Text(
+          user.name.split(' ').first,
+          style: Theme.of(context).textTheme.headline2,
+        ),
+        const SizedBox(height: 4),
+        Text(
+          user.name.split(' ').last,
+          style: Theme.of(context).textTheme.headline2,
+        ),
+        const SizedBox(height: 4),
+        Text(
+          user.email,
+          style: Theme.of(context).textTheme.bodyText2,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'Email Adresse sichtbar machen',
+              style: Theme.of(context).textTheme.bodyText2,
+            ),
+            Switch(
+              value: isSwitched,
+              onChanged: (value) {},
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+      ],
+    );
+  }
+
   Future<void> _showMyDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
