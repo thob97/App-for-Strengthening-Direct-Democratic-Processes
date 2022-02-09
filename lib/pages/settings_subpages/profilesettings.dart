@@ -5,7 +5,6 @@ import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart'
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
 import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
-import 'package:swp_direktdem_verf_app/widgets/profilewidget.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 import 'package:swp_direktdem_verf_app/widgets/two_butts_in_row.dart';
 
@@ -45,16 +44,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
             key: _formkey,
             child: Column(
               children: [
-                ProfileWidget(
-                  imagePath: UserPreferences.myUser.imagePath,
-                  isEdit: true,
-                  onClicked: () async {
-                    Navigator.pop(context);
-                  },
-                ),
-                const SizedBox(
-                  height: 35,
-                ),
                 TextfieldLoginRegister(
                   'Vorname',
                   UserPreferences.myUser.name.split(' ').first,
@@ -140,7 +129,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ..showSnackBar(
                           const SnackBar(
                             content: Text(
-                                'Ihre Daten können nicht gespeichert werden. Überprüfen Sie sie',),
+                              'Ihre Daten können nicht gespeichert werden. Überprüfen Sie sie',
+                            ),
                           ),
                         );
                     }
