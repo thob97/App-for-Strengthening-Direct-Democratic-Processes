@@ -139,8 +139,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ..removeCurrentSnackBar()
                         ..showSnackBar(
                           const SnackBar(
-                            content:
-                                Text('Ihre Daten können nicht gespeichert werden. Überprüfen Sie sie'),
+                            content: Text(
+                                'Ihre Daten können nicht gespeichert werden. Überprüfen Sie sie'),
                           ),
                         );
                     }
