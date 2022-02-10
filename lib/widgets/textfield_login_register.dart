@@ -79,22 +79,29 @@ class _TextfieldLoginRegisterState extends State<TextfieldLoginRegister> {
     } else if (labelText == 'Email') {
       child = TextFormField(
         controller: controller,
+        onTap: () {},
         decoration: InputDecoration(
-          hintText: 'Email',
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          prefixIcon: const Icon(Icons.mail),
+          labelText: '  $labelText',
           suffixIcon: widget.controller.text.isEmpty
               ? Container(width: 0)
               : IconButton(
                   icon: const Icon(Icons.close),
                   onPressed: () => widget.controller.clear(),
                 ),
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(width: 2),
+          ),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintText: placeholder,
+          labelStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          prefixIcon: const Icon(Icons.mail),
         ),
         keyboardType: TextInputType.emailAddress,
         autofillHints: const [AutofillHints.email],
-        autofocus: true,
+        onEditingComplete: () => TextInput.finishAutofillContext(),
         validator: (email) => email != null && !EmailValidator.validate(email)
             ? 'Enter a valid email'
             : null,
@@ -105,6 +112,12 @@ class _TextfieldLoginRegisterState extends State<TextfieldLoginRegister> {
         onTap: () {},
         decoration: InputDecoration(
           labelText: '  $labelText',
+          suffixIcon: widget.controller.text.isEmpty
+              ? Container(width: 0)
+              : IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () => widget.controller.clear(),
+                ),
           border: const OutlineInputBorder(
             borderSide: BorderSide(width: 2),
           ),
@@ -114,16 +127,10 @@ class _TextfieldLoginRegisterState extends State<TextfieldLoginRegister> {
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
-          suffixIcon: widget.controller.text.isEmpty
-              ? Container(width: 0)
-              : IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () => widget.controller.clear(),
-                ),
         ),
         keyboardType: TextInputType.name,
         autofillHints: const [AutofillHints.name],
-        autofocus: true,
+        onEditingComplete: () => TextInput.finishAutofillContext(),
         validator: (password) => password != null && password.length < 5
             ? 'Your name is incorrect. Enter min. 5 characters'
             : null,
