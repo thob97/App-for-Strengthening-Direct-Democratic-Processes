@@ -36,7 +36,14 @@ class _NewProcedureState4 extends State<NewProcedure4> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const NewProcedure3(),
+                    ),
+                  );
+                },
                 child: const Text(
                   'ZURÜCK',
                   style: TextStyle(
@@ -47,9 +54,7 @@ class _NewProcedureState4 extends State<NewProcedure4> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
-
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
                   padding: const EdgeInsets.symmetric(horizontal: 30),
