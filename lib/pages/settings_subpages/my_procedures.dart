@@ -13,7 +13,7 @@ import 'package:swp_direktdem_verf_app/widgets/custom_future_builder.dart';
 import 'package:swp_direktdem_verf_app/widgets/home/foldable_filter_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/home/overview_procedure_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/home/search_app_bar.dart';
-import 'package:swp_direktdem_verf_app/pages/NewProcedure1.dart';
+import 'package:swp_direktdem_verf_app/pages/new_procedure1.dart';
 
 
 class MyProcedures extends StatefulWidget {
