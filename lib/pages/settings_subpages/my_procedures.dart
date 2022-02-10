@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/mocked_data/mocked_selected_procedure_service.dart';
 import 'package:swp_direktdem_verf_app/pages/new_procedure.dart';
+import 'package:swp_direktdem_verf_app/pages/new_procedure1.dart';
 import 'package:swp_direktdem_verf_app/widgets/home/foldable_filter_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/home/overview_procedure_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/home/search_app_bar.dart';
@@ -76,7 +77,12 @@ class _TransitionFloatingActionButton extends StatelessWidget {
       width: _floatingActionButtonSize,
       child: IconButton(
         color: Theme.of(context).colorScheme.onPrimary,
-        onPressed: openC,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const NewProcedure1()),
+          );
+        },
         icon: const Icon(Icons.add),
       ),
     );
