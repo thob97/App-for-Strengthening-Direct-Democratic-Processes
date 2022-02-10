@@ -32,7 +32,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
 
     case '/settings':
-      return PageRouteBuilder(pageBuilder: (_, __, ___) => const Settings());
+      return PageRouteBuilder(
+          pageBuilder: (_, __, ___) => const Settings(
+                pressGeoON: false,
+              ));
 
     case '/my_procedures':
       return MaterialPageRoute(builder: (_) => const MyProcedures());
