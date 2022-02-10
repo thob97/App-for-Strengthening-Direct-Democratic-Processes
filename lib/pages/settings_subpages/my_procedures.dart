@@ -13,8 +13,6 @@ import 'package:swp_direktdem_verf_app/widgets/custom_future_builder.dart';
 import 'package:swp_direktdem_verf_app/widgets/home/foldable_filter_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/home/overview_procedure_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/home/search_app_bar.dart';
-import 'package:swp_direktdem_verf_app/pages/new_procedure1.dart';
-
 
 class MyProcedures extends StatefulWidget {
   const MyProcedures();
@@ -187,12 +185,6 @@ class _TransitionFloatingActionButton extends StatelessWidget {
 
   Widget _floatingActionButton(BuildContext context, VoidCallback openC) {
     return SizedBox(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const NewProcedure1()),
-        );
-      },
       height: _floatingActionButtonSize,
       width: _floatingActionButtonSize,
       child: IconButton(
