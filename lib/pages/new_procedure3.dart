@@ -1,7 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
-import 'package:swp_direktdem_verf_app/pages/new_procedure2.dart';
+import 'package:swp_direktdem_verf_app/pages/new_procedure1.dart';
 import 'package:swp_direktdem_verf_app/pages/new_procedure4.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
@@ -56,7 +56,7 @@ class _NewProcedureState3 extends State<NewProcedure3> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const NewProcedure2(),
+                      builder: (context) => const NewProcedure1(),
                     ),
                   );
                 },
