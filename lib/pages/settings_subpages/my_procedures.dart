@@ -190,7 +190,7 @@ class _TransitionFloatingActionButton extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const new_procedure1()),
+          MaterialPageRoute(builder: (context) => const NewProcedure1()),
         );
       },
       height: _floatingActionButtonSize,
