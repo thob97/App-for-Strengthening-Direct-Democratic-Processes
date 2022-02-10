@@ -108,7 +108,8 @@ class _NewProcedureState1 extends State<NewProcedure1> {
                 alignment: Alignment.topLeft,
                 decoration: const BoxDecoration(
                   border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 2.0)),
+                    bottom: BorderSide(color: Colors.grey, width: 2.0),
+                  ),
                 ),
                 child: const Text(
                   'Titel',
@@ -139,7 +140,8 @@ class _NewProcedureState1 extends State<NewProcedure1> {
                 alignment: Alignment.topLeft,
                 decoration: const BoxDecoration(
                   border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 2.0)),
+                    bottom: BorderSide(color: Colors.grey, width: 2.0),
+                  ),
                 ),
                 child: const Text(
                   'Beschreibung',
@@ -233,7 +235,8 @@ class _NewProcedureState1 extends State<NewProcedure1> {
                 alignment: Alignment.topLeft,
                 decoration: const BoxDecoration(
                   border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 2.0)),
+                    bottom: BorderSide(color: Colors.grey, width: 2.0),
+                  ),
                 ),
                 child: const Text(
                   'Kontakt',
@@ -265,7 +268,8 @@ class _NewProcedureState1 extends State<NewProcedure1> {
                 alignment: Alignment.topLeft,
                 decoration: const BoxDecoration(
                   border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 2.0)),
+                    bottom: BorderSide(color: Colors.grey, width: 2.0),
+                  ),
                 ),
                 child: const Text(
                   'Website',
