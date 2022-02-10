@@ -86,7 +86,8 @@ class _NewProcedureState4 extends State<NewProcedure4> {
                 alignment: Alignment.topLeft,
                 decoration: const BoxDecoration(
                   border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 2.0),),
+                    bottom: BorderSide(color: Colors.grey, width: 2.0),
+                  ),
                 ),
                 child: const Text(
                   'Redakteure',
@@ -97,7 +98,11 @@ class _NewProcedureState4 extends State<NewProcedure4> {
             ),
             Container(
               padding: const EdgeInsets.only(
-                  left: 10, right: 10, top: 20, bottom: 30,),
+                left: 10,
+                right: 10,
+                top: 20,
+                bottom: 30,
+              ),
               alignment: Alignment.topLeft,
               child: const Text(
                 'Hinweis: \nSie können die E-Mail Adressen der 5 Redakteure \nhinzufügen. Diese können dann in dieser\nApp auch das Verfahren bearbeiten.',
@@ -164,10 +169,13 @@ class _NewProcedureState4 extends State<NewProcedure4> {
                       TextButton(
                         child: const Text('Continue'),
                         onPressed: () {
-                          personList.add(Person(
+                          personList.add(
+                            Person(
                               textEditingControllerPersonname.value.text,
                               textEditingControllerPersonname.value.text
-                                  .substring(0, 1),),);
+                                  .substring(0, 1),
+                            ),
+                          );
                           textEditingControllerPersonname.clear();
                           Navigator.of(context).pop();
                           setState(() {});
@@ -179,7 +187,8 @@ class _NewProcedureState4 extends State<NewProcedure4> {
                       onChanged: (value) {},
                       controller: textEditingControllerPersonname,
                       decoration: const InputDecoration(
-                          hintText: 'Text Field in Dialog',),
+                        hintText: 'Text Field in Dialog',
+                      ),
                     ),
                   ),
                 ),
