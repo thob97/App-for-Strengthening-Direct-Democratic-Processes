@@ -48,12 +48,7 @@ class _NewProcedureState4 extends State<NewProcedure4> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const NewProcedure3(),
-                    ),
-                  );
+
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
