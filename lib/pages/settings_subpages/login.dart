@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/register.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
-import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 
@@ -42,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextfieldLoginRegister(
                   'Email',
-                  UserPreferences.myUser.email,
+                  widget.user.email,
                   emailController,
                 ),
                 TextfieldLoginRegister(
@@ -105,8 +104,8 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const RegisterPage(
-                          user: UserPreferences.myUser,
+                        builder: (context) => RegisterPage(
+                          user: widget.user,
                         ),
                       ),
                     );

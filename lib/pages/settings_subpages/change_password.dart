@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilesettings.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profile_settings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
-import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/password_confirm.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
@@ -56,8 +55,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              const EditProfilePage(UserPreferences.myUser),
+                          builder: (context) => ProfileSettings(
+                            user: widget.user,
+                          ),
                         ),
                       );
                     },
@@ -80,7 +80,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const EditProfilePage(UserPreferences.myUser),
+                                  ProfileSettings(user: widget.user),
                             ),
                           );
                         } else {
@@ -98,8 +98,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ChangePasswordPage(
-                                UserPreferences.myUser,
+                              builder: (context) => ChangePasswordPage(
+                                widget.user,
                               ),
                             ),
                           );

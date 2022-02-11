@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilesettings.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profile_settings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/two_butts_in_row.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage(this.user, {Key? key}) : super(key: key);
   final User user;
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
 
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     // const user = UserPreferences.myUser;
@@ -21,14 +25,15 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 24),
-                buildName(user, context),
+                buildName(widget.user, context),
                 const SizedBox(height: 35),
                 TwoButtInRow(
                   functionOne: () => _showMyDialog(context),
                   functionTwo: () async {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => EditProfilePage(user),
+                        builder: (context) =>
+                            ProfileSettings(user: widget.user),
                       ),
                     );
                   },

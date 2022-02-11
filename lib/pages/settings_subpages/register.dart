@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilesettings.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
 import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
@@ -82,8 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const EditProfilePage(UserPreferences.myUser),
+                            builder: (context) => ProfilePage(widget.user),
                           ),
                         );
                       } else {
@@ -101,8 +100,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const RegisterPage(
-                              user: UserPreferences.myUser,
+                            builder: (context) => RegisterPage(
+                              user: widget.user,
                             ),
                           ),
                         );

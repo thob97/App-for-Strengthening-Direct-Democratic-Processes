@@ -4,7 +4,7 @@ import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/datasecurity.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/login.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilesettings.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profile_settings.dart';
 import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
@@ -34,8 +34,9 @@ class _SettingsState extends State<Settings> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            const EditProfilePage(UserPreferences.myUser),
+                        builder: (context) => const ProfileSettings(
+                          user: UserPreferences.myUser,
+                        ),
                       ),
                     );
                   }
