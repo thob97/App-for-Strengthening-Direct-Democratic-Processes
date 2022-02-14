@@ -45,9 +45,11 @@ class _NewProcedureState3 extends State<NewProcedure3> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 35),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.transparent,
+                  primary: const Color(0xFF194C76),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -65,7 +67,7 @@ class _NewProcedureState3 extends State<NewProcedure3> {
                   style: TextStyle(
                     fontSize: 14,
                     letterSpacing: 2.2,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -79,8 +81,9 @@ class _NewProcedureState3 extends State<NewProcedure3> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.purple,
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  shadowColor: Colors.transparent,
+                  primary: const Color(0xFF194C76),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
