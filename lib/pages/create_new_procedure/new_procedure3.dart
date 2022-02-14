@@ -1,8 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
-import 'package:swp_direktdem_verf_app/pages/create_newProcedure/new_procedure1.dart';
-import 'package:swp_direktdem_verf_app/pages/create_newProcedure/new_procedure4.dart';
+import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure1.dart';
+import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure4.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
 List<Document> documentList = [];

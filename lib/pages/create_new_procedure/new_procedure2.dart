@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/pages/create_newProcedure/new_procedure1.dart';
-import 'package:swp_direktdem_verf_app/pages/create_newProcedure/new_procedure3.dart';
+import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure1.dart';
+import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure3.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
 class NewProcedure2 extends StatefulWidget {

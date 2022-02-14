@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:swp_direktdem_verf_app/pages/create_newProcedure/new_procedure3.dart';
+import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure3.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
