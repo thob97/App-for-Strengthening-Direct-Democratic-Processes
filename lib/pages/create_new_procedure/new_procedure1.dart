@@ -189,12 +189,12 @@ class _NewProcedureState1 extends State<NewProcedure1> {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: vehicles.length,
+              itemCount: tehmenbereiche.length,
               padding: const EdgeInsets.only(right: 10, bottom: 30),
               itemBuilder: (context, i) {
                 return ExpansionTile(
                   title: Text(
-                    vehicles[i].title,
+                    tehmenbereiche[i].title,
                     style: const TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
@@ -203,7 +203,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
                   ),
                   children: <Widget>[
                     Column(
-                      children: _buildExpandableContent(vehicles[i]),
+                      children: _buildExpandableContent(tehmenbereiche[i]),
                     ),
                   ],
                 );
@@ -317,18 +317,18 @@ class _NewProcedureState1 extends State<NewProcedure1> {
 }
 
 List<Widget> _buildExpandableContent(
-  Vehicle vehicle,
+    Tehmenbereich tehmenbereiche,
 ) {
   final List<Widget> columnContent = [];
 
-  for (final String content in vehicle.contents) {
+  for (final String content in tehmenbereiche.contents) {
     columnContent.add(
       ListTile(
         title: Text(
           content,
           style: const TextStyle(fontSize: 18.0),
         ),
-        leading: Icon(vehicle.icon),
+        leading: Icon(tehmenbereiche.icon),
         //onTap: () => print('ListTile'),
       ),
     );
@@ -337,16 +337,16 @@ List<Widget> _buildExpandableContent(
   return columnContent;
 }
 
-class Vehicle {
-  Vehicle(this.title, this.contents, this.icon);
+class Tehmenbereich {
+  Tehmenbereich(this.title, this.contents, this.icon);
 
   final String title;
   List<String> contents = [];
   final IconData icon;
 }
 
-List<Vehicle> vehicles = [
-  Vehicle(
+List<Tehmenbereich> tehmenbereiche = [
+  Tehmenbereich(
     'Tehmenbereiche',
     [
       '1. Tehmenbereich',
