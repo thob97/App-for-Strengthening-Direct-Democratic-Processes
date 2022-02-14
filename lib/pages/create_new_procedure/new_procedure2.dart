@@ -488,31 +488,6 @@ class _NewProcedureState2 extends State<NewProcedure2> {
   }
 }
 
-class Vehicle {
-  Vehicle(this.title, this.contents, this.icon);
-
-  final String title;
-  List<String> contents = [];
-  final IconData icon;
-}
-
-List<Vehicle> vehicles = [
-  Vehicle(
-    'Tehmenbereiche',
-    [
-      '1. Tehmenbereich',
-      '2. Tehmenbereich',
-      '3. Tehmenbereich',
-      '4. Tehmenbereich',
-      '3. Tehmenbereich',
-      '4. Tehmenbereich',
-      '3. Tehmenbereich',
-      '4. Tehmenbereich'
-    ],
-    Icons.close,
-  ),
-];
-
 class Data {
   Data(this.title, this.contents, this.icon);
 
