@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/register.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
+import 'package:swp_direktdem_verf_app/pages/utils/user_preferences.dart';
+import 'package:swp_direktdem_verf_app/service/model/user.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage(this.user, {Key? key}) : super(key: key);
-  final User user;
+  const LoginPage({Key? key}) : super(key: key);
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  _LoginPageState();
+  late User user;
   final _formkey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -41,37 +41,37 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextfieldLoginRegister(
                   'Email',
-                  widget.user.email,
+                  UserPreferences().myUser.email,
                   emailController,
                 ),
                 TextfieldLoginRegister(
                   'Passwort',
-                  '******',
+                  UserPreferences().myUser.password,
                   passwordController,
                 ),
                 ElevatedButton(
                   onPressed: () async {
                     if (_formkey.currentState!.validate()) {
                       final form = _formkey.currentState!;
-
                       if (form.validate()) {
-                        TextInput.finishAutofillContext();
-
-                        ScaffoldMessenger.of(context)
-                          ..removeCurrentSnackBar()
-                          ..showSnackBar(
-                            const SnackBar(
-                              content: Text('Erfolgreich eingeloggt'),
+                        {
+                          TextInput.finishAutofillContext();
+                          ScaffoldMessenger.of(context)
+                            ..removeCurrentSnackBar()
+                            ..showSnackBar(
+                              const SnackBar(
+                                content: Text('Erfolgreich eingeloggt'),
+                              ),
+                            );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Settings(
+                                pressGeoON: true,
+                              ),
                             ),
                           );
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Settings(
-                              pressGeoON: true,
-                            ),
-                          ),
-                        );
+                        }
                       } else {
                         TextInput.finishAutofillContext();
 
@@ -104,9 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => RegisterPage(
-                          user: widget.user,
-                        ),
+                        builder: (context) => const RegisterPage(),
                       ),
                     );
                   },

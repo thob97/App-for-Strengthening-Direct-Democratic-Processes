@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
+import 'package:swp_direktdem_verf_app/service/model/user.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
 class UserScreen extends StatefulWidget {
@@ -19,8 +19,8 @@ class _UserScreenState extends State<UserScreen> {
 
   // Get json result and convert it to model. Then add
   Future<void> getUserDetails() async {
-    final response = await http.get(Uri.parse(url));
-    final responseJson = json.decode(response.body);
+    final String response = await rootBundle.loadString(path);
+    final responseJson = await json.decode(response);
 
     setState(() {
       for (final Map user in responseJson) {
@@ -73,13 +73,13 @@ class _UserScreenState extends State<UserScreen> {
                       return Card(
                         margin: EdgeInsets.zero,
                         child: ListTile(
-                          leading: CircleAvatar(
+                          leading: const CircleAvatar(
                             backgroundImage: NetworkImage(
-                              _searchResult[i].imagePath,
+                              'https://banner2.cleanpng.com/20180516/zq/kisspng-computer-icons-google-account-icon-design-login-5afc02dab4a218.0950785215264652427399.jpg',
                             ),
                           ),
                           title: Text(
-                            '${_searchResult[i].name.split(" ").first} ${_searchResult[i].name.split(" ").last}',
+                            '${_searchResult[i].first_name} ${_searchResult[i].last_name}',
                           ),
                           onTap: () {
                             Navigator.push(
@@ -100,13 +100,13 @@ class _UserScreenState extends State<UserScreen> {
                       return Card(
                         margin: EdgeInsets.zero,
                         child: ListTile(
-                          leading: CircleAvatar(
+                          leading: const CircleAvatar(
                             backgroundImage: NetworkImage(
-                              _userDetails[index].imagePath,
+                              'https://banner2.cleanpng.com/20180516/zq/kisspng-computer-icons-google-account-icon-design-login-5afc02dab4a218.0950785215264652427399.jpg',
                             ),
                           ),
                           title: Text(
-                            '${_userDetails[index].name.split(" ").first} ${_userDetails[index].name.split(" ").last}',
+                            '${_userDetails[index].first_name} ${_userDetails[index].last_name}',
                           ),
                           onTap: () {
                             Navigator.push(
@@ -135,8 +135,8 @@ class _UserScreenState extends State<UserScreen> {
     }
 
     for (final userDetail in _userDetails) {
-      if (userDetail.name.split(' ').first.contains(text) ||
-          userDetail.name.split(' ').last.contains(text)) {
+      if (userDetail.first_name.contains(text) ||
+          userDetail.last_name.contains(text)) {
         _searchResult.add(userDetail);
       }
     }
@@ -148,4 +148,4 @@ List<User> _searchResult = [];
 
 List<User> _userDetails = [];
 
-const String url = 'https://jsonplaceholder.typicode.com/users';
+const String path = 'assets/mocked_data/user.json';

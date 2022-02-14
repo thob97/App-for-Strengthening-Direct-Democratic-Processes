@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/profile_settings.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
+import 'package:swp_direktdem_verf_app/service/model/user.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/two_butts_in_row.dart';
 
@@ -52,12 +52,12 @@ class _ProfilePageState extends State<ProfilePage> {
     return Column(
       children: [
         Text(
-          user.name.split(' ').first,
+          widget.user.first_name,
           style: Theme.of(context).textTheme.headline2,
         ),
         const SizedBox(height: 4),
         Text(
-          user.name.split(' ').last,
+          widget.user.last_name,
           style: Theme.of(context).textTheme.headline2,
         ),
         const SizedBox(height: 4),

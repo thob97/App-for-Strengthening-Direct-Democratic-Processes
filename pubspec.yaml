@@ -127,7 +127,6 @@ flutter:
     - assets/
     - assets/procedure/
     - assets/what_happens_next/
-    - assets/generated.json
     - images/
     - assets/mocked_data/
 

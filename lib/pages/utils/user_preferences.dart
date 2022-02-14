@@ -9,9 +9,9 @@ class UserPreferences {
     password: '********',
     last_login: null,
     date_joined: DateTime.now(),
-    is_active: false,
-    is_superuser: false,
-    is_staff: false,
+    is_active: true,
+    is_superuser: true,
+    is_staff: true,
     //comment for http
     //imagePath:
     //  'https://banner2.cleanpng.com/20180516/zq/kisspng-computer-icons-google-account-icon-design-login-5afc02dab4a218.0950785215264652427399.jpg',

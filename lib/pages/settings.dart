@@ -4,8 +4,8 @@ import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/datasecurity.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/login.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/profile_settings.dart';
-import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
+import 'package:swp_direktdem_verf_app/service/model/user.dart';
 import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/settingsbutton.dart';
@@ -18,6 +18,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  late User user;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,8 +35,8 @@ class _SettingsState extends State<Settings> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ProfileSettings(
-                          user: UserPreferences.myUser,
+                        builder: (context) => ProfilePage(
+                          user,
                         ),
                       ),
                     );
@@ -44,8 +45,7 @@ class _SettingsState extends State<Settings> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            const LoginPage(UserPreferences.myUser),
+                        builder: (context) => const LoginPage(),
                       ),
                     );
                   },
