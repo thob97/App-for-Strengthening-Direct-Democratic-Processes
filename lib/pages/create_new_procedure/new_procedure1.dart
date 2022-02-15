@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure3.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
-import 'package:swp_direktdem_verf_app/widgets/new_procedure/example/custom_vertical_stepper.dart';
 
 TextEditingController textEditingControllerBeschreibung =
 TextEditingController();
@@ -13,7 +12,7 @@ TextEditingController textEditingControllerTitelStartdatum =
 TextEditingController();
 TextEditingController textEditingControllerKontakt = TextEditingController();
 TextEditingController textEditingControllerWebsite = TextEditingController();
-String selected = 'Tehmenbereiche';
+String selected = 'Themenbereiche';
 
 
 class NewProcedure1 extends StatefulWidget {
@@ -115,8 +114,65 @@ class _NewProcedureState1 extends State<NewProcedure1> {
         physics: const ScrollPhysics(),
         child: Column(
           children: <Widget>[
+            Padding(padding: const EdgeInsets.only(top: 10),
+              child: Row( children: [
+                Padding(
+                  padding:
+                  const EdgeInsets.only(left: 45, right: 10, top: 10),
+                  child: Container(
+                    width: 35.0,
+                    height: 35.0,
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Text('1'),
+                  ),
+                ),
+                Container(
+                  height:1.0,
+                  width:80.0,
+                  color:Colors.black,
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(left: 10, right: 10, top: 10),
+                  child: Container(
+                    width: 35.0,
+                    height: 35.0,
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: Colors.grey,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Text('2'),
+                  ),
+                ),
+                Container(
+                  height:1.0,
+                  width:80.0,
+                  color:Colors.black,
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(left: 10, right: 10, top: 10),
+                  child: Container(
+                    width: 35.0,
+                    height: 35.0,
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: Colors.grey,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Text('3'),
+                  ),
+                ),
+              ],
+              ),),
+
             Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
               child: Container(
                 padding: const EdgeInsets.only(right: 10, top: 10),
                 alignment: Alignment.topLeft,
@@ -168,7 +224,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
               padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
               alignment: Alignment.topLeft,
               child: const Text(
-                'Was sollten Sie hier schreiben\n• Was ist das Ziel?\n• Motivation? ',
+                'Was sollten Sie hier schreiben\n• Ziele\n• Motivation ',
                 textAlign: TextAlign.left,
                 style: TextStyle(fontSize: 20),
               ),
@@ -192,7 +248,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: tehmenbereiche.length,
+              itemCount: themenbereiche.length,
               padding: const EdgeInsets.only(right: 10, bottom: 30),
               itemBuilder: (context, i) {
                 return ExpansionTile(
@@ -206,7 +262,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
                   ),
                   children: <Widget>[
                     Column(
-                      children: _buildExpandableContent(tehmenbereiche[i], i),
+                      children: _buildExpandableContent(themenbereiche[i], i),
                     ),
                   ],
                 );
@@ -317,16 +373,16 @@ class _NewProcedureState1 extends State<NewProcedure1> {
       ),
     );
   }
-  List<Widget> _buildExpandableContent(Tehmenbereich tehmenbereich, index) {
-    return List.generate(tehmenbereich.contents.length, (index) {
+  List<Widget> _buildExpandableContent(Themenbereich themenbereich, index) {
+    return List.generate(themenbereich.contents.length, (index) {
       return ListTile(
         title: Text(
-          tehmenbereich.contents[index],
+          themenbereich.contents[index],
           style: const TextStyle(fontSize: 18.0),
         ),
         onTap: () {
           setState(() {
-            selected = tehmenbereich.contents.elementAt(index);
+            selected = themenbereich.contents.elementAt(index);
           });
         },
       );
@@ -336,51 +392,26 @@ class _NewProcedureState1 extends State<NewProcedure1> {
 }
 
 
-class Tehmenbereich {
-  Tehmenbereich(this.title, this.contents, this.icon);
+class Themenbereich {
+  Themenbereich(this.title, this.contents, this.icon);
 
   final String title;
   List<String> contents = [];
   final IconData icon;
 }
 
-List<Tehmenbereich> tehmenbereiche = [
-  Tehmenbereich(
-    'Tehmenbereiche',
+List<Themenbereich> themenbereiche = [
+  Themenbereich(
+    'Themenbereiche',
     [
-      '1. Tehmenbereich',
-      '2. Tehmenbereich',
-      '3. Tehmenbereich',
-      '4. Tehmenbereich',
-      '3. Tehmenbereich',
-      '4. Tehmenbereich',
-      '3. Tehmenbereich',
-      '4. Tehmenbereich'
-    ],
-    Icons.close,
-  ),
-];
-
-class Data {
-  Data(this.title, this.contents, this.icon);
-
-  final String title;
-  List<String> contents = [];
-  final IconData icon;
-}
-
-List<Data> datas = [
-  Data(
-    'Datein',
-    [
-      '1. Datei',
-      '2. Datei',
-      '3. Datei',
-      '4. Datei',
-      '3. Datei',
-      '4. Datei',
-      '3. Datei',
-      '4. Datei'
+      '1. Themenbereich',
+      '2. Themenbereich',
+      '3. Themenbereich',
+      '4. Themenbereich',
+      '3. Themenbereich',
+      '4. Themenbereich',
+      '3. Themenbereich',
+      '4. Themenbereich'
     ],
     Icons.close,
   ),
