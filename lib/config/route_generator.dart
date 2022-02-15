@@ -5,6 +5,7 @@ import 'package:swp_direktdem_verf_app/pages/error_page.dart';
 import 'package:swp_direktdem_verf_app/pages/favorite.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
+import 'package:swp_direktdem_verf_app/pages/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -35,7 +36,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/settings':
       return PageRouteBuilder(
           pageBuilder: (_, __, ___) => Settings(
-                pressGeoON: false
+                user: UserPreferences().myUser, pressGeoON: false,
               ));
 
     case '/my_procedures':
