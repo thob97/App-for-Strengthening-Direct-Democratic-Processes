@@ -3,15 +3,18 @@ import 'package:intl/intl.dart';
 import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure3.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
+import 'package:swp_direktdem_verf_app/widgets/new_procedure/example/custom_vertical_stepper.dart';
 
 TextEditingController textEditingControllerBeschreibung =
-    TextEditingController();
+TextEditingController();
 TextEditingController textEditingControllerTitelDesVolksbegehrens =
-    TextEditingController();
+TextEditingController();
 TextEditingController textEditingControllerTitelStartdatum =
-    TextEditingController();
+TextEditingController();
 TextEditingController textEditingControllerKontakt = TextEditingController();
 TextEditingController textEditingControllerWebsite = TextEditingController();
+String selected = 'Tehmenbereiche';
+
 
 class NewProcedure1 extends StatefulWidget {
   const NewProcedure1({Key? key}) : super(key: key);
@@ -194,7 +197,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
               itemBuilder: (context, i) {
                 return ExpansionTile(
                   title: Text(
-                    tehmenbereiche[i].title,
+                    selected,
                     style: const TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
@@ -203,7 +206,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
                   ),
                   children: <Widget>[
                     Column(
-                      children: _buildExpandableContent(tehmenbereiche[i]),
+                      children: _buildExpandableContent(tehmenbereiche[i], i),
                     ),
                   ],
                 );
@@ -314,28 +317,24 @@ class _NewProcedureState1 extends State<NewProcedure1> {
       ),
     );
   }
-}
-
-List<Widget> _buildExpandableContent(
-    Tehmenbereich tehmenbereiche,
-) {
-  final List<Widget> columnContent = [];
-
-  for (final String content in tehmenbereiche.contents) {
-    columnContent.add(
-      ListTile(
+  List<Widget> _buildExpandableContent(Tehmenbereich tehmenbereich, index) {
+    return List.generate(tehmenbereich.contents.length, (index) {
+      return ListTile(
         title: Text(
-          content,
+          tehmenbereich.contents[index],
           style: const TextStyle(fontSize: 18.0),
         ),
-        leading: Icon(tehmenbereiche.icon),
-        //onTap: () => print('ListTile'),
-      ),
-    );
+        onTap: () {
+          setState(() {
+            selected = tehmenbereich.contents.elementAt(index);
+          });
+        },
+      );
+    });
   }
 
-  return columnContent;
 }
+
 
 class Tehmenbereich {
   Tehmenbereich(this.title, this.contents, this.icon);
