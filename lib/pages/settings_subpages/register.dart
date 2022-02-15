@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
 import 'package:swp_direktdem_verf_app/pages/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/service_mocked.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/password_confirm.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
@@ -27,6 +30,25 @@ class _RegisterPageState extends State<RegisterPage> {
     controllerLastName.dispose();
     controllerEmail.dispose();
     super.dispose();
+  }
+
+  // Get json result and convert it to model. Then add
+  Future<void> getUserDetails() async {
+    final String response = await rootBundle.loadString(path);
+    final responseJson = await json.decode(response);
+
+    setState(() {
+      for (final Map user in responseJson) {
+        _userDetails.add(User.fromJson(user.cast()));
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserDetails();
+    _userDetails.clear();
   }
 
   @override
@@ -66,10 +88,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   onPressed: () async {
                     if (_formkey.currentState!.validate()) {
                       final form = _formkey.currentState!;
-
-                      if (form.validate()) {
+                      onInputTextChanged();
+                      if (form.validate() && _searchResult.isNotEmpty) {
                         TextInput.finishAutofillContext();
-
                         ScaffoldMessenger.of(context)
                           ..removeCurrentSnackBar()
                           ..showSnackBar(
@@ -82,7 +103,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ProfilePage(user),
+                            builder: (context) =>
+                                ProfilePage(_searchResult.first),
                           ),
                         );
                       } else {
@@ -121,4 +143,55 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+
+  Future<void> onInputTextChanged() async {
+    _searchResult.clear();
+    ServiceMocked().putUser(
+      12345,
+      User(
+        first_name: controllerFirstName.text,
+        password: passController.text,
+        id: 112345,
+        last_login: null,
+        is_active: true,
+        is_superuser: false,
+        date_joined: DateTime.now(),
+        email: controllerEmail.text,
+        last_name: controllerLastName.text,
+        is_staff: false,
+      ),
+    );
+    User(
+      first_name: controllerFirstName.text,
+      password: passController.text,
+      id: 112345,
+      last_login: null,
+      is_active: true,
+      is_superuser: false,
+      date_joined: DateTime.now(),
+      email: controllerEmail.text,
+      last_name: controllerLastName.text,
+      is_staff: false,
+    ).toJson();
+    _searchResult.add(
+      User(
+        first_name: controllerFirstName.text,
+        password: passController.text,
+        id: 12345,
+        last_login: null,
+        is_active: true,
+        is_superuser: false,
+        date_joined: DateTime.now(),
+        email: controllerEmail.text,
+        last_name: controllerLastName.text,
+        is_staff: false,
+      ),
+    );
+  }
 }
+
+List<User> _searchResult = [];
+
+List<User> _userDetails = [];
+
+const String path = 'assets/mocked_data/user.json';
