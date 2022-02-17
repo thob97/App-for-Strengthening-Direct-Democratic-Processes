@@ -17,18 +17,6 @@ class NewProcedure3 extends StatefulWidget {
 class _NewProcedureState3 extends State<NewProcedure3> {
   bool isChecked = false;
 
-  final List<String> names = <String>[
-    'Aby',
-    'Aish',
-    'Ayan',
-    'Ben',
-    'Bob',
-    'Charlie',
-    'Cook',
-    'Carline'
-  ];
-  final List<int> msgCount = <int>[2, 0, 10, 6, 52, 4, 0, 2];
-
   void delete(int id) {
     documentList.removeAt(id);
   }
@@ -107,6 +95,64 @@ class _NewProcedureState3 extends State<NewProcedure3> {
             physics: const ScrollPhysics(),
             child: Column(
               children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding:
+                        const EdgeInsets.only(left: 45, right: 10, top: 10),
+                        child: Container(
+                          width: 35.0,
+                          height: 35.0,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Text('1'),
+                        ),
+                      ),
+                      Container(
+                        height: 1.0,
+                        width: 80.0,
+                        color: Colors.black,
+                      ),
+                      Padding(
+                        padding:
+                        const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Container(
+                          width: 35.0,
+                          height: 35.0,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                            color: Colors.blue,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Text('2'),
+                        ),
+                      ),
+                      Container(
+                        height: 1.0,
+                        width: 80.0,
+                        color: Colors.black,
+                      ),
+                      Padding(
+                        padding:
+                        const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Container(
+                          width: 35.0,
+                          height: 35.0,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Text('3'),
+                        ),
+                      ),
+                    ],
+                  ),),
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Container(
