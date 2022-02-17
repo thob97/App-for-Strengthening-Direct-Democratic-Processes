@@ -85,6 +85,64 @@ class _NewProcedureState4 extends State<NewProcedure4> {
         child: Column(
           children: <Widget>[
             Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Row(
+                children: [
+                  Padding(
+                    padding:
+                    const EdgeInsets.only(left: 45, right: 10, top: 10),
+                    child: Container(
+                      width: 35.0,
+                      height: 35.0,
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Text('1'),
+                    ),
+                  ),
+                  Container(
+                    height: 1.0,
+                    width: 80.0,
+                    color: Colors.black,
+                  ),
+                  Padding(
+                    padding:
+                    const EdgeInsets.only(left: 10, right: 10, top: 10),
+                    child: Container(
+                      width: 35.0,
+                      height: 35.0,
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Text('2'),
+                    ),
+                  ),
+                  Container(
+                    height: 1.0,
+                    width: 80.0,
+                    color: Colors.black,
+                  ),
+                  Padding(
+                    padding:
+                    const EdgeInsets.only(left: 10, right: 10, top: 10),
+                    child: Container(
+                      width: 35.0,
+                      height: 35.0,
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        color: Colors.blue,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Text('3'),
+                    ),
+                  ),
+                ],
+              ),),
+            Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: Container(
                 padding: const EdgeInsets.only(right: 10, top: 10),
