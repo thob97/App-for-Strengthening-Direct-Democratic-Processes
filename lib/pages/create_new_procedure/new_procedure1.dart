@@ -117,10 +117,11 @@ class _NewProcedureState1 extends State<NewProcedure1> {
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                     padding:
-                    const EdgeInsets.only(left: 45, right: 10, top: 10),
+                    const EdgeInsets.only(right: 10, top: 10),
                     child: Container(
                       width: 35.0,
                       height: 35.0,
@@ -228,7 +229,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
               child: const Text(
                 'Was sollten Sie hier schreiben\n• Ziele\n• Motivation ',
                 textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 16),
               ),
             ),
             Padding(
