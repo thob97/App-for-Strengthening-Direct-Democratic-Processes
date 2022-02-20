@@ -7,8 +7,13 @@ import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 import 'package:swp_direktdem_verf_app/widgets/two_butts_in_row.dart';
 
 class ChangeEmailPage extends StatefulWidget {
-  const ChangeEmailPage(this.user, {Key? key}) : super(key: key);
+  const ChangeEmailPage(
+    this.user,
+    this.users, {
+    Key? key,
+  }) : super(key: key);
   final User user;
+  final List<User> users;
   @override
   _ChangeEmailPageState createState() => _ChangeEmailPageState();
 }
@@ -42,7 +47,8 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => ProfileSettings(
-                            user: widget.user,
+                            widget.user,
+                            widget.users,
                           ),
                         ),
                       );
@@ -52,6 +58,7 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
                         final form = _formkey.currentState!;
 
                         if (form.validate()) {
+                          onInputTextChanged();
                           TextInput.finishAutofillContext();
 
                           ScaffoldMessenger.of(context)
@@ -64,8 +71,10 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  ProfileSettings(user: widget.user),
+                              builder: (context) => ProfileSettings(
+                                _searchResult.first,
+                                widget.users,
+                              ),
                             ),
                           );
                         } else {
@@ -85,6 +94,7 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
                             MaterialPageRoute(
                               builder: (context) => ChangeEmailPage(
                                 widget.user,
+                                widget.users,
                               ),
                             ),
                           );
@@ -98,4 +108,35 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
           ),
         ),
       );
+  Future<void> onInputTextChanged() async {
+    _searchResult.clear();
+
+    for (final userDetail in widget.users) {
+      if (emailController.text != userDetail.email &&
+          widget.user.id == userDetail.id) {
+        widget.users.removeWhere((_user) => _user.id == userDetail.id);
+        widget.users.add(
+          User(
+            last_login: userDetail.last_login,
+            is_active: userDetail.is_active,
+            is_superuser: userDetail.is_superuser,
+            first_name: userDetail.first_name,
+            password: userDetail.password,
+            id: userDetail.id,
+            date_joined: userDetail.date_joined,
+            email: emailController.text,
+            last_name: userDetail.last_name,
+            is_staff: userDetail.is_staff,
+          ),
+        );
+      }
+    }
+    for (final userDetail in widget.users) {
+      if (widget.user.id == userDetail.id) {
+        _searchResult.add(userDetail);
+      }
+    }
+  }
 }
+
+List<User> _searchResult = [];

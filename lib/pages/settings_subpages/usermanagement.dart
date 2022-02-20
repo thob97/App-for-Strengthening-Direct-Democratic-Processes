@@ -1,15 +1,14 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/service_mocked.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
 class UserScreen extends StatefulWidget {
-  const UserScreen({Key? key}) : super(key: key);
-
+  const UserScreen(this.users, {Key? key}) : super(key: key);
+  final List<User> users;
   @override
   _UserScreenState createState() => _UserScreenState();
 }
@@ -19,13 +18,8 @@ class _UserScreenState extends State<UserScreen> {
 
   // Get json result and convert it to model. Then add
   Future<void> getUserDetails() async {
-    final String response = await rootBundle.loadString(path);
-    final responseJson = await json.decode(response);
-
-    setState(() {
-      for (final Map user in responseJson) {
-        _userDetails.add(User.fromJson(user.cast()));
-      }
+    setState(() async {
+      _userDetails = await ServiceMocked().getAllUser();
     });
   }
 
@@ -85,8 +79,10 @@ class _UserScreenState extends State<UserScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    ProfilePage(_searchResult[i]),
+                                builder: (context) => ProfilePage(
+                                  _searchResult[i],
+                                  widget.users,
+                                ),
                               ),
                             );
                           },
@@ -112,8 +108,10 @@ class _UserScreenState extends State<UserScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    ProfilePage(_userDetails[index]),
+                                builder: (context) => ProfilePage(
+                                  _userDetails[index],
+                                  widget.users,
+                                ),
                               ),
                             );
                           },
@@ -147,5 +145,3 @@ class _UserScreenState extends State<UserScreen> {
 List<User> _searchResult = [];
 
 List<User> _userDetails = [];
-
-const String path = 'assets/mocked_data/user.json';

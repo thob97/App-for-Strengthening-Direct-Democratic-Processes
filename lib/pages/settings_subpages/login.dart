@@ -1,16 +1,19 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/register.dart';
 import 'package:swp_direktdem_verf_app/pages/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/service_mocked.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage(
+    this.users, {
+    Key? key,
+  }) : super(key: key);
+  final List<User> users;
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -27,23 +30,11 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  // Get json result and convert it to model. Then add
-  Future<void> getUserDetails() async {
-    final String response = await rootBundle.loadString(path);
-    final responseJson = await json.decode(response);
-
-    setState(() {
-      for (final Map user in responseJson) {
-        _userDetails.add(User.fromJson(user.cast()));
-      }
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    getUserDetails();
-    _userDetails.clear();
+    getUsers();
+    _users.clear();
   }
 
   @override
@@ -92,6 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                               builder: (context) => Settings(
                                 pressGeoON: true,
                                 user: _searchResult.first,
+                                users: _users,
                               ),
                             ),
                           );
@@ -128,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const RegisterPage(),
+                        builder: (context) => RegisterPage(_users),
                       ),
                     );
                   },
@@ -145,25 +137,22 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Future<void> getUsers() async {
+    setState(() async {
+      _users = await ServiceMocked().getAllUser();
+    });
+  }
+
   Future<void> onInputTextChanged() async {
     _searchResult.clear();
-    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
-      setState(() {});
-      return;
-    }
-
-    for (final userDetail in _userDetails) {
-      if (userDetail.email.contains(emailController.text) &&
-          userDetail.password.contains(passwordController.text)) {
-        _searchResult.add(userDetail);
+    for (final user in _users) {
+      if (user.email.contains(emailController.text) &&
+          user.password.contains(passwordController.text)) {
+        _searchResult.add(user);
       }
     }
-    setState(() {});
   }
 }
 
 List<User> _searchResult = [];
-
-List<User> _userDetails = [];
-
-const String path = 'assets/mocked_data/user.json';
+List<User> _users = [];

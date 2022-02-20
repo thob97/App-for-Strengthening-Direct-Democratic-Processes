@@ -1,20 +1,23 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
-import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/change_email.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/change_password.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/login.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
 import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/settingsbutton.dart';
 
 class ProfileSettings extends StatefulWidget {
-  const ProfileSettings({
+  const ProfileSettings(
+    this.user,
+    this.users, {
     Key? key,
-    required this.user,
   }) : super(key: key);
   final User user;
+  final List<User> users;
   @override
   _ProfileSettingsState createState() => _ProfileSettingsState();
 }
@@ -35,7 +38,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChangeEmailPage(widget.user),
+                  builder: (context) =>
+                      ChangeEmailPage(widget.user, widget.users),
                 ),
               );
             },
@@ -48,7 +52,21 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChangePasswordPage(widget.user),
+                  builder: (context) =>
+                      ChangePasswordPage(widget.user, widget.users),
+                ),
+              );
+            },
+          ),
+          const Divider(),
+          SettingsButton(
+            CommunityMaterialIcons.account_edit,
+            'Zurück zum Profil',
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(widget.user, widget.users),
                 ),
               );
             },
@@ -84,7 +102,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
           ),
           actions: <Widget>[
             _cancelButton(context),
-            _confirmButton(context),
+            _confirmButton(context, widget.user),
           ],
           elevation: 24.0,
           backgroundColor: Theme.of(context).colorScheme.background,
@@ -107,12 +125,23 @@ class _ProfileSettingsState extends State<ProfileSettings> {
     );
   }
 
-  Widget _confirmButton(BuildContext context) {
+  Widget _confirmButton(BuildContext context, User user) {
     return TextButton(
-      onPressed: () => Navigator.of(context).pushNamed(
-        '/home',
-        arguments: const NavigationArguments(),
-      ), //todo push to login view
+      onPressed: () {
+//      Navigator.of(context).pushNamed(
+//        '/home',
+//        arguments: const NavigationArguments(),
+//      );
+        onAccountDelete();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LoginPage(
+              users,
+            ),
+          ),
+        );
+      }, //todo push to login view
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all(
           Theme.of(context).textTheme.bodyText2?.apply(
@@ -123,4 +152,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       child: const Text('Ja'),
     );
   }
+
+  Future<void> onAccountDelete() async {
+    users = widget.users;
+    users.removeWhere((_user) => _user.id == widget.user.id);
+  }
 }
+
+List<User> users = [];

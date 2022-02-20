@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/config/route_generator.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/login.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/profile_settings.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/two_butts_in_row.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage(this.user, {Key? key}) : super(key: key);
+  const ProfilePage(
+    this.user,
+    this.users, {
+    Key? key,
+  }) : super(key: key);
   final User user;
+  final List<User> users;
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -32,8 +37,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   functionTwo: () async {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) =>
-                            ProfileSettings(user: widget.user),
+                        builder: (context) => ProfileSettings(
+                          widget.user,
+                          widget.users,
+                        ),
                       ),
                     );
                   },
@@ -118,10 +125,16 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _confirmButton(BuildContext context) {
     return TextButton(
-      onPressed: () => Navigator.of(context).pushNamed(
-        '/home',
-        arguments: const NavigationArguments(),
-      ), //todo push to login view
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LoginPage(
+              widget.users,
+            ),
+          ),
+        );
+      },
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all(
           Theme.of(context).textTheme.bodyText2?.apply(

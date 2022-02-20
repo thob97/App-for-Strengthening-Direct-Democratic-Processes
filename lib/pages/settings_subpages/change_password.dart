@@ -8,8 +8,13 @@ import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 import 'package:swp_direktdem_verf_app/widgets/two_butts_in_row.dart';
 
 class ChangePasswordPage extends StatefulWidget {
-  const ChangePasswordPage(this.user, {Key? key}) : super(key: key);
+  const ChangePasswordPage(
+    this.user,
+    this.users, {
+    Key? key,
+  }) : super(key: key);
   final User user;
+  final List<User> users;
   @override
   _ChangePasswordPageState createState() => _ChangePasswordPageState();
 }
@@ -23,7 +28,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   void togglePasswordVisibility1() => setState(() => isHidden1 = !isHidden1);
   void togglePasswordVisibility2() => setState(() => isHidden2 = !isHidden2);
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: const CustomAppBar('Passwort ändern'),
@@ -56,7 +60,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => ProfileSettings(
-                            user: widget.user,
+                            widget.user,
+                            widget.users,
                           ),
                         ),
                       );
@@ -65,7 +70,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       if (_formkey.currentState!.validate()) {
                         final form = _formkey.currentState!;
 
-                        if (form.validate()) {
+                        if (form.validate() &&
+                            controllerPassOld.text == widget.user.password) {
+                          onInputTextChanged();
                           TextInput.finishAutofillContext();
 
                           ScaffoldMessenger.of(context)
@@ -79,8 +86,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  ProfileSettings(user: widget.user),
+                              builder: (context) => ProfileSettings(
+                                _searchResult.first,
+                                widget.users,
+                              ),
                             ),
                           );
                         } else {
@@ -91,7 +100,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             ..showSnackBar(
                               const SnackBar(
                                 content: Text(
-                                  'Die Passwortänderung ist fehlgeschlagen',
+                                  'Die Passwortänderung ist fehlgeschlagen. Das alte Passwort ist nicht korrekt und oder das neue Passwort entspricht nicht den Sicherheitsanforderungen.',
                                 ),
                               ),
                             );
@@ -100,6 +109,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             MaterialPageRoute(
                               builder: (context) => ChangePasswordPage(
                                 widget.user,
+                                widget.users,
                               ),
                             ),
                           );
@@ -113,4 +123,34 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           ),
         ),
       );
+  Future<void> onInputTextChanged() async {
+    _searchResult.clear();
+    for (final userDetail in widget.users) {
+      if (passController.text != userDetail.password &&
+          widget.user.id == userDetail.id) {
+        widget.users.removeWhere((_user) => _user.id == userDetail.id);
+        widget.users.add(
+          User(
+            last_login: userDetail.last_login,
+            is_active: userDetail.is_active,
+            is_superuser: userDetail.is_superuser,
+            first_name: userDetail.first_name,
+            password: passController.text,
+            id: userDetail.id,
+            date_joined: userDetail.date_joined,
+            email: userDetail.email,
+            last_name: userDetail.last_name,
+            is_staff: userDetail.is_staff,
+          ),
+        );
+      }
+    }
+    for (final userDetail in widget.users) {
+      if (widget.user.id == userDetail.id) {
+        _searchResult.add(userDetail);
+      }
+    }
+  }
 }
+
+List<User> _searchResult = [];
