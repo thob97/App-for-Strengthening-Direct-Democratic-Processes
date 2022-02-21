@@ -7,8 +7,7 @@ part of 'step_history.dart';
 // **************************************************************************
 
 StepHistory _$StepHistoryFromJson(Map<String, dynamic> json) => StepHistory(
-      id: json['id'] as int,
-      procedure_id: json['procedure_id'] as int,
+      id: json['id'] as String,
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       step: $enumDecode(_$BerlinStepsEnumMap, json['step']),
@@ -17,39 +16,31 @@ StepHistory _$StepHistoryFromJson(Map<String, dynamic> json) => StepHistory(
 Map<String, dynamic> _$StepHistoryToJson(StepHistory instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'procedure_id': instance.procedure_id,
       'date': instance.date?.toIso8601String(),
       'step': _$BerlinStepsEnumMap[instance.step],
     };
 
 const _$BerlinStepsEnumMap = {
-  BerlinSteps.vertrauenspersonen_benannt: 'vertrauenspersonen_benannt',
-  BerlinSteps.kostenschaetzung_beantragt: 'kostenschaetzung_beantragt',
-  BerlinSteps.kostenschaetzung_ergebnis_erhalten:
-      'kostenschaetzung_ergebnis_erhalten',
-  BerlinSteps.unterschriften_sammlung: 'unterschriften_sammlung',
-  BerlinSteps.einleitung_volksbegehren_beantragt:
-      'einleitung_volksbegehren_beantragt',
-  BerlinSteps.ueberpruefung_beantragt: 'ueberpruefung_beantragt',
-  BerlinSteps.antrag_ergebnis: 'antrag_ergebnis',
-  BerlinSteps.antrag_zustande_gekommen: 'antrag_zustande_gekommen',
-  BerlinSteps.befassung_abgeordnettenhaus: 'befassung_abgeordnettenhaus',
-  BerlinSteps.verlangung_durchfuehrung_volksbegehren:
-      'verlangung_durchfuehrung_volksbegehren',
-  BerlinSteps.durchfuehrung_volksbegehren: 'durchfuehrung_volksbegehren',
-  BerlinSteps.ergebnis_volksbegehren: 'ergebnis_volksbegehren',
-  BerlinSteps.volksbegehren_zustande_gekommen:
-      'volksbegehren_zustande_gekommen',
-  BerlinSteps.vorbereitung_volksentscheid: 'vorbereitung_volksentscheid',
-  BerlinSteps.ergebnis_volksentscheid: 'ergebnis_volksentscheid',
-  BerlinSteps.ergebis_zusammen_getragen: 'ergebis_zusammen_getragen',
-  BerlinSteps.unzulaessig_11_12: 'unzulaessig_11_12',
-  BerlinSteps.unzulaessig_10_13_16: 'unzulaessig_10_13_16',
-  BerlinSteps.ueberpruefung_zulaessigkeit_verfassungsgericht:
-      'ueberpruefung_zulaessigkeit_verfassungsgericht',
-  BerlinSteps.antrag_unszulaessig: 'antrag_unszulaessig',
-  BerlinSteps.volksbegehren_nicht_zustande_gekommen:
-      'volksbegehren_nicht_zustande_gekommen',
-  BerlinSteps.uebernahme_inhalte_abgeordnetenhaus:
-      'uebernahme_inhalte_abgeordnetenhaus',
+  BerlinSteps.vertrauenspersonen_benannt: 0,
+  BerlinSteps.kostenschaetzung_beantragt: 1,
+  BerlinSteps.kostenschaetzung_ergebnis_erhalten: 2,
+  BerlinSteps.unterschriften_sammlung: 3,
+  BerlinSteps.einleitung_volksbegehren_beantragt: 4,
+  BerlinSteps.ueberpruefung_beantragt: 5,
+  BerlinSteps.antrag_ergebnis: 6,
+  BerlinSteps.antrag_zustande_gekommen: 7,
+  BerlinSteps.befassung_abgeordnettenhaus: 8,
+  BerlinSteps.verlangung_durchfuehrung_volksbegehren: 9,
+  BerlinSteps.durchfuehrung_volksbegehren: 10,
+  BerlinSteps.ergebnis_volksbegehren: 11,
+  BerlinSteps.volksbegehren_zustande_gekommen: 12,
+  BerlinSteps.vorbereitung_volksentscheid: 13,
+  BerlinSteps.ergebnis_volksentscheid: 14,
+  BerlinSteps.ergebis_zusammen_getragen: 15,
+  BerlinSteps.unzulaessig_11_12: 16,
+  BerlinSteps.unzulaessig_10_13_16: 17,
+  BerlinSteps.ueberpruefung_zulaessigkeit_verfassungsgericht: 18,
+  BerlinSteps.antrag_unszulaessig: 19,
+  BerlinSteps.volksbegehren_nicht_zustande_gekommen: 20,
+  BerlinSteps.uebernahme_inhalte_abgeordnetenhaus: 21,
 };

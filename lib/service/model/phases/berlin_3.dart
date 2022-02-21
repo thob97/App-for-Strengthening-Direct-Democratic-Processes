@@ -1,19 +1,17 @@
-// ignore_for_file: non_constant_identifier_names, camel_case_types
 import 'package:json_annotation/json_annotation.dart';
 
 part 'berlin_3.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class Berlin_3 {
-  const Berlin_3({
+class Berlin3 {
+  const Berlin3({
     required this.id,
-    required this.next_id,
-    required this.reference_time_3_id,
-    required this.quorum_id,
-    required this.signatures_collected,
-    required this.signatures_valid,
-    required this.signatures_counted,
-    required this.procedure_id,
+    //required this.referenceTime3,
+    //required this.quorum,
+    required this.voteDate,
+    required this.votesCounted,
+    required this.votesValid,
+    required this.votesYes,
     required this.information,
     required this.begin,
     required this.end,
@@ -21,21 +19,33 @@ class Berlin_3 {
     required this.completed,
   });
 
-  factory Berlin_3.fromJson(Map<String, dynamic> json) =>
-      _$Berlin_3FromJson(json);
-  final int id;
-  final int? next_id;
-  final int reference_time_3_id;
-  final int quorum_id;
-  final int? signatures_collected;
-  final int? signatures_valid;
-  final int? signatures_counted;
-  final int procedure_id;
+  factory Berlin3.fromJson(Map<String, dynamic> json) =>
+      _$Berlin3FromJson(json);
+  @JsonKey(name: 'id')
+  final String id;
+
+  //@JsonKey(name: 'referenceTime3')
+  //final ReferenceTime referenceTime3;
+  //@JsonKey(name: 'quorum')
+  //final Quorum quorum;
+  @JsonKey(name: 'voteDate')
+  final DateTime? voteDate;
+  @JsonKey(name: 'votesCounted')
+  final int? votesCounted;
+  @JsonKey(name: 'votesValid')
+  final int? votesValid;
+  @JsonKey(name: 'votesYes')
+  final int? votesYes;
+  @JsonKey(name: 'information')
   final String information;
+  @JsonKey(name: 'begin')
   final DateTime? begin;
+  @JsonKey(name: 'end')
   final DateTime? end;
+  @JsonKey(name: 'progress')
   final double progress;
+  @JsonKey(name: 'completed')
   final bool completed;
 
-  Map<String, dynamic> toJson() => _$Berlin_3ToJson(this);
+  Map<String, dynamic> toJson() => _$Berlin3ToJson(this);
 }
