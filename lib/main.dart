@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 import 'package:swp_direktdem_verf_app/pages/home.dart';
-import 'package:swp_direktdem_verf_app/service/service_mocked.dart';
+import 'package:swp_direktdem_verf_app/service/service_database.dart';
 
 void main() {
   runApp(
-    Provider<ServiceMocked>(
-      create: (_) => ServiceMocked(),
+    Provider<ServiceDataBase>(
+      create: (_) => ServiceDataBase(),
       child: const MyApp(),
     ),
   );
