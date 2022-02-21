@@ -11,7 +11,8 @@ class AnimatedNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GNav(
-      tabMargin: const EdgeInsets.all(10),
+      tabMargin:
+          const EdgeInsets.only(left: 5.0, top: 10.0, right: 5.0, bottom: 10.0),
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       selectedIndex: selectedIndex,
       rippleColor: Theme.of(context).colorScheme.primary,

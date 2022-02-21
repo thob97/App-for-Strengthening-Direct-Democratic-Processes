@@ -72,9 +72,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     );
                   },
                   style: Theme.of(context).elevatedButtonTheme.style,
-                  child: Text(
+                  child: const Text(
                     'PASSWORT ÄNDERN',
-                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
                 Row(

@@ -55,6 +55,9 @@ class CustomThemeData {
     headline6: TextStyle(
       fontWeight: FontWeight.normal,
     ),
+    button: TextStyle(
+      color: Colors.white,
+    ),
   );
 
   ///ThemeData
