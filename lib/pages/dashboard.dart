@@ -54,7 +54,7 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar('Dashboard'),
-      bottomNavigationBar: const AnimatedNavBar(selectedIndex: 1),
+      bottomNavigationBar: const AnimatedNavBar(selectedIndex: 2),
       body: MasonryGridView.count(
         physics: const BouncingScrollPhysics(),
         crossAxisCount: 2,
