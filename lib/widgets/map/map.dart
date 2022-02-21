@@ -16,9 +16,9 @@ class MapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Tuple2<LatLng, PointOfInterest>> pointsOfInterestList2 =
+    final List<Tuple2<LatLng, PointOfInterest>> pointsOfInterestListValue =
         pointsOfInterestList ?? <Tuple2<LatLng, PointOfInterest>>[];
-    final List<Marker> markers = pointsOfInterestList2
+    final List<Marker> markers = pointsOfInterestListValue
         .map(
           (entry) => PopupPOIMarker(
             point: entry.item1,
