@@ -8,6 +8,9 @@ import 'package:swp_direktdem_verf_app/service/service_mocked.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 
+final emailController = TextEditingController();
+final passwordController = TextEditingController();
+
 class LoginPage extends StatefulWidget {
   const LoginPage(
     this.users, {
@@ -21,8 +24,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   late User user;
   final _formkey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+
   @override
   void dispose() {
     emailController.dispose();

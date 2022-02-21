@@ -6,6 +6,8 @@ import 'package:swp_direktdem_verf_app/service/model/user.dart';
 import 'package:swp_direktdem_verf_app/service/service_mocked.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
+TextEditingController controller = TextEditingController();
+
 class UserScreen extends StatefulWidget {
   const UserScreen(this.users, {Key? key}) : super(key: key);
   final List<User> users;
@@ -14,8 +16,6 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  TextEditingController controller = TextEditingController();
-
   // Get json result and convert it to model. Then add
   Future<void> getUserDetails() async {
     setState(() async {

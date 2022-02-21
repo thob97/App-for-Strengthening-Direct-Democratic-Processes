@@ -7,6 +7,10 @@ import 'package:swp_direktdem_verf_app/widgets/password_confirm.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 import 'package:swp_direktdem_verf_app/widgets/two_butts_in_row.dart';
 
+TextEditingController passController = TextEditingController();
+TextEditingController passConfController = TextEditingController();
+TextEditingController controllerPassOld = TextEditingController();
+
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage(
     this.user,
@@ -20,9 +24,6 @@ class ChangePasswordPage extends StatefulWidget {
 }
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
-  TextEditingController passController = TextEditingController();
-  TextEditingController passConfController = TextEditingController();
-  TextEditingController controllerPassOld = TextEditingController();
   bool isHidden1 = false;
   bool isHidden2 = false;
   void togglePasswordVisibility1() => setState(() => isHidden1 = !isHidden1);

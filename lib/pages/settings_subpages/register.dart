@@ -7,6 +7,12 @@ import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/password_confirm.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 
+final controllerFirstName = TextEditingController();
+final controllerLastName = TextEditingController();
+final controllerEmail = TextEditingController();
+final passController = TextEditingController();
+final passConfCcontroller = TextEditingController();
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage(
     this.users, {
@@ -19,11 +25,6 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formkey = GlobalKey<FormState>();
-  final controllerFirstName = TextEditingController();
-  final controllerLastName = TextEditingController();
-  final controllerEmail = TextEditingController();
-  final passController = TextEditingController();
-  final passConfCcontroller = TextEditingController();
   late User user;
   @override
   void dispose() {

@@ -6,6 +6,8 @@ import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 import 'package:swp_direktdem_verf_app/widgets/two_butts_in_row.dart';
 
+TextEditingController emailController = TextEditingController();
+
 class ChangeEmailPage extends StatefulWidget {
   const ChangeEmailPage(
     this.user,
@@ -19,8 +21,6 @@ class ChangeEmailPage extends StatefulWidget {
 }
 
 class _ChangeEmailPageState extends State<ChangeEmailPage> {
-  TextEditingController emailController = TextEditingController();
-
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
