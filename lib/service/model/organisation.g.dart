@@ -7,11 +7,13 @@ part of 'organisation.dart';
 // **************************************************************************
 
 Organisation _$OrganisationFromJson(Map<String, dynamic> json) => Organisation(
-      id: json['id'] as int,
+      id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
-      admin_id: json['admin_id'] as int,
-      contact_id: json['contact_id'] as int,
+      admin: User.fromJson(json['admin'] as Map<String, dynamic>),
+      contact: (json['contact'] as List<dynamic>)
+          .map((e) => Contact.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$OrganisationToJson(Organisation instance) =>
@@ -19,6 +21,6 @@ Map<String, dynamic> _$OrganisationToJson(Organisation instance) =>
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
-      'admin_id': instance.admin_id,
-      'contact_id': instance.contact_id,
+      'admin': instance.admin,
+      'contact': instance.contact,
     };

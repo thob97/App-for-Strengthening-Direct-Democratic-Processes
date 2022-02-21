@@ -1,5 +1,5 @@
-// ignore_for_file: non_constant_identifier_names
 import 'package:json_annotation/json_annotation.dart';
+import 'package:swp_direktdem_verf_app/service/model/address.dart';
 
 part 'appointment.g.dart';
 
@@ -11,20 +11,24 @@ class Appointment {
     required this.description,
     required this.begin,
     required this.end,
-    required this.procedure_id,
-    this.address_id,
+    this.address,
   });
 
   factory Appointment.fromJson(Map<String, dynamic> json) =>
       _$AppointmentFromJson(json);
 
-  final int id;
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(name: 'title')
   final String title;
+  @JsonKey(name: 'description')
   final String description;
+  @JsonKey(name: 'begin')
   final DateTime begin;
+  @JsonKey(name: 'end')
   final DateTime end;
-  final int procedure_id;
-  final int? address_id;
+  @JsonKey(name: 'address')
+  final Address? address;
 
   Map<String, dynamic> toJson() => _$AppointmentToJson(this);
 }

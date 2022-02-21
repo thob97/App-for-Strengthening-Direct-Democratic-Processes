@@ -1,4 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
 import 'package:json_annotation/json_annotation.dart';
 
 part 'reference_time.g.dart';
@@ -7,16 +6,19 @@ part 'reference_time.g.dart';
 class ReferenceTime {
   const ReferenceTime({
     required this.id,
-    required this.value,
-    required this.valid_from,
+    required this.validFrom,
   });
 
   factory ReferenceTime.fromJson(Map<String, dynamic> json) =>
       _$ReferenceTimeFromJson(json);
 
+  @JsonKey(name: 'id')
   final int id;
-  final Duration value; //TODO type Duration?
-  final DateTime valid_from;
+
+  //@JsonKey(name: 'value')
+  //final Duration value; //TODO type Duration?
+  @JsonKey(name: 'validFrom')
+  final DateTime validFrom;
 
   Map<String, dynamic> toJson() => _$ReferenceTimeToJson(this);
 }

@@ -1,5 +1,6 @@
-// ignore_for_file: non_constant_identifier_names
 import 'package:json_annotation/json_annotation.dart';
+import 'package:swp_direktdem_verf_app/service/model/contact.dart';
+import 'package:swp_direktdem_verf_app/service/model/user.dart';
 
 part 'organisation.g.dart';
 
@@ -9,18 +10,23 @@ class Organisation {
     required this.id,
     required this.name,
     required this.description,
-    required this.admin_id,
-    required this.contact_id,
+    required this.admin,
+    required this.contact,
   });
 
   factory Organisation.fromJson(Map<String, dynamic> json) =>
       _$OrganisationFromJson(json);
 
-  final int id;
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(name: 'name')
   final String name;
+  @JsonKey(name: 'description')
   final String description;
-  final int admin_id;
-  final int contact_id;
+  @JsonKey(name: 'admin')
+  final User admin;
+  @JsonKey(name: 'contact')
+  final List<Contact> contact;
 
   Map<String, dynamic> toJson() => _$OrganisationToJson(this);
 }

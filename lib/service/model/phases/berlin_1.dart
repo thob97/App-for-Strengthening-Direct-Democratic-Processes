@@ -1,22 +1,19 @@
-// ignore_for_file: non_constant_identifier_names, camel_case_types
 import 'package:json_annotation/json_annotation.dart';
 
 part 'berlin_1.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class Berlin_1 {
-  const Berlin_1({
+class Berlin1 {
+  const Berlin1({
     required this.id,
-    required this.reference_time_0_id,
-    required this.reference_time_1a_id,
-    required this.reference_time_1b_id,
-    required this.quorum_id,
-    required this.costs_estimated,
-    required this.costs_own_estimated,
-    required this.signatures_collected,
-    required this.signatures_valid,
-    required this.signatures_counted,
-    required this.procedure_id,
+    //required this.referenceTime1a,
+    //required this.referenceTime1b,
+    //required this.quorum,
+    //required this.costsEstimated,
+    //required this.costsOwnEstimated,
+    required this.signaturesCollected,
+    required this.signaturesValid,
+    required this.signaturesCounted,
     required this.information,
     required this.begin,
     required this.end,
@@ -24,24 +21,37 @@ class Berlin_1 {
     required this.completed,
   });
 
-  factory Berlin_1.fromJson(Map<String, dynamic> json) =>
-      _$Berlin_1FromJson(json);
+  factory Berlin1.fromJson(Map<String, dynamic> json) =>
+      _$Berlin1FromJson(json);
+  @JsonKey(name: 'id')
   final int id;
-  final int reference_time_0_id;
-  final int reference_time_1a_id;
-  final int reference_time_1b_id;
-  final int quorum_id;
-  final double? costs_estimated;
-  final double? costs_own_estimated;
-  final int? signatures_collected;
-  final int? signatures_valid;
-  final int? signatures_counted;
-  final int procedure_id;
+
+  //@JsonKey(name: 'referenceTime1a')
+  //final ReferenceTime referenceTime1a;
+  //@JsonKey(name: 'referenceTime1b')
+  //final ReferenceTime referenceTime1b;
+  //@JsonKey(name: 'quorum')
+  //final Quorum quorum;
+  //@JsonKey(name: 'costsEstimated')
+  //final double? costsEstimated;
+  //@JsonKey(name: 'costsOwnEstimated')
+  //final double? costsOwnEstimated;
+  @JsonKey(name: 'signaturesCollected')
+  final int? signaturesCollected;
+  @JsonKey(name: 'signaturesValid')
+  final int? signaturesValid;
+  @JsonKey(name: 'signaturesCounted')
+  final int? signaturesCounted;
+  @JsonKey(name: 'information')
   final String information;
+  @JsonKey(name: 'begin')
   final DateTime? begin;
+  @JsonKey(name: 'end')
   final DateTime? end;
+  @JsonKey(name: 'progress')
   final double progress;
+  @JsonKey(name: 'completed')
   final bool completed;
 
-  Map<String, dynamic> toJson() => _$Berlin_1ToJson(this);
+  Map<String, dynamic> toJson() => _$Berlin1ToJson(this);
 }

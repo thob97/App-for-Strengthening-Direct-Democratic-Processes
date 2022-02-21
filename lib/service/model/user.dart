@@ -1,4 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
@@ -7,29 +6,41 @@ part 'user.g.dart';
 class User {
   const User({
     required this.id,
-    required this.first_name,
-    required this.last_name,
-    required this.email,
-    required this.password,
-    required this.last_login,
-    required this.is_superuser,
-    required this.is_staff,
-    required this.is_active,
-    required this.date_joined,
+    required this.firstName,
+    required this.lastName,
+    //required this.email,
+    //required this.password,
+    //required this.lastLogin,
+    required this.isSuperuser,
+    required this.isStaff,
+    //required this.isActive,
+    //required this.dateJoined,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
-  final int id;
-  final String first_name;
-  final String last_name;
-  final String email;
-  final String password;
-  final DateTime? last_login;
-  final bool is_superuser;
-  final bool is_staff;
-  final bool is_active;
-  final DateTime date_joined;
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(name: 'firstName')
+  final String firstName;
+  @JsonKey(name: 'lastName')
+  final String lastName;
+
+  //@JsonKey(name: 'email')
+  //final String email;
+  //@JsonKey(name: 'password')
+  //final String password;
+  //@JsonKey(name: 'lastLogin')
+  //final DateTime? lastLogin;
+  @JsonKey(name: 'isSuperuser')
+  final bool isSuperuser;
+  @JsonKey(name: 'isStaff')
+  final bool isStaff;
+
+  //@JsonKey(name: 'isActive')
+  //final bool isActive;
+  //@JsonKey(name: 'dateJoined')
+  //final DateTime dateJoined;
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }
