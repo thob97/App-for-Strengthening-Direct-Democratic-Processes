@@ -3,11 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
 import 'package:swp_direktdem_verf_app/pages/home.dart';
+import 'package:swp_direktdem_verf_app/service/service.dart';
 import 'package:swp_direktdem_verf_app/service/service_database.dart';
 
 void main() {
   runApp(
-    Provider<ServiceDataBase>(
+    Provider<Service>(
       create: (_) => ServiceDataBase(),
       child: const MyApp(),
     ),
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Volksbegehren Berlin',
       theme: CustomThemeData.lightThemeData,
-      home: const Home(),
+      home: Home(),
       initialRoute: '/',
       onGenerateRoute: generateRoute,
     );
