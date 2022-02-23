@@ -26,7 +26,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
       TextEditingController();
   final TextEditingController textEditingControllerWebsite =
       TextEditingController();
-  String selected = 'Themenbereiche';
+  String selected = 'Wähle den Themenbereich';
   DateTime selectedDate = DateTime.now();
 
   @override
@@ -88,7 +88,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: categories.length,
-              padding: const EdgeInsets.only(right: 10, bottom: 30),
+              padding: const EdgeInsets.only(right: 10, bottom: 30, top: 30),
               itemBuilder: (context, i) {
                 return ExpansionTile(
                   key: GlobalKey(),
