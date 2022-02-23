@@ -5,24 +5,23 @@ Color colorPageNumber2 = Colors.grey;
 Color colorPageNumber3 = Colors.grey;
 
 class PageProgressBar extends StatelessWidget {
-
   const PageProgressBar({required this.currentPageNumber});
 
   final int currentPageNumber;
 
   @override
   Widget build(BuildContext context) {
-    if(currentPageNumber == 1) {
+    if (currentPageNumber == 1) {
       colorPageNumber1 = Colors.blue;
       colorPageNumber2 = Colors.grey;
       colorPageNumber3 = Colors.grey;
     }
-    if(currentPageNumber == 2) {
+    if (currentPageNumber == 2) {
       colorPageNumber2 = Colors.blue;
       colorPageNumber1 = Colors.grey;
       colorPageNumber3 = Colors.grey;
     }
-    if(currentPageNumber == 3) {
+    if (currentPageNumber == 3) {
       colorPageNumber3 = Colors.blue;
       colorPageNumber1 = Colors.grey;
       colorPageNumber2 = Colors.grey;
@@ -34,8 +33,7 @@ class PageProgressBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding:
-            const EdgeInsets.only(right: 10, top: 10),
+            padding: const EdgeInsets.only(right: 10, top: 10),
             child: Container(
               width: 35.0,
               height: 35.0,
@@ -53,8 +51,7 @@ class PageProgressBar extends StatelessWidget {
             color: Colors.black,
           ),
           Padding(
-            padding:
-            const EdgeInsets.only(left: 10, right: 10, top: 10),
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
             child: Container(
               width: 35.0,
               height: 35.0,
@@ -72,8 +69,7 @@ class PageProgressBar extends StatelessWidget {
             color: Colors.black,
           ),
           Padding(
-            padding:
-            const EdgeInsets.only(left: 10, right: 10, top: 10),
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
             child: Container(
               width: 35.0,
               height: 35.0,
@@ -86,6 +82,7 @@ class PageProgressBar extends StatelessWidget {
             ),
           ),
         ],
-      ),);
+      ),
+    );
   }
 }
