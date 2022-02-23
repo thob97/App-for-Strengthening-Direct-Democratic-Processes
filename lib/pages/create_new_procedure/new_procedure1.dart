@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure3.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
+import 'package:swp_direktdem_verf_app/widgets/new_procedure/custom_bottom_navigation_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/new_procedure/input_text.dart';
 import 'package:swp_direktdem_verf_app/widgets/new_procedure/input_text_heading.dart';
-
-String selected = 'Themenbereiche';
+import 'package:swp_direktdem_verf_app/widgets/new_procedure/page_progress_bar.dart';
 
 class NewProcedure1 extends StatefulWidget {
   const NewProcedure1({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
       TextEditingController();
   final TextEditingController textEditingControllerWebsite =
       TextEditingController();
-
+  String selected = 'Themenbereiche';
   DateTime selectedDate = DateTime.now();
 
   @override
@@ -49,74 +50,15 @@ class _NewProcedureState1 extends State<NewProcedure1> {
 
     return Scaffold(
       appBar: const CustomAppBar('Neues Verfahren erstellen'),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: BottomAppBar(
-          color: Colors.transparent,
-          elevation: 0.0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shadowColor: Colors.transparent,
-                  primary: const Color(0xFF194C76),
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const NewProcedure1(),
-                    ),
-                  );
-                },
-                child: const Text(
-                  'ZURÜCK',
-                  style: TextStyle(
-                    fontSize: 14,
-                    letterSpacing: 2.2,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const NewProcedure3(),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  shadowColor: Colors.transparent,
-                  primary: const Color(0xFF194C76),
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                child: const Text(
-                  'WEITER',
-                  style: TextStyle(
-                    fontSize: 14,
-                    letterSpacing: 2.2,
-                    color: Colors.white,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
+      bottomNavigationBar: const CustomBottomNavigationBar(
+        onBackWidget: MyProcedures(),
+        onContinueWidget: NewProcedure3(),
       ),
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Column(
           children: <Widget>[
+            const PageProgressBar(currentPageNumber: 1),
             const InputTextHeading(
               title: 'Titel',
             ),
@@ -149,6 +91,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
               padding: const EdgeInsets.only(right: 10, bottom: 30),
               itemBuilder: (context, i) {
                 return ExpansionTile(
+                  key: GlobalKey(),
                   title: Text(
                     selected,
                     style: const TextStyle(
@@ -225,11 +168,10 @@ class _NewProcedureState1 extends State<NewProcedure1> {
 }
 
 class Category {
-  Category(this.title, this.contents, this.icon);
+  Category(this.title, this.contents);
 
   final String title;
   List<String> contents = [];
-  final IconData icon;
 }
 
 List<Category> categories = [
@@ -245,6 +187,5 @@ List<Category> categories = [
       '3. Themenbereich',
       '4. Themenbereich'
     ],
-    Icons.close,
   ),
 ];

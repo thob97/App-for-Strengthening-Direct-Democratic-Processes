@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure3.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
+import 'package:swp_direktdem_verf_app/widgets/new_procedure/custom_bottom_navigation_bar.dart';
+import 'package:swp_direktdem_verf_app/widgets/new_procedure/input_text_heading.dart';
 import 'package:swp_direktdem_verf_app/widgets/new_procedure/page_progress_bar.dart';
 
 List<Person> personList = [];
@@ -22,87 +25,17 @@ class _NewProcedureState4 extends State<NewProcedure4> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar('Neues Verfahren erstellen'),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: BottomAppBar(
-          color: Colors.transparent,
-          elevation: 0.0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shadowColor: Colors.transparent,
-                  primary: const Color(0xFF194C76),
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const NewProcedure3(),
-                    ),
-                  );
-                },
-                child: const Text(
-                  'ZURÜCK',
-                  style: TextStyle(
-                    fontSize: 14,
-                    letterSpacing: 2.2,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-
-                },
-                style: ElevatedButton.styleFrom(
-                  shadowColor: Colors.transparent,
-                  primary: const Color(0xFF194C76),
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                child: const Text(
-                  'WEITER',
-                  style: TextStyle(
-                    fontSize: 14,
-                    letterSpacing: 2.2,
-                    color: Colors.white,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
+      bottomNavigationBar: const CustomBottomNavigationBar(
+        onBackWidget: NewProcedure3(),
+        onContinueWidget: MyProcedures(),
       ),
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Column(
           children: <Widget>[
-
             const PageProgressBar(currentPageNumber: 3),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
-              child: Container(
-                padding: const EdgeInsets.only(right: 10, top: 10),
-                alignment: Alignment.topLeft,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: Colors.grey, width: 2.0),
-                  ),
-                ),
-                child: const Text(
-                  'Redakteure',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 30),
-                ),
-              ),
+            const InputTextHeading(
+              title: 'Redakteure',
             ),
             Container(
               padding: const EdgeInsets.only(
@@ -168,14 +101,14 @@ class _NewProcedureState4 extends State<NewProcedure4> {
                   builder: (_) => AlertDialog(
                     actions: [
                       TextButton(
-                        child: const Text('Cancel'),
+                        child: const Text('Abbrechen'),
                         onPressed: () {
                           textEditingControllerPersonname.clear();
                           Navigator.of(context).pop();
                         },
                       ),
                       TextButton(
-                        child: const Text('Continue'),
+                        child: const Text('Bestätigen'),
                         onPressed: () {
                           personList.add(
                             Person(
@@ -190,12 +123,12 @@ class _NewProcedureState4 extends State<NewProcedure4> {
                         },
                       ),
                     ],
-                    title: const Text('TextField in Dialog'),
+                    title: const Text('Person hinzufügen'),
                     content: TextField(
                       onChanged: (value) {},
                       controller: textEditingControllerPersonname,
                       decoration: const InputDecoration(
-                        hintText: 'Text Field in Dialog',
+                        hintText: 'E-Mail Adresse des Redakteurs',
                       ),
                     ),
                   ),
