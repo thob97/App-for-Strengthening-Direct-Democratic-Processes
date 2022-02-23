@@ -164,23 +164,23 @@ class _CustomVotesChart extends StatelessWidget {
       votingList: [
         if (lostVotes != null || lostVotes == 0)
           ChartModel(
-            partyName: lostLabelVotes,
+            group: lostLabelVotes,
             label: lostLabelVotes,
-            votes: lostVotes!,
+            num: lostVotes!,
             color: _lostVotesColor,
           ),
         if (invalidVotes != null || invalidVotes == 0)
           ChartModel(
-            partyName: invalidLabelVotes,
+            group: invalidLabelVotes,
             label: invalidLabelVotes,
-            votes: invalidVotes!,
+            num: invalidVotes!,
             color: _invalidVotesColor,
           ),
         if (validVotes != null || validVotes != 0)
           ChartModel(
-            partyName: validLabelVotes,
+            group: validLabelVotes,
             label: validLabelVotes,
-            votes: validVotes!,
+            num: validVotes!,
             color: _validColor,
           ),
       ],

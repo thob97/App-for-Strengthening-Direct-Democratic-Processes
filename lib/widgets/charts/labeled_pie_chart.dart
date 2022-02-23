@@ -86,16 +86,17 @@ class LabeledPieChart extends StatelessWidget {
     return [
       charts.Series<ChartModel, String>(
         id: 'Votes',
-        // For label outside chart
-        domainFn: (ChartModel voting, _) => '${voting.label}: ${voting.votes}',
         // For measurement
-        measureFn: (ChartModel voting, _) => voting.votes,
+        domainFn: (ChartModel voting, _) => '${voting.group}: ${voting.num}',
+        // For measurement
+        measureFn: (ChartModel voting, _) => voting.num,
+        // For colors
         colorFn: (ChartModel voting, _) =>
             charts.ColorUtil.fromDartColor(voting.color),
         data: votingList,
         // For label inside chart.
         labelAccessorFn: (ChartModel voting, _) =>
-            '${((voting.votes / totalVotes) * 100).round()}%',
+            '${((voting.num / totalVotes) * 100).round()}%',
       )
     ];
   }
