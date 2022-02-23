@@ -198,6 +198,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
               padding: const EdgeInsets.only(right: 10, bottom: 30),
               itemBuilder: (context, i) {
                 return ExpansionTile(
+                  key: GlobalKey(),
                   title: Text(
                     selected,
                     style: const TextStyle(
