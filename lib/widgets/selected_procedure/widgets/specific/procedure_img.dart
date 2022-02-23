@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
@@ -7,15 +9,20 @@ import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/elemen
 class ProcedureImg extends StatelessWidget {
   const ProcedureImg({
     required this.heroID,
-    required this.imgAsset, //TODO img file
+    required this.img,
+    required this.showSubscribe,
     required this.isFollowed,
-    this.showEdit = false,
+    required this.showEdit,
   });
 
-  final int heroID;
-  final String imgAsset;
+  final String heroID;
+  final File img;
+  final bool showSubscribe;
   final bool isFollowed;
   final bool showEdit;
+
+  ///Style
+  static const double _maxImgHeight = 400;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +32,7 @@ class ProcedureImg extends StatelessWidget {
         children: [
           _loadImage(),
           _TopIcons(
+            showSubscribe: showSubscribe,
             isFollowed: isFollowed,
             showEdit: showEdit,
             onFollow: _onFollow,
@@ -36,8 +44,10 @@ class ProcedureImg extends StatelessWidget {
   }
 
   Widget _loadImage() {
-    return Image.asset(
-      imgAsset,
+    return Image.file(
+      img,
+      height: _maxImgHeight,
+      width: double.infinity,
       fit: BoxFit.cover,
     );
   }
@@ -54,12 +64,14 @@ class ProcedureImg extends StatelessWidget {
 
 class _TopIcons extends StatefulWidget {
   const _TopIcons({
+    required this.showSubscribe,
     required this.isFollowed,
     required this.showEdit,
     required this.onShare,
     required this.onFollow,
   });
 
+  final bool showSubscribe;
   final bool isFollowed;
   final bool showEdit;
   final VoidCallback onShare;
@@ -90,7 +102,7 @@ class _TopIconsState extends State<_TopIcons> {
           children: [
             _cancelButton(),
             const Spacer(),
-            _favoriteIcon(),
+            if (widget.showSubscribe) _favoriteIcon(),
             _shareButton(),
           ],
         ),
