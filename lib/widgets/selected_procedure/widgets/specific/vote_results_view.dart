@@ -160,7 +160,7 @@ class _CustomVotesChart extends StatelessWidget {
     required int? invalidVotes,
   }) {
     return LabeledPieChart(
-      totalVotes: countedVotes ?? 0,
+      height: 250,
       votingList: [
         if (lostVotes != null || lostVotes == 0)
           ChartModel(
