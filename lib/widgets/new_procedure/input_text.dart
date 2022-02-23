@@ -29,6 +29,8 @@ class InputText extends StatelessWidget {
             borderRadius: BorderRadius.circular(25.0),
           ),
           suffixIcon: suffixIcon,
+          fillColor: Colors.white,
+          filled: true,
         ),
       ),
     );
