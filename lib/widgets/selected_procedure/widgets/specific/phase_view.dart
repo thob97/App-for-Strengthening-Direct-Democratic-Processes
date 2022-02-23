@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
+import 'package:swp_direktdem_verf_app/methods/formate_date_to_de_layout.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/elementary/timeline.dart';
 
 class Phase {
@@ -71,13 +71,14 @@ class PhaseView extends StatelessWidget {
             children: [
               if (start != null)
                 Text(
-                  'Gestarted: ${DateFormat('yyyy-MM-dd').format(start)}',
+                  'Gestartet: ${formatDateToDELayout(start)}',
                   style: Theme.of(context).textTheme.overline,
                 ),
-              if (end != null) const SizedBox(width: _distBetweenDates),
+              if (start != null && end != null)
+                const SizedBox(width: _distBetweenDates),
               if (end != null)
                 Text(
-                  'beended: ${DateFormat('yyyy-MM-dd').format(end)}',
+                  'Beendet: ${formatDateToDELayout(end)}',
                   style: Theme.of(context).textTheme.overline,
                 ),
             ],
@@ -111,10 +112,19 @@ class PhaseView extends StatelessWidget {
   }
 
   TimeLineState _getTimeLineState(int index) {
+    final bool _prevIsDone;
+    if (index != 0) {
+      _prevIsDone = phases[index - 1].completed;
+    } else {
+      _prevIsDone = false;
+    }
+
     return phases[index].completed
         ? TimeLineState.done
-        : phases[index].progress > 0
+        : _prevIsDone
             ? TimeLineState.doing
-            : TimeLineState.todo;
+            : phases[index].progress > 0
+                ? TimeLineState.doing
+                : TimeLineState.todo;
   }
 }
