@@ -84,6 +84,7 @@ class CustomThemeData {
       dividerTheme: const DividerThemeData(
         space: 0,
         thickness: 1.5,
+        color: Color(0x00999999),
       ),
 
       ///CardTheme
