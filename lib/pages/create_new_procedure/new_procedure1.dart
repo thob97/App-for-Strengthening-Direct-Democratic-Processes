@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure3.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
-import 'package:swp_direktdem_verf_app/widgets/new_procedure/InputText.dart';
-import 'package:swp_direktdem_verf_app/widgets/new_procedure/InputTextHeading.dart';
+import 'package:swp_direktdem_verf_app/widgets/new_procedure/input_text.dart';
+import 'package:swp_direktdem_verf_app/widgets/new_procedure/input_text_heading.dart';
 
 String selected = 'Themenbereiche';
 
