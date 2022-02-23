@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/mocked_data/mocked_selected_procedure_service.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/map/map.dart';
 
@@ -8,13 +7,12 @@ class MapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar('Karte'),
+    return const Scaffold(
+      appBar: CustomAppBar('Karte'),
       body: Center(
         // insert map
         child: MapView(
-          pointsOfInterestList:
-              MockedSelectedProcedureService.pointsOfInterestList,
+          pointsOfInterestList: [],
         ),
       ),
     );
