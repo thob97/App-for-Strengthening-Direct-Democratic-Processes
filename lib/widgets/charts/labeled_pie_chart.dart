@@ -108,52 +108,15 @@ class LabeledPieChart extends StatelessWidget {
       style: Theme.of(context).textTheme.bodyText2,
     );
   }
-}
 
-class Legend extends StatelessWidget {
-  const Legend({required this.votingList});
-
-  final List<ChartModel> votingList;
-
-  ///Style
-  static const double _leadingCircleRadius = 4.5;
-  static const double _distBetweenCircleAndText = 8;
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: votingList.map((ChartModel _voting) {
-          return Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _leadingCircle(_voting),
-              const SizedBox(width: _distBetweenCircleAndText),
-              _legendText(context, _voting),
-            ],
-          );
-        }).toList(),
-      ),
-    );
-  }
-
-  Widget _leadingCircle(ChartModel _voting) {
-    return Container(
-      height: _leadingCircleRadius * 2,
-      width: _leadingCircleRadius * 2,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: _voting.color,
-      ),
-    );
-  }
-
-  Widget _legendText(BuildContext context, ChartModel _voting) {
-    return Text(
-      '${_voting.label}: ${_voting.votes}',
-      style: Theme.of(context).textTheme.caption,
+  Widget _legend() {
+    return Legend(
+      items: votingList.map((_voting) {
+        return LegendItem(
+          circleColor: _voting.color,
+          text: '${_voting.group}: ${_voting.num}',
+        );
+      }).toList(),
     );
   }
 }
