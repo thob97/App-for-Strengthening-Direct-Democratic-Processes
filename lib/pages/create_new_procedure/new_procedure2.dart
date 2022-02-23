@@ -106,13 +106,13 @@ class _NewProcedureState2 extends State<NewProcedure2> {
               alignment: Alignment.topLeft,
               child: const Text(
                 'Hinweise zum Vorgehen: \n1. Wähle durch Anklicken eines Kastens die '
-                    'Phase \naus, in der sich das Verfahren momentan befindet.\nIm Moment der Auswahl werden'
-                    ' mehr Details zu der\n gewählten Phase angezeigt. '
-                    '\n\n2. Setze Häkchen für alle zum '
-                    'Phasenabschluss \nnötigen Bedingungen, die für dieses Verfahren schon \nerfüllt wurden. '
-                    'Die Endbedingung kann erst \nausgwählt werden, wenn alle anderen Bedingungen\n erfüllt '
-                    'wurden. '
-                    '\n\n3. Wenn alle Angaben zum Fortschritt des Verfahrens\ngemacht wurden, clicke am Ende der Seite auf Weiter.',
+                'Phase \naus, in der sich das Verfahren momentan befindet.\nIm Moment der Auswahl werden'
+                ' mehr Details zu der\n gewählten Phase angezeigt. '
+                '\n\n2. Setze Häkchen für alle zum '
+                'Phasenabschluss \nnötigen Bedingungen, die für dieses Verfahren schon \nerfüllt wurden. '
+                'Die Endbedingung kann erst \nausgwählt werden, wenn alle anderen Bedingungen\n erfüllt '
+                'wurden. '
+                '\n\n3. Wenn alle Angaben zum Fortschritt des Verfahrens\ngemacht wurden, clicke am Ende der Seite auf Weiter.',
                 textAlign: TextAlign.left,
                 style: TextStyle(fontSize: 15),
               ),
@@ -131,7 +131,7 @@ class _NewProcedureState2 extends State<NewProcedure2> {
                       alignment: Alignment.topLeft,
                       child: Padding(
                         padding:
-                        const EdgeInsets.only(left: 10, right: 10, top: 10),
+                            const EdgeInsets.only(left: 10, right: 10, top: 10),
                         child: Container(
                           width: 50.0,
                           height: 50.0,
@@ -220,7 +220,7 @@ class _NewProcedureState2 extends State<NewProcedure2> {
                           ),
                           TextSpan(
                             text:
-                            'Antrag auf amtliche \nKostenschätzung stellen',
+                                'Antrag auf amtliche \nKostenschätzung stellen',
                           ),
                           TextSpan(
                             text: '\n\nReferenzdauer: ',
@@ -271,7 +271,7 @@ class _NewProcedureState2 extends State<NewProcedure2> {
                       alignment: Alignment.topLeft,
                       child: Padding(
                         padding:
-                        const EdgeInsets.only(left: 10, right: 10, top: 10),
+                            const EdgeInsets.only(left: 10, right: 10, top: 10),
                         child: Container(
                           width: 50.0,
                           height: 50.0,
@@ -299,7 +299,7 @@ class _NewProcedureState2 extends State<NewProcedure2> {
                           ),
                           TextSpan(
                             text:
-                            'Antrag auf amtliche \nKostenschätzung stellen',
+                                'Antrag auf amtliche \nKostenschätzung stellen',
                           ),
                           TextSpan(
                             text: '\n\nReferenzdauer: ',
@@ -327,7 +327,7 @@ class _NewProcedureState2 extends State<NewProcedure2> {
                       alignment: Alignment.topLeft,
                       child: Padding(
                         padding:
-                        const EdgeInsets.only(left: 10, right: 10, top: 10),
+                            const EdgeInsets.only(left: 10, right: 10, top: 10),
                         child: Container(
                           width: 50.0,
                           height: 50.0,
@@ -355,7 +355,7 @@ class _NewProcedureState2 extends State<NewProcedure2> {
                           ),
                           TextSpan(
                             text:
-                            'Antrag auf amtliche \nKostenschätzung stellen',
+                                'Antrag auf amtliche \nKostenschätzung stellen',
                           ),
                           TextSpan(
                             text: '\n\nReferenzdauer: ',
@@ -383,7 +383,7 @@ class _NewProcedureState2 extends State<NewProcedure2> {
                       alignment: Alignment.topLeft,
                       child: Padding(
                         padding:
-                        const EdgeInsets.only(left: 10, right: 10, top: 10),
+                            const EdgeInsets.only(left: 10, right: 10, top: 10),
                         child: Container(
                           width: 50.0,
                           height: 50.0,
@@ -411,7 +411,7 @@ class _NewProcedureState2 extends State<NewProcedure2> {
                           ),
                           TextSpan(
                             text:
-                            'Antrag auf amtliche \nKostenschätzung stellen',
+                                'Antrag auf amtliche \nKostenschätzung stellen',
                           ),
                           TextSpan(
                             text: '\n\nReferenzdauer: ',
@@ -439,7 +439,7 @@ class _NewProcedureState2 extends State<NewProcedure2> {
                       alignment: Alignment.topLeft,
                       child: Padding(
                         padding:
-                        const EdgeInsets.only(left: 10, right: 10, top: 10),
+                            const EdgeInsets.only(left: 10, right: 10, top: 10),
                         child: Container(
                           width: 50.0,
                           height: 50.0,
@@ -467,7 +467,7 @@ class _NewProcedureState2 extends State<NewProcedure2> {
                           ),
                           TextSpan(
                             text:
-                            'Antrag auf amtliche \nKostenschätzung stellen',
+                                'Antrag auf amtliche \nKostenschätzung stellen',
                           ),
                           TextSpan(
                             text: '\n\nReferenzdauer: ',
