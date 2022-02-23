@@ -12,7 +12,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       child: BottomAppBar(
         color: Colors.transparent,
         elevation: 0.0,
@@ -23,7 +23,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 shadowColor: Colors.transparent,
                 primary: const Color(0xFF194C76),
-                padding: const EdgeInsets.symmetric(horizontal: 50),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -37,7 +37,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 );
               },
               child: const Text(
-                'ZURÜCK',
+                '< ZURÜCK',
                 style: TextStyle(
                   fontSize: 14,
                   letterSpacing: 2.2,
@@ -57,13 +57,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 shadowColor: Colors.transparent,
                 primary: const Color(0xFF194C76),
-                padding: const EdgeInsets.symmetric(horizontal: 50),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
               child: const Text(
-                'WEITER',
+                'WEITER >',
                 style: TextStyle(
                   fontSize: 14,
                   letterSpacing: 2.2,
