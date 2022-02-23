@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure3.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
+import 'package:swp_direktdem_verf_app/widgets/new_procedure/page_progress_bar.dart';
 
 TextEditingController textEditingControllerBeschreibung =
 TextEditingController();
@@ -114,65 +115,7 @@ class _NewProcedureState1 extends State<NewProcedure1> {
         physics: const ScrollPhysics(),
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding:
-                    const EdgeInsets.only(right: 10, top: 10),
-                    child: Container(
-                      width: 35.0,
-                      height: 35.0,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Text('1'),
-                    ),
-                  ),
-                  Container(
-                    height: 1.0,
-                    width: 80.0,
-                    color: Colors.black,
-                  ),
-                  Padding(
-                    padding:
-                    const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    child: Container(
-                      width: 35.0,
-                      height: 35.0,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Text('2'),
-                    ),
-                  ),
-                  Container(
-                    height: 1.0,
-                    width: 80.0,
-                    color: Colors.black,
-                  ),
-                  Padding(
-                    padding:
-                    const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    child: Container(
-                      width: 35.0,
-                      height: 35.0,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Text('3'),
-                    ),
-                  ),
-                ],
-              ),),
+            const PageProgressBar(currentPageNumber: 1),
 
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
