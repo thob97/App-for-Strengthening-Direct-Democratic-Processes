@@ -160,14 +160,16 @@ class _CustomVotesChart extends StatelessWidget {
     return LabeledPieChart(
       height: _chartHeight,
       votingList: [
-        if (lostVotes != null && lostVotes != 0)
+        if (lostVotes != null && lostVotes != 0 && !lostVotes.isNegative)
           ChartModel(
             group: lostLabelVotes,
             label: lostLabelVotes,
             num: lostVotes,
             color: ChartModel.negativeBlue,
           ),
-        if (invalidVotes != null && invalidVotes != 0)
+        if (invalidVotes != null &&
+            invalidVotes != 0 &&
+            !invalidVotes.isNegative)
           ChartModel(
             group: invalidLabelVotes,
             label: invalidLabelVotes,
@@ -175,12 +177,13 @@ class _CustomVotesChart extends StatelessWidget {
             color: ChartModel.negativeRed,
           ),
         if (validVotes != null && validVotes != 0)
-          ChartModel(
-            group: validLabelVotes,
-            label: validLabelVotes,
-            num: validVotes!,
-            color: ChartModel.positive1Green,
-          ),
+          if (!validVotes!.isNegative)
+            ChartModel(
+              group: validLabelVotes,
+              label: validLabelVotes,
+              num: validVotes!,
+              color: ChartModel.positive1Green,
+            ),
       ],
     );
   }
