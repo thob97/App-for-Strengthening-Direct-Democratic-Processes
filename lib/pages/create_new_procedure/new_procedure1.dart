@@ -351,14 +351,13 @@ List<Themenbereich> themenbereiche = [
   Themenbereich(
     'Themenbereiche',
     [
-      '1. Themenbereich',
-      '2. Themenbereich',
-      '3. Themenbereich',
-      '4. Themenbereich',
-      '3. Themenbereich',
-      '4. Themenbereich',
-      '3. Themenbereich',
-      '4. Themenbereich'
+      'Bildung und Kultur',
+      'Demokratie, Staatsorganisation und Innenpolitik',
+      'Wirtschaft',
+      'Soziales',
+      'Gesundheit, Umwelt- und Verbraucherschutz',
+      'Verkehr',
+      'Sonstiges',
     ],
     Icons.close,
   ),
