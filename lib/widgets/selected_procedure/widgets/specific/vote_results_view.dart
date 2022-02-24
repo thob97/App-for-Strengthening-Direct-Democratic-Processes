@@ -31,6 +31,7 @@ class VoteResultsView extends StatelessWidget {
 
   ///style
   static const double _horPad = 32;
+  static const double _pageHeight = 300;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class VoteResultsView extends StatelessWidget {
     return _bodyWidgets.isEmpty
         ? _noResultsPlaceholder()
         : CustomPageView(
-            pageViewHeight: 300,
+            pageViewHeight: _pageHeight,
             widgetList: _bodyWidgets,
             horChildPad: _horPad,
           );
@@ -118,9 +119,7 @@ class _CustomVotesChart extends StatelessWidget {
 
   ///Styles
   static const double _distBetweenTitleAndChart = 15;
-  static const Color _lostVotesColor = Colors.lightBlueAccent;
-  static const Color _validColor = Colors.greenAccent;
-  static const Color _invalidVotesColor = Colors.teal;
+  static const double _chartHeight = VoteResultsView._pageHeight - 50;
 
   @override
   Widget build(BuildContext context) {
@@ -160,28 +159,28 @@ class _CustomVotesChart extends StatelessWidget {
     required int? invalidVotes,
   }) {
     return LabeledPieChart(
-      height: 250,
+      height: _chartHeight,
       votingList: [
         if (lostVotes != null || lostVotes == 0)
           ChartModel(
             group: lostLabelVotes,
             label: lostLabelVotes,
             num: lostVotes!,
-            color: _lostVotesColor,
+            color: ChartModel.negativeBlue,
           ),
         if (invalidVotes != null || invalidVotes == 0)
           ChartModel(
             group: invalidLabelVotes,
             label: invalidLabelVotes,
             num: invalidVotes!,
-            color: _invalidVotesColor,
+            color: ChartModel.negativeRed,
           ),
         if (validVotes != null || validVotes != 0)
           ChartModel(
             group: validLabelVotes,
             label: validLabelVotes,
             num: validVotes!,
-            color: _validColor,
+            color: ChartModel.positive1Green,
           ),
       ],
     );

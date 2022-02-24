@@ -19,6 +19,8 @@ class DashboardPage extends StatelessWidget {
   static const double _distBetweenItems = 8;
 
   ///TODO get data from db
+  static const int _randomData = 300;
+
   List<Widget> get _sampleData => sampleData();
 
   List<ChartModel> _sampleChartDateSuccessRate() {
@@ -27,25 +29,25 @@ class DashboardPage extends StatelessWidget {
         label: '',
         group: 'Ja',
         num: 4,
-        color: Colors.blue,
+        color: ChartModel.positive1Green,
       ),
       ChartModel(
         label: '',
         group: 'Nein',
         num: 23,
-        color: Colors.purple,
+        color: ChartModel.negativeRed,
       ),
       ChartModel(
         label: '',
         group: 'Offen',
         num: 7,
-        color: Colors.green,
+        color: ChartModel.positiveBlue,
       ),
       ChartModel(
         label: '',
         group: 'Teils',
         num: 5,
-        color: Colors.red,
+        color: ChartModel.positive2Green,
       ),
     ];
   }
@@ -56,54 +58,57 @@ class DashboardPage extends StatelessWidget {
         label: '',
         group: 'Phase1',
         num: Random().nextInt(10000),
-        color: Colors.blue,
+        color: ChartModel.positive1Green,
       ),
       ChartModel(
         label: '',
         group: 'Phase2',
         num: Random().nextInt(10000),
-        color: Colors.purple,
+        color: ChartModel.positiveBlue,
       ),
       ChartModel(
         label: '',
         group: 'Phase3',
         num: Random().nextInt(10000),
-        color: Colors.green,
+        color: ChartModel.negativeRed,
       ),
     ];
   }
 
-  List<ChartModel> _randomLineChartData() {
+  List<ChartModel> _randomLineChartData(String label) {
     return List<ChartModel>.generate(
       12,
       (index) => ChartModel(
-        num: Random().nextInt(20),
-        color: Colors.lightGreen,
-        group: 'Referenzdauer',
+        num: Random().nextInt(_randomData),
+        color: ChartModel.positive1Green,
+        group: label,
         label: index.toString(),
       ),
     );
   }
 
-  List<ChartModel> _randomBarchartData() {
+  List<ChartModel> _randomBarchartData(String label, {bool isRed = false}) {
     return List<ChartModel>.generate(
       12,
       (index) => ChartModel(
-        num: Random().nextInt(20),
-        color: Colors.blue,
-        group: 'Verfahrensdauer',
+        num: Random().nextInt(_randomData),
+        color: isRed ? ChartModel.negativeRed : ChartModel.positiveBlue,
+        group: label,
         label: index.toString(),
       ),
     );
   }
 
-  List<ChartModel> _randomStackedBarChartData() {
+  List<ChartModel> _randomStackedBarChartDataRuntime(
+    String label,
+    String stackedLabel,
+  ) {
     return List<ChartModel>.generate(
       12,
       (index) => ChartModel(
-        num: Random().nextInt(20),
-        color: Colors.blue,
-        group: 'Verfahrensdauer ab Unterschrift',
+        num: Random().nextInt(_randomData),
+        color: ChartModel.positiveBlue,
+        group: label,
         label: index.toString(),
       ),
     )
@@ -111,9 +116,9 @@ class DashboardPage extends StatelessWidget {
           List<ChartModel>.generate(
             12,
             (index) => ChartModel(
-              num: Random().nextInt(20),
-              color: Colors.redAccent,
-              group: 'mit Kosteneinschätzung',
+              num: Random().nextInt(_randomData),
+              color: ChartModel.negativeRed,
+              group: stackedLabel,
               label: index.toString(),
             ),
           ),
@@ -129,22 +134,27 @@ class DashboardPage extends StatelessWidget {
         successInPercent: ((4 / 39) * 100).toInt(),
       ),
       _SampleDashboardItem.runtimeOfProcedures(
-        data: _randomStackedBarChartData(),
-        referenceTime: _randomLineChartData(),
-        median: Random().nextInt(10000),
+        data: _randomStackedBarChartDataRuntime(
+          'Verfahrensdauer ab Unterschrift',
+          'mit Kosteneinschätzung',
+        ),
+        referenceTime: _randomLineChartData('Referenzdauer'),
+        median: Random().nextInt(300),
       ),
-      _SampleDashboardItem.successfulProceduresLastYear(Random().nextInt(100)),
-      _SampleDashboardItem.totalActiveProcedures(Random().nextInt(100)),
+      _SampleDashboardItem.successfulProceduresLastYear(
+        Random().nextInt(_randomData),
+      ),
+      _SampleDashboardItem.totalActiveProcedures(Random().nextInt(_randomData)),
       _SampleDashboardItem.runtimeOfProceduresForEachPhase(
-        phase1Data: _randomBarchartData(),
-        phase2Data: _randomBarchartData(),
-        phase3Data: _randomBarchartData(),
-        referenceTimePhase1Data: _randomLineChartData(),
-        referenceTimePhase2Data: _randomLineChartData(),
-        referenceTimePhase3Data: _randomLineChartData(),
-        medianPhase1: Random().nextInt(60),
-        medianPhase2: Random().nextInt(60),
-        medianPhase3: Random().nextInt(60),
+        phase1Data: _randomBarchartData('Verfahrensdauer'),
+        phase2Data: _randomBarchartData('Verfahrensdauer'),
+        phase3Data: _randomBarchartData('Verfahrensdauer'),
+        referenceTimePhase1Data: _randomLineChartData('Referenzdauer'),
+        referenceTimePhase2Data: _randomLineChartData('Referenzdauer'),
+        referenceTimePhase3Data: _randomLineChartData('Referenzdauer'),
+        medianPhase1: Random().nextInt(_randomData),
+        medianPhase2: Random().nextInt(_randomData),
+        medianPhase3: Random().nextInt(_randomData),
       ),
       _SampleDashboardItem.phaseDistribution(
         activeProceduresData: _sampleChartDatePhaseDistribution(),
@@ -157,24 +167,42 @@ class DashboardPage extends StatelessWidget {
         bothMedianPhase1: Random().nextInt(1000),
         bothMedianPhase2: Random().nextInt(1000),
         bothMedianPhase3: Random().nextInt(1000),
-        bothPhase1Data: _randomStackedBarChartData(),
-        bothReferenceTimePhase1Data: _randomLineChartData(),
-        bothPhase2Data: _randomStackedBarChartData(),
-        bothReferenceTimePhase2Data: _randomLineChartData(),
-        bothPhase3Data: _randomStackedBarChartData(),
-        bothReferenceTimePhase3Data: _randomLineChartData(),
+        bothPhase1Data: _randomStackedBarChartDataRuntime(
+          'Gültige Unterschriften',
+          'Ungültige Unterschriften',
+        ),
+        bothReferenceTimePhase1Data: _randomLineChartData('Quorum'),
+        bothPhase2Data: _randomStackedBarChartDataRuntime(
+          'Gültige Unterschriften',
+          'Ungültige Unterschriften',
+        ),
+        bothReferenceTimePhase2Data: _randomLineChartData('Quorum'),
+        bothPhase3Data: _randomStackedBarChartDataRuntime(
+          'Gültige Unterschriften',
+          'Ungültige Unterschriften',
+        ),
+        bothReferenceTimePhase3Data: _randomLineChartData('Quorum'),
         validMedianPhase1: Random().nextInt(1000),
         validMedianPhase2: Random().nextInt(1000),
         validMedianPhase3: Random().nextInt(1000),
-        validPhase1Data: _randomBarchartData(),
-        validPhase2Data: _randomBarchartData(),
-        validPhase3Data: _randomBarchartData(),
+        validPhase1Data: _randomBarchartData('Gültige Unterschriften'),
+        validPhase2Data: _randomBarchartData('Gültige Unterschriften'),
+        validPhase3Data: _randomBarchartData('Gültige Unterschriften'),
         invalidMedianPhase1: Random().nextInt(1000),
         invalidMedianPhase2: Random().nextInt(1000),
         invalidMedianPhase3: Random().nextInt(1000),
-        invalidPhase1Data: _randomBarchartData(),
-        invalidPhase2Data: _randomBarchartData(),
-        invalidPhase3Data: _randomBarchartData(),
+        invalidPhase1Data: _randomBarchartData(
+          'Ungültige Unterschriften',
+          isRed: true,
+        ),
+        invalidPhase2Data: _randomBarchartData(
+          'Ungültige Unterschriften',
+          isRed: true,
+        ),
+        invalidPhase3Data: _randomBarchartData(
+          'Ungültige Unterschriften',
+          isRed: true,
+        ),
       ),
       _SampleDashboardItem.totalFinishedProcedures(Random().nextInt(100)),
     ];
