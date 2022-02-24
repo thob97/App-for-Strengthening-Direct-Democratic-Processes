@@ -31,6 +31,7 @@ class VoteResultsView extends StatelessWidget {
 
   ///style
   static const double _horPad = 32;
+  static const double _pageHeight = 300;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class VoteResultsView extends StatelessWidget {
     return _bodyWidgets.isEmpty
         ? _noResultsPlaceholder()
         : CustomPageView(
-            pageViewHeight: 300,
+            pageViewHeight: _pageHeight,
             widgetList: _bodyWidgets,
             horChildPad: _horPad,
           );
@@ -46,9 +47,9 @@ class VoteResultsView extends StatelessWidget {
 
   List<Widget> _getBodyWidgets() {
     return [
-      if (signaturesCollectedPhase1 != null ||
-          signaturesValidPhase1 != null ||
-          signaturesCountedPhase1 != null)
+      if ((signaturesCollectedPhase1 != null ||
+              signaturesCountedPhase1 != null) &&
+          signaturesValidPhase1 != null)
         _CustomVotesChart(
           title: 'Phase 1: Unterschriftensammlung',
           lostLabelVotes: 'Verloren',
@@ -58,9 +59,9 @@ class VoteResultsView extends StatelessWidget {
           countedVotes: signaturesCountedPhase1,
           validVotes: signaturesValidPhase1,
         ),
-      if (signaturesCollectedPhase2 != null ||
-          signaturesValidPhase2 != null ||
-          signaturesCountedPhase2 != null)
+      if ((signaturesCollectedPhase2 != null ||
+              signaturesCountedPhase2 != null) &&
+          signaturesValidPhase2 != null)
         _CustomVotesChart(
           title: 'Phase 2: Unterschriftensammlung',
           lostLabelVotes: 'Verloren',
@@ -70,8 +71,7 @@ class VoteResultsView extends StatelessWidget {
           countedVotes: signaturesCountedPhase2,
           validVotes: signaturesValidPhase2,
         ),
-      if (votesCountedPhase3 != null ||
-          votesValidPhase3 != null ||
+      if ((votesCountedPhase3 != null || votesValidPhase3 != null) &&
           votesYesPhase3 != null)
         _CustomVotesChart(
           title: 'Phase 3: Wahlergebnisse',
@@ -118,9 +118,7 @@ class _CustomVotesChart extends StatelessWidget {
 
   ///Styles
   static const double _distBetweenTitleAndChart = 15;
-  static const Color _lostVotesColor = Colors.lightBlueAccent;
-  static const Color _validColor = Colors.greenAccent;
-  static const Color _invalidVotesColor = Colors.teal;
+  static const double _chartHeight = VoteResultsView._pageHeight - 50;
 
   @override
   Widget build(BuildContext context) {
@@ -160,29 +158,32 @@ class _CustomVotesChart extends StatelessWidget {
     required int? invalidVotes,
   }) {
     return LabeledPieChart(
-      totalVotes: countedVotes ?? 0,
+      height: _chartHeight,
       votingList: [
-        if (lostVotes != null || lostVotes == 0)
+        if (lostVotes != null && lostVotes != 0 && !lostVotes.isNegative)
           ChartModel(
-            partyName: lostLabelVotes,
+            group: lostLabelVotes,
             label: lostLabelVotes,
-            votes: lostVotes!,
-            color: _lostVotesColor,
+            num: lostVotes,
+            color: ChartModel.negativeBlue,
           ),
-        if (invalidVotes != null || invalidVotes == 0)
+        if (invalidVotes != null &&
+            invalidVotes != 0 &&
+            !invalidVotes.isNegative)
           ChartModel(
-            partyName: invalidLabelVotes,
+            group: invalidLabelVotes,
             label: invalidLabelVotes,
-            votes: invalidVotes!,
-            color: _invalidVotesColor,
+            num: invalidVotes,
+            color: ChartModel.negativeRed,
           ),
-        if (validVotes != null || validVotes != 0)
-          ChartModel(
-            partyName: validLabelVotes,
-            label: validLabelVotes,
-            votes: validVotes!,
-            color: _validColor,
-          ),
+        if (validVotes != null && validVotes != 0)
+          if (!validVotes!.isNegative)
+            ChartModel(
+              group: validLabelVotes,
+              label: validLabelVotes,
+              num: validVotes!,
+              color: ChartModel.positive1Green,
+            ),
       ],
     );
   }
