@@ -3,15 +3,20 @@ import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/elemen
 
 ///like page view but uses MyPageIndicator
 class CustomPageView extends StatelessWidget {
-  CustomPageView({required this.widgetList, required this.pageViewHeight});
+  CustomPageView({
+    required this.widgetList,
+    required this.pageViewHeight,
+    required this.horChildPad,
+  });
 
   final List<Widget> widgetList;
+  final double pageViewHeight;
+  final double horChildPad;
 
   //used for MyPageIndicator
   final _currentPageNotifier = ValueNotifier<int>(0);
 
   ///Style
-  final double pageViewHeight;
   static const double _distBetweenPageAndIndicator = 20;
 
   @override
@@ -36,7 +41,14 @@ class CustomPageView extends StatelessWidget {
         onPageChanged: (int index) {
           _currentPageNotifier.value = index;
         },
-        children: widgetList.map((_widget) => Center(child: _widget)).toList(),
+        children: widgetList.map((_widget) {
+          return Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: horChildPad),
+              child: _widget,
+            ),
+          );
+        }).toList(),
       ),
     );
   }

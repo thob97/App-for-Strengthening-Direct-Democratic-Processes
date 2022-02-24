@@ -1,19 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/config/route_generator.dart';
-
-class ProcedureOverview {
-  ProcedureOverview({
-    required this.title,
-    required this.description,
-    required this.state,
-    required this.img,
-  });
-
-  final String title;
-  final String description;
-  final int state;
-  final String img;
-}
+import 'package:swp_direktdem_verf_app/pages/selected_procedure.dart';
 
 class OverviewProcedureView extends StatelessWidget {
   const OverviewProcedureView({required this.items});
@@ -33,44 +21,54 @@ class OverviewProcedureView extends StatelessWidget {
       itemBuilder: (context, index) {
         final ProcedureOverview item = items[index];
         return _OverviewProcedureTile(
-          heroId: index,
+          heroId: item.id,
           title: item.title,
-          description: item.description,
-          assetImg: item.img,
-          state: item.state,
-          onTap: () => _onTap(context),
+          subtitle: item.subtitle,
+          img: item.img,
+          state: item.phaseState,
+          transitionItems: item.transitionItems,
         );
       },
       separatorBuilder: (context, index) =>
           const SizedBox(height: _distBetweenItems),
     );
   }
+}
 
-  //TODO add navigation
-  void _onTap(BuildContext context) {
-    Navigator.of(context).pushNamed(
-      '/selected_procedure',
-      arguments: const NavigationArguments(),
-    );
-  }
+class ProcedureOverview {
+  ProcedureOverview({
+    required this.id,
+    required this.title,
+    required this.img,
+    required this.subtitle,
+    required this.phaseState,
+    required this.transitionItems,
+  });
+
+  final String id;
+  final String title;
+  final File img;
+  final String subtitle;
+  final int phaseState;
+  final TransitionItems transitionItems;
 }
 
 class _OverviewProcedureTile extends StatelessWidget {
   const _OverviewProcedureTile({
     required this.heroId,
+    required this.img,
     required this.title,
-    required this.description,
+    required this.subtitle,
     required this.state,
-    required this.assetImg,
-    this.onTap,
+    required this.transitionItems,
   });
 
-  final int heroId;
+  final String heroId;
+  final File img;
   final String title;
-  final String description;
+  final String subtitle;
   final int state;
-  final String assetImg;
-  final VoidCallback? onTap;
+  final TransitionItems transitionItems;
 
   ///Style
   static const double _height = 80;
@@ -84,7 +82,7 @@ class _OverviewProcedureTile extends StatelessWidget {
       height: _height,
       color: Colors.white,
       child: InkWell(
-        onTap: onTap,
+        onTap: () => _onTap(context),
         child: Row(
           children: [
             Row(
@@ -93,8 +91,33 @@ class _OverviewProcedureTile extends StatelessWidget {
                 _ProgressIndicator(currentState: state),
               ],
             ),
-            _TextContent(title: title, state: state, description: description),
+            _TextContent(title: title, state: state, description: subtitle),
           ],
+        ),
+      ),
+    );
+  }
+
+  //TODO add navigation
+  void _onTap(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SelectedProcedure(
+          img: img,
+          showSubscribe: transitionItems.showSubscribe,
+          isSubscribed: transitionItems.isSubscribed,
+          showEdit: transitionItems.showEdit,
+          title: title,
+          id: heroId,
+          subtitle: subtitle,
+          description: transitionItems.description,
+          process: transitionItems.process,
+          createDate: transitionItems.createDate,
+          creatorFirstName: transitionItems.creatorFirstName,
+          creatorLastName: transitionItems.creatorLastName,
+          endDate: transitionItems.endDate,
+          organisationName: transitionItems.organisationName,
         ),
       ),
     );
@@ -103,8 +126,8 @@ class _OverviewProcedureTile extends StatelessWidget {
   Widget _image() {
     return Hero(
       tag: heroId,
-      child: Image.asset(
-        assetImg,
+      child: Image.file(
+        img,
         height: _height, //max height
         width: _imgWidth,
         fit: BoxFit.cover,

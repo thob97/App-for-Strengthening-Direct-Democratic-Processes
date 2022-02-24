@@ -3,7 +3,6 @@ import 'package:swp_direktdem_verf_app/main.dart';
 import 'package:swp_direktdem_verf_app/pages/dashboard.dart';
 import 'package:swp_direktdem_verf_app/pages/error_page.dart';
 import 'package:swp_direktdem_verf_app/pages/favorite.dart';
-import 'package:swp_direktdem_verf_app/pages/selected_procedure.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
 
@@ -37,9 +36,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case '/my_procedures':
       return MaterialPageRoute(builder: (_) => const MyProcedures());
-
-    case '/selected_procedure':
-      return MaterialPageRoute(builder: (_) => const SelectedProcedure());
 
     ///With animation
     //return MaterialPageRoute(builder: (_) => const Settings());

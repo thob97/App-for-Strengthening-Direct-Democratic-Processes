@@ -12,9 +12,12 @@ class DataListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CardListView(
-      widgetList: dataList.map((Data data) => _item(context, data)).toList(),
-    );
+    return dataList.isEmpty
+        ? _noDataPlaceholder()
+        : CardListView(
+            widgetList:
+                dataList.map((Data data) => _item(context, data)).toList(),
+          );
   }
 
   Widget _item(BuildContext context, Data data) {
@@ -53,6 +56,12 @@ class DataListView extends StatelessWidget {
           url: url,
         ),
       ),
+    );
+  }
+
+  Widget _noDataPlaceholder() {
+    return const Center(
+      child: Text('Es wurden noch keine Dokumente veröffentlicht'),
     );
   }
 }

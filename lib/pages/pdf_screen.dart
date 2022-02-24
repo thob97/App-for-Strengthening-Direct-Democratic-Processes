@@ -31,7 +31,7 @@ class PDFScreen extends StatelessWidget {
         final response = await request.close();
         final bytes = await consolidateHttpClientResponseBytes(response);
         final dir = await getApplicationDocumentsDirectory();
-        final path = '${dir.path}/tempFile';
+        final path = '${dir.path}/$title';
         final File file = File(path);
         await file.writeAsBytes(bytes, flush: true);
         Share.shareFiles([path]);

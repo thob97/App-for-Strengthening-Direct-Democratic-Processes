@@ -37,6 +37,7 @@ enum SocialMediaType {
   twitter,
   instagram,
   facebook,
+  whatsapp,
 }
 
 class SocialMedia {
@@ -46,38 +47,44 @@ class SocialMedia {
   });
 
   final SocialMediaType type;
-  final String url;
+  final String? url;
 }
 
 class _SocialMediaButton extends StatelessWidget {
   const _SocialMediaButton({required this.type, required this.url});
 
   final SocialMediaType type;
-  final String url;
+  final String? url;
+
+  ///Style
+  static const Color _secondary = Colors.white;
+  static const Color _deactivatedPrimary = Colors.black12;
+  static const Color _deactivatedSecondary = Colors.white38;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(MyConstants.borderRadius),
       child: Material(
-        color: _getColor(),
+        color: _getPrimaryColor(),
         child: ListTile(
-          title: Text(
-            _getTitle(),
-            style: Theme.of(context)
-                .textTheme
-                .bodyText2
-                ?.copyWith(color: Colors.white),
-          ),
-          leading: Icon(_getIcon(), color: Colors.white),
+          title: Text(_getTitle(), style: _customTextStyle(context)),
+          leading: Icon(_getIcon(), color: _getSecondaryColor()),
           onTap: _launchURL,
         ),
       ),
     );
   }
 
+  TextStyle? _customTextStyle(BuildContext context) {
+    return Theme.of(context)
+        .textTheme
+        .bodyText2
+        ?.copyWith(color: _getSecondaryColor());
+  }
+
   Future<void> _launchURL() async {
-    if (!await launch(url)) throw 'Could not launch $url';
+    if (url != null) if (!await launch(url!)) throw 'Could not launch $url';
   }
 
   String _getTitle() {
@@ -90,6 +97,8 @@ class _SocialMediaButton extends StatelessWidget {
         return 'Instagram';
       case SocialMediaType.twitter:
         return 'Twitter';
+      case SocialMediaType.whatsapp:
+        return 'Whatsapp';
     }
   }
 
@@ -103,10 +112,17 @@ class _SocialMediaButton extends StatelessWidget {
         return CommunityMaterialIcons.instagram;
       case SocialMediaType.twitter:
         return CommunityMaterialIcons.twitter;
+      case SocialMediaType.whatsapp:
+        return CommunityMaterialIcons.whatsapp;
     }
   }
 
-  Color _getColor() {
+  Color _getSecondaryColor() {
+    return url == null ? _deactivatedSecondary : _secondary;
+  }
+
+  Color _getPrimaryColor() {
+    if (url == null) return _deactivatedPrimary;
     switch (type) {
       case SocialMediaType.website:
         return Colors.blue;
@@ -116,6 +132,8 @@ class _SocialMediaButton extends StatelessWidget {
         return const Color(0xff8a3ab9);
       case SocialMediaType.twitter:
         return const Color(0xff00acee);
+      case SocialMediaType.whatsapp:
+        return const Color(0xff25D366);
     }
   }
 }

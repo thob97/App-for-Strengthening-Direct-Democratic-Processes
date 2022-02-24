@@ -37,12 +37,9 @@ class ProcessDescription extends StatelessWidget {
   }
 
   Widget _myTitle(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Text(
-        titleContent,
-        style: Theme.of(context).textTheme.headline5,
-      ),
+    return Text(
+      titleContent,
+      style: Theme.of(context).textTheme.headline5,
     );
   }
 
