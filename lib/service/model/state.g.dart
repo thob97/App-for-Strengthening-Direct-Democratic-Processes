@@ -7,22 +7,19 @@ part of 'state.dart';
 // **************************************************************************
 
 State _$StateFromJson(Map<String, dynamic> json) => State(
-      id: json['id'] as int,
+      id: json['id'] as String,
       name: json['name'] as String,
-      contact_id: json['contact_id'] as int?,
-      first_phase_type:
-          $enumDecode(_$PhaseTypeEnumMap, json['first_phase_type']),
+      contact: json['contact'] == null
+          ? null
+          : Contact.fromJson(json['contact'] as Map<String, dynamic>),
+      procedures: (json['procedureSet'] as List<dynamic>)
+          .map((e) => SimpleProcedure.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$StateToJson(State instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'contact_id': instance.contact_id,
-      'first_phase_type': _$PhaseTypeEnumMap[instance.first_phase_type],
+      'contact': instance.contact,
+      'procedureSet': instance.procedures,
     };
-
-const _$PhaseTypeEnumMap = {
-  PhaseType.berlin_0: 'berlin_0',
-  PhaseType.berlin_1: 'berlin_1',
-  PhaseType.berlin_3: 'berlin_3',
-};

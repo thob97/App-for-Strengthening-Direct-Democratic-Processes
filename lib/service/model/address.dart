@@ -1,4 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
 import 'package:json_annotation/json_annotation.dart';
 
 part 'address.g.dart';
@@ -8,7 +7,7 @@ class Address {
   const Address({
     required this.id,
     required this.street,
-    required this.house_number,
+    required this.houseNumber,
     required this.state,
     required this.postcode,
     required this.city,
@@ -16,11 +15,17 @@ class Address {
 
   factory Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);
-  final int id;
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(name: 'street')
   final String street;
-  final String house_number;
+  @JsonKey(name: 'houseNumber')
+  final String houseNumber;
+  @JsonKey(name: 'state')
   final String state;
+  @JsonKey(name: 'postcode')
   final int postcode;
+  @JsonKey(name: 'city')
   final String city;
 
   Map<String, dynamic> toJson() => _$AddressToJson(this);

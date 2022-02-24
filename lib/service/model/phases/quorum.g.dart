@@ -7,13 +7,13 @@ part of 'quorum.dart';
 // **************************************************************************
 
 Quorum _$QuorumFromJson(Map<String, dynamic> json) => Quorum(
-      id: json['id'] as int,
+      id: json['id'] as String,
       value: json['value'] as int,
-      valid_from: DateTime.parse(json['valid_from'] as String),
+      validFrom: DateTime.parse(json['validFrom'] as String),
     );
 
 Map<String, dynamic> _$QuorumToJson(Quorum instance) => <String, dynamic>{
       'id': instance.id,
       'value': instance.value,
-      'valid_from': instance.valid_from.toIso8601String(),
+      'validFrom': instance.validFrom.toIso8601String(),
     };

@@ -1,66 +1,116 @@
-import 'package:swp_direktdem_verf_app/service/model/document.dart';
-import 'package:swp_direktdem_verf_app/service/model/organisation.dart';
-import 'package:swp_direktdem_verf_app/service/model/phases/berlin_1.dart';
-import 'package:swp_direktdem_verf_app/service/model/phases/berlin_2.dart';
-import 'package:swp_direktdem_verf_app/service/model/phases/berlin_3.dart';
-import 'package:swp_direktdem_verf_app/service/model/procedure.dart';
-import 'package:swp_direktdem_verf_app/service/model/procedure_editor.dart';
-import 'package:swp_direktdem_verf_app/service/model/procedure_subscription.dart';
-import 'package:swp_direktdem_verf_app/service/model/social_media.dart';
-import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/model/procedure/categories.dart';
+import 'package:swp_direktdem_verf_app/service/model/procedure/detailed_procedure.dart';
+import 'package:swp_direktdem_verf_app/service/model/procedure/simple_procedure.dart';
+import 'package:swp_direktdem_verf_app/service/model/procedure/success.dart';
 
 abstract class Service {
-  ///Procedures
-  Future<List<Procedure>> getAllVisibleProcedures();
+  ///Get procedures
+  //TODO not yet implemented in db: title_Image
+  Future<List<SimpleProcedure>?> getAllVisibleSimpleProcedures();
 
-  Future<Procedure?> getProcedureByID(int procedureID);
+  Future<DetailedProcedure?> getProcedureByID(String procedureId);
 
-  Future<List<Procedure>> getProceduresByEditor(int userId);
+  //TODO not yet implemented in db: title_Image
+  Future<List<SimpleProcedure>?> getProceduresByEditor(String userId);
 
-  Future<List<Procedure>> getProceduresBySubscriber(int userId);
+  //TODO not yet implemented in db: title_Image
+  Future<List<SimpleProcedure>?> getProceduresBySubscriber(String userId);
 
-  Future<bool> postProcedure({
-    required Procedure procedure,
-    required List<Document> documents,
-    required List<ProcedureEditor> editors,
-    required SocialMedia socialMedia,
+  ///Edit procedures
+  Future<String?> createProcedure({
+    required String title,
+    required String titleImage,
+    String? subtitle,
+    String? description,
+    String? process,
+    ProcedureCategory? category,
+    ProcedureSuccess? success,
+    String? outcomeReason,
+    String? facebookUrl,
+    String? twitterUrl,
+    String? whatsappUrl,
+    String? instagramUrl,
+    String? websiteUrl,
+    String? organisationId,
+    DateTime? created,
+    DateTime? end,
+    required DateTime lastChanged,
   });
 
-  Future<void> putProcedure({
-    required int procedureID,
-    required Procedure procedure,
-    required List<Document> documents,
-    required List<ProcedureEditor> editors,
-    required SocialMedia socialMedia,
+  Future<bool> deleteProcedure({required String procedureId});
+
+  Future<bool> editProcedure({
+    required String procedureId,
+    String? title,
+    String? titleImage,
+    String? subtitle,
+    String? description,
+    String? process,
+    ProcedureCategory? category,
+    ProcedureSuccess? success,
+    String? outcomeReason,
+    String? facebookUrl,
+    String? twitterUrl,
+    String? whatsappUrl,
+    String? instagramUrl,
+    String? websiteUrl,
+    String? carrierId,
+    String? organisationId,
+    DateTime? created,
+    DateTime? end,
+    DateTime? lastChanged,
   });
 
-  Future<void> deleteProcedure(int procedureID);
+  //TODO not yet implemented in db
+  Future<bool> addDocument({required String procedureId});
 
-  ///More Procedures
-  Future<List<Document>> getDocumentsFromProcedureId(int procedureId); //!=image
-  Future<Document> getTitleImageFromProcedureId(int procedureId);
+  //TODO not yet implemented in db
+  Future<bool> removeDocument({required String procedureId});
 
-  Future<Organisation> getOrganisationFromId(int organisationId);
+  Future<bool> addEditor({
+    required String userEmail,
+    required String procedureId,
+  });
 
-  Future<SocialMedia> getSocialMediaFromId(int socialMediaId);
-
-  //Future<List<StepHistory>> getStepHistoryFromProcedureId(int procedureId);
-  Future<Berlin_1> getBerlin1FromProcedureId(int procedureId);
-
-  Future<Berlin_2> getBerlin2FromProcedureId(int procedureId);
-
-  Future<Berlin_3> getBerlin3FromProcedureId(int procedureId);
+  Future<bool> removeEditor({
+    required String userId,
+    required String procedureId,
+  });
 
   ///Users
-  Future<List<User>> getAllUser();
 
-  Future<int?> authenticate({required String email, required String password});
+  //returns userId if succeeded
+  Future<String?> getOwnUser();
 
-  Future<bool> postUser(User user);
+  //returns token if succeeded
+  Future<String?> authenticate({
+    required String email,
+    required String password,
+  });
 
-  Future<void> putUser(int userId, User user);
+  Future<bool> verifyToken({required String token});
 
-  Future<void> deleteUser(int userId);
+  //returns userId if succeeded
+  Future<String?> createUser({
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String password,
+  });
 
-  Future<void> subscribeProcedure(ProcedureSubscription procedureSubscription);
+  //returns true if succeeded
+  Future<bool> updateUser({
+    required String userId,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? password,
+  });
+
+  //returns true if succeeded
+  Future<bool> deleteUser(String userId);
+
+  Future<bool> subscribe({required String procedureId});
+
+  Future<bool> unSubscribe({required String procedureId});
 }

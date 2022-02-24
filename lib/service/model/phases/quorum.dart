@@ -1,4 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
 import 'package:json_annotation/json_annotation.dart';
 
 part 'quorum.g.dart';
@@ -8,13 +7,16 @@ class Quorum {
   const Quorum({
     required this.id,
     required this.value,
-    required this.valid_from,
+    required this.validFrom,
   });
 
   factory Quorum.fromJson(Map<String, dynamic> json) => _$QuorumFromJson(json);
-  final int id;
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(name: 'value')
   final int value;
-  final DateTime valid_from;
+  @JsonKey(name: 'validFrom')
+  final DateTime validFrom;
 
   Map<String, dynamic> toJson() => _$QuorumToJson(this);
 }
