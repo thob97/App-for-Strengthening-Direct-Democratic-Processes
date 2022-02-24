@@ -212,11 +212,12 @@ class ServiceDataBase implements Service {
 
   ///TODO db: not yet implemented by db team
   @override
-  Future<List<SimpleProcedure>?> getProceduresByEditor(String userId) async {
+  Future<List<SimpleProcedure>?> getOwnEditorProcedures() async {
     ///TODO db: change once implemented by db team: titleImage
-    final String query = '''
+    //invisible procedures
+    const String invisibleProceduresQuery = '''
     query{
-      procedures(editorId:"$userId"){
+      procedures(meEditor:true){
         id,
         title,
         #titleImage, TODO db: change once implemented by db team
@@ -234,27 +235,61 @@ class ServiceDataBase implements Service {
     }
     ''';
 
-    final QueryResult result = await fetchData(query);
+    final QueryResult invisibleResult =
+        await fetchData(invisibleProceduresQuery);
 
-    if (result.hasException) {
+    if (invisibleResult.hasException) {
       debugPrint(
-        'getProceduresByEditor: ${result.exception.toString()}',
+        'getProceduresByEditor: ${invisibleResult.exception.toString()}',
       );
       return null;
     }
-    return (result.data!['procedures'] as List<dynamic>)
+
+    //visible procedures
+    const String visibleProceduresQuery = '''
+    query{
+      procedures(meEditor:true, visible:true){
+        id,
+        title,
+        #titleImage, TODO db: change once implemented by db team
+        subtitle,
+        description,
+        process,
+        success,
+        category,
+        phase,
+        created,
+        end,
+        carrier{id, firstName, lastName}
+        organisation{name}
+      }
+    }
+    ''';
+
+    final QueryResult visibleResult = await fetchData(visibleProceduresQuery);
+
+    if (visibleResult.hasException) {
+      debugPrint(
+        'getProceduresByEditor: ${visibleResult.exception.toString()}',
+      );
+      return null;
+    }
+    return (invisibleResult.data!['procedures'] as List<dynamic>)
         .map((_proc) => SimpleProcedure.fromJson(_proc as Map<String, dynamic>))
+        .followedBy(
+          (visibleResult.data!['procedures'] as List<dynamic>).map(
+            (_proc) => SimpleProcedure.fromJson(_proc as Map<String, dynamic>),
+          ),
+        )
         .toList();
   }
 
   @override
-  Future<List<SimpleProcedure>?> getProceduresBySubscriber(
-    String userId,
-  ) async {
+  Future<List<SimpleProcedure>?> getSubscribedProcedures() async {
     ///TODO db: change once implemented by db team: titleImage
-    final String query = '''
+    const String query = '''
     query{
-      procedures(visible: true, subscriberId: "$userId"){
+      procedures(visible: true, meSubscriber:true){
         id,
         title,
         #titleImage, TODO db: change once implemented by db team
@@ -289,8 +324,8 @@ class ServiceDataBase implements Service {
   @override
   Future<String?> createProcedure({
     required String title,
-    required String titleImage,
-    String? subtitle,
+    //required String titleImage,
+    required String subtitle,
     String? description,
     String? process,
     ProcedureCategory? category,
@@ -304,14 +339,13 @@ class ServiceDataBase implements Service {
     String? organisationId,
     DateTime? created,
     DateTime? end,
-    required DateTime lastChanged,
   }) async {
     ///TODO db: change once implemented by db team: titleImage
     final String query = '''
     mutation{
       createProcedure(
         title:"$title",
-        #titleImage:"$titleImage", TODO db: change once implemented by db team
+        #titleImage:"//titleImage", TODO db: change once implemented by db team
         subtitle:"$subtitle",
         description:"$description",
         process:"$process",
@@ -323,12 +357,10 @@ class ServiceDataBase implements Service {
         twitter:"$twitterUrl",
         whatsapp:"$whatsappUrl",
         website:"$websiteUrl",
-        visible:false,
         stateId:"1",  #1 for berlin
         #organisationId:"$organisationId", TODO db: change once there are organisations
         created:"${formatDate(created)}",
         end:"${formatDate(end)}",
-        lastChanged:"${formatDate(lastChanged)}",
       ){
         procedure{
           id
@@ -355,7 +387,7 @@ class ServiceDataBase implements Service {
     final String query = '''
     mutation{
       deleteProcedure(id:"$procedureId"){
-        error
+        __typename
       }
     }
     ''';
@@ -375,7 +407,7 @@ class ServiceDataBase implements Service {
   Future<bool> editProcedure({
     required String procedureId,
     String? title,
-    String? titleImage,
+    //String? titleImage,
     String? subtitle,
     String? description,
     String? process,
@@ -391,7 +423,6 @@ class ServiceDataBase implements Service {
     String? organisationId,
     DateTime? created,
     DateTime? end,
-    DateTime? lastChanged,
   }) async {
     ///TODO db: change once implemented by db team: titleImage, category
     final String query = '''
@@ -399,7 +430,7 @@ class ServiceDataBase implements Service {
       updateProcedure(
         id:"$procedureId",
         title:"$title",
-        #titleImage:"$titleImage", TODO db: change once implemented by db team
+        #titleImage:"//titleImage", TODO db: change once implemented by db team
         subtitle:"$subtitle",
         description:"$description",
         process:"$process",
@@ -411,15 +442,13 @@ class ServiceDataBase implements Service {
         twitter:"$twitterUrl",
         whatsapp:"$whatsappUrl",
         website:"$websiteUrl",
-        visible:false,
         stateId:1,  #1 for berlin
         carrierId:"$carrierId",
         #organisationId:"$organisationId", TODO db: change once there are organisations
         created:"${formatDate(created)}",
         end:"${formatDate(end)}",
-        lastChanged:"${formatDate(lastChanged)}",
       ){
-        error,
+        __typename,
       }
     }
     ''';
@@ -455,7 +484,7 @@ class ServiceDataBase implements Service {
     final String query = '''
     mutation{
       addEditor(userEmail:"$userEmail", procedureId:"$procedureId"){
-          error,
+          __typename,
         }
     }
     ''';
@@ -479,7 +508,7 @@ class ServiceDataBase implements Service {
     final String query = '''
     mutation{
       removeEditor(userId:"$userId", procedureId:"$procedureId"){
-          error,
+          __typename,
         }
     }
     ''';
@@ -597,7 +626,7 @@ class ServiceDataBase implements Service {
     final String query = '''
     mutation{
       deleteUser(userId:"$userId"){
-        error,
+        __typename,
       }
     }
     ''';
@@ -645,7 +674,7 @@ class ServiceDataBase implements Service {
     final String query = '''
     mutation{
       subscribeToProcedure(procedureId:$procedureId){
-        error,
+        __typename,
       }
     }
     ''';
