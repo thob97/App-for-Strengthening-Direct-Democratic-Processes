@@ -47,9 +47,9 @@ class VoteResultsView extends StatelessWidget {
 
   List<Widget> _getBodyWidgets() {
     return [
-      if (signaturesCollectedPhase1 != null ||
-          signaturesValidPhase1 != null ||
-          signaturesCountedPhase1 != null)
+      if ((signaturesCollectedPhase1 != null ||
+              signaturesCountedPhase1 != null) &&
+          signaturesValidPhase1 != null)
         _CustomVotesChart(
           title: 'Phase 1: Unterschriftensammlung',
           lostLabelVotes: 'Verloren',
@@ -59,9 +59,9 @@ class VoteResultsView extends StatelessWidget {
           countedVotes: signaturesCountedPhase1,
           validVotes: signaturesValidPhase1,
         ),
-      if (signaturesCollectedPhase2 != null ||
-          signaturesValidPhase2 != null ||
-          signaturesCountedPhase2 != null)
+      if ((signaturesCollectedPhase2 != null ||
+              signaturesCountedPhase2 != null) &&
+          signaturesValidPhase2 != null)
         _CustomVotesChart(
           title: 'Phase 2: Unterschriftensammlung',
           lostLabelVotes: 'Verloren',
@@ -71,8 +71,7 @@ class VoteResultsView extends StatelessWidget {
           countedVotes: signaturesCountedPhase2,
           validVotes: signaturesValidPhase2,
         ),
-      if (votesCountedPhase3 != null ||
-          votesValidPhase3 != null ||
+      if ((votesCountedPhase3 != null || votesValidPhase3 != null) &&
           votesYesPhase3 != null)
         _CustomVotesChart(
           title: 'Phase 3: Wahlergebnisse',
@@ -161,21 +160,21 @@ class _CustomVotesChart extends StatelessWidget {
     return LabeledPieChart(
       height: _chartHeight,
       votingList: [
-        if (lostVotes != null || lostVotes == 0)
+        if (lostVotes != null && lostVotes != 0)
           ChartModel(
             group: lostLabelVotes,
             label: lostLabelVotes,
-            num: lostVotes!,
+            num: lostVotes,
             color: ChartModel.negativeBlue,
           ),
-        if (invalidVotes != null || invalidVotes == 0)
+        if (invalidVotes != null && invalidVotes != 0)
           ChartModel(
             group: invalidLabelVotes,
             label: invalidLabelVotes,
-            num: invalidVotes!,
+            num: invalidVotes,
             color: ChartModel.negativeRed,
           ),
-        if (validVotes != null || validVotes != 0)
+        if (validVotes != null && validVotes != 0)
           ChartModel(
             group: validLabelVotes,
             label: validLabelVotes,
