@@ -3,18 +3,10 @@ import 'package:intl/intl.dart';
 import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure3.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
+import 'package:swp_direktdem_verf_app/widgets/new_procedure/custom_bottom_navigation_bar.dart';
+import 'package:swp_direktdem_verf_app/widgets/new_procedure/input_text.dart';
+import 'package:swp_direktdem_verf_app/widgets/new_procedure/input_text_heading.dart';
 import 'package:swp_direktdem_verf_app/widgets/new_procedure/page_progress_bar.dart';
-
-TextEditingController textEditingControllerBeschreibung =
-TextEditingController();
-TextEditingController textEditingControllerTitelDesVolksbegehrens =
-TextEditingController();
-TextEditingController textEditingControllerTitelStartdatum =
-TextEditingController();
-TextEditingController textEditingControllerKontakt = TextEditingController();
-TextEditingController textEditingControllerWebsite = TextEditingController();
-String selected = 'Themenbereiche';
-
 
 class NewProcedure1 extends StatefulWidget {
   const NewProcedure1({Key? key}) : super(key: key);
@@ -24,11 +16,22 @@ class NewProcedure1 extends StatefulWidget {
 }
 
 class _NewProcedureState1 extends State<NewProcedure1> {
+  final TextEditingController textEditingControllerDescription =
+      TextEditingController();
+  final TextEditingController textEditingControllerTitle =
+      TextEditingController();
+  final TextEditingController textEditingControllerTitelStartDate =
+      TextEditingController();
+  final TextEditingController textEditingControllerContact =
+      TextEditingController();
+  final TextEditingController textEditingControllerWebsite =
+      TextEditingController();
+  String selected = 'Wähle den Themenbereich';
   DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    final DateFormat formatter = DateFormat('dd.MM.yyyy');
 
     Future<void> _selectDate(BuildContext context) async {
       final DateTime? picked = await showDatePicker(
@@ -40,162 +43,52 @@ class _NewProcedureState1 extends State<NewProcedure1> {
       if (picked != null && picked != selectedDate) {
         setState(() {
           selectedDate = picked;
-          textEditingControllerTitelStartdatum.text = formatter.format(picked);
+          textEditingControllerTitelStartDate.text = formatter.format(picked);
         });
       }
     }
 
     return Scaffold(
       appBar: const CustomAppBar('Neues Verfahren erstellen'),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: BottomAppBar(
-          color: Colors.transparent,
-          elevation: 0.0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shadowColor: Colors.transparent,
-                  primary: const Color(0xFF194C76),
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MyProcedures(),
-                    ),
-                  );
-                },
-                child: const Text(
-                  'ZURÜCK',
-                  style: TextStyle(
-                    fontSize: 14,
-                    letterSpacing: 2.2,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const NewProcedure3(),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  shadowColor: Colors.transparent,
-                  primary: const Color(0xFF194C76),
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                child: const Text(
-                  'WEITER',
-                  style: TextStyle(
-                    fontSize: 14,
-                    letterSpacing: 2.2,
-                    color: Colors.white,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
+      bottomNavigationBar: const CustomBottomNavigationBar(
+        onBackWidget: MyProcedures(),
+        onContinueWidget: NewProcedure3(),
       ),
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Column(
           children: <Widget>[
             const PageProgressBar(currentPageNumber: 1),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-              child: Container(
-                padding: const EdgeInsets.only(right: 10, top: 10),
-                alignment: Alignment.topLeft,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: Colors.grey, width: 2.0),
-                  ),
-                ),
-                child: const Text(
-                  'Titel',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 30),
-                ),
-              ),
+            const InputTextHeading(
+              title: 'Titel',
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
-              child: TextField(
-                controller: textEditingControllerTitelDesVolksbegehrens,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  hintText: 'Titel des Volksbegehrens',
-                  //fillColor: Colors.white,
-                  //filled: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                  ),
-                ),
-              ),
+            InputText(
+              placeholder: 'Titel des Volksbegehrens',
+              controller: textEditingControllerTitle,
+              maxLines: 1,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
-              child: Container(
-                padding: const EdgeInsets.only(right: 10, top: 20),
-                alignment: Alignment.topLeft,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: Colors.grey, width: 2.0),
-                  ),
-                ),
-                child: const Text(
-                  'Beschreibung',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 30),
-                ),
-              ),
+            const InputTextHeading(
+              title: 'Beschreibung',
             ),
             Container(
               padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
               alignment: Alignment.topLeft,
               child: const Text(
-                'Was sollten Sie hier schreiben\n• Ziele\n• Motivation ',
+                'Was Sie hier schreiben sollten:\n• Ziele des Verfahrens\n• Motivation ',
                 textAlign: TextAlign.left,
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-              child: TextField(
-                maxLines: 7,
-                controller: textEditingControllerBeschreibung,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  hintText: 'Beschreibung',
-                  //fillColor: Colors.white,
-                  //filled: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                  ),
-                ),
-              ),
+            InputText(
+              placeholder: 'Beschreibung',
+              controller: textEditingControllerDescription,
+              maxLines: 7,
             ),
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: themenbereiche.length,
-              padding: const EdgeInsets.only(right: 10, bottom: 30),
+              itemCount: categories.length,
+              padding: const EdgeInsets.only(right: 10, bottom: 30, top: 30),
               itemBuilder: (context, i) {
                 return ExpansionTile(
                   key: GlobalKey(),
@@ -209,146 +102,80 @@ class _NewProcedureState1 extends State<NewProcedure1> {
                   ),
                   children: <Widget>[
                     Column(
-                      children: _buildExpandableContent(themenbereiche[i], i),
+                      children: _buildExpandableContent(categories[i], i),
                     ),
                   ],
                 );
               },
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 10,
-                right: 10,
-                top: 20,
-                bottom: 15,
-              ),
-              child: TextField(
-                controller: textEditingControllerTitelStartdatum,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  hintText: 'Startdatum',
-                  //fillColor: Colors.white,
-                  //filled: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                  ),
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.calendar_today_outlined),
-                    onPressed: () {
-                      _selectDate(context);
-                    },
-                  ),
-                ),
+            InputText(
+              placeholder: 'Startdatum',
+              controller: textEditingControllerTitelStartDate,
+              maxLines: 1,
+              suffixIcon: IconButton(
+                icon: const Icon(Icons.calendar_today_outlined),
+                onPressed: () {
+                  _selectDate(context);
+                },
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
-              child: Divider(thickness: 3, color: Colors.purple),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
-              child: Container(
-                padding: const EdgeInsets.only(right: 10, top: 20),
-                alignment: Alignment.topLeft,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: Colors.grey, width: 2.0),
-                  ),
-                ),
-                child: const Text(
-                  'Kontakt',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 30),
-                ),
+              padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+              child: Divider(
+                thickness: 3,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-              child: TextField(
-                controller: textEditingControllerKontakt,
-                maxLines: 7,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  hintText: 'Kontakt',
-                  //fillColor: Colors.white,
-                  //filled: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                  ),
-                ),
-              ),
+            const InputTextHeading(
+              title: 'Kontakt',
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
-              child: Container(
-                padding: const EdgeInsets.only(right: 10, top: 20),
-                alignment: Alignment.topLeft,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: Colors.grey, width: 2.0),
-                  ),
-                ),
-                child: const Text(
-                  'Website',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 30),
-                ),
-              ),
+            InputText(
+              placeholder: 'Kontakt',
+              controller: textEditingControllerContact,
+              maxLines: 7,
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 10,
-                right: 10,
-                top: 20,
-                bottom: 15,
-              ),
-              child: TextField(
-                controller: textEditingControllerWebsite,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  hintText: 'Website des Volksbegehrens',
-                  //fillColor: Colors.white,
-                  //filled: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                  ),
-                ),
-              ),
+            const InputTextHeading(
+              title: 'Webseite',
             ),
+            InputText(
+              placeholder: 'URL der Webseite des Volksbegehrens',
+              controller: textEditingControllerWebsite,
+              maxLines: 1,
+            ),
+            const SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
     );
   }
-  List<Widget> _buildExpandableContent(Themenbereich themenbereich, index) {
-    return List.generate(themenbereich.contents.length, (index) {
+
+  List<Widget> _buildExpandableContent(Category category, index) {
+    return List.generate(category.contents.length, (index) {
       return ListTile(
         title: Text(
-          themenbereich.contents[index],
+          category.contents[index],
           style: const TextStyle(fontSize: 18.0),
         ),
         onTap: () {
           setState(() {
-            selected = themenbereich.contents.elementAt(index);
+            selected = category.contents.elementAt(index);
           });
         },
       );
     });
   }
-
 }
 
-
-class Themenbereich {
-  Themenbereich(this.title, this.contents, this.icon);
+class Category {
+  Category(this.title, this.contents);
 
   final String title;
   List<String> contents = [];
-  final IconData icon;
 }
 
-List<Themenbereich> themenbereiche = [
-  Themenbereich(
+List<Category> categories = [
+  Category(
     'Themenbereiche',
     [
       'Bildung und Kultur',
@@ -359,6 +186,5 @@ List<Themenbereich> themenbereiche = [
       'Verkehr',
       'Sonstiges',
     ],
-    Icons.close,
   ),
 ];
