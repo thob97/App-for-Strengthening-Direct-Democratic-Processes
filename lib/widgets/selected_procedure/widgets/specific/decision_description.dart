@@ -10,23 +10,19 @@ class DecisionDescription extends StatelessWidget {
   final String descriptionContent;
 
   ///Style
-  static const double _horPad = 32;
   static const double _distanceBetweenTitleAndDescription = 8;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: _horPad),
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _myTitle(context),
-            const SizedBox(height: _distanceBetweenTitleAndDescription),
-            _myDescription(context),
-          ],
-        ),
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _myTitle(context),
+          const SizedBox(height: _distanceBetweenTitleAndDescription),
+          _myDescription(context),
+        ],
       ),
     );
   }

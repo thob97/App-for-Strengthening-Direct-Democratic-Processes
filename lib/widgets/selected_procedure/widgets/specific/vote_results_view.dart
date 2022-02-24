@@ -29,6 +29,9 @@ class VoteResultsView extends StatelessWidget {
   final int? votesValidPhase3; //counted
   final int? votesYesPhase3; //yes
 
+  ///style
+  static const double _horPad = 32;
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> _bodyWidgets = _getBodyWidgets();
@@ -37,6 +40,7 @@ class VoteResultsView extends StatelessWidget {
         : CustomPageView(
             pageViewHeight: 300,
             widgetList: _bodyWidgets,
+            horChildPad: _horPad,
           );
   }
 
