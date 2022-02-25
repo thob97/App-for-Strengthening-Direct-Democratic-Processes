@@ -36,22 +36,32 @@ class _TwoButtInRowState extends State<TwoButtInRow> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        ElevatedButton(
-          onPressed: functionOne,
-          style: Theme.of(context).elevatedButtonTheme.style,
-          child: Text(
-            buttonNameOne,
-            style: Theme.of(context).textTheme.bodyText2,
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5.0, right: 2.5),
+            child: ElevatedButton(
+              onPressed: functionOne,
+              style: Theme.of(context).elevatedButtonTheme.style,
+              child: Text(
+                buttonNameOne,
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
         ),
-        ElevatedButton(
-          onPressed: functionTwo,
-          style: Theme.of(context).elevatedButtonTheme.style,
-          child: Text(
-            buttonNameTwo,
-            style: Theme.of(context).textTheme.bodyText2,
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 2.5, right: 5.0),
+            child: ElevatedButton(
+              onPressed: functionTwo,
+              style: Theme.of(context).elevatedButtonTheme.style,
+              child: Text(
+                buttonNameTwo,
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
-        )
+        ),
       ],
     );
   }
