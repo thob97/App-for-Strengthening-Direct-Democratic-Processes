@@ -34,15 +34,8 @@ class _MyProceduresState extends State<MyProcedures> {
   }
 
   Future<List<SimpleProcedure>?> _getDataBaseData() async {
-    final String? ownUserId =
-        await Provider.of<ServiceDataBase>(context, listen: false).getOwnUser();
-    //for error handling
-    if (!mounted) return Future.delayed(Duration.zero, () => null);
-    //if not logged in, return null
-    return ownUserId == null
-        ? Future.delayed(Duration.zero, () => null)
-        : Provider.of<ServiceDataBase>(context, listen: false)
-            .getProceduresByEditor(ownUserId);
+    return Provider.of<ServiceDataBase>(context, listen: false)
+        .getOwnEditorProcedures();
   }
 
   Future<List<ProcedureOverview>?> _getProcedures() async {

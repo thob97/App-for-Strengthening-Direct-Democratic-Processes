@@ -46,19 +46,19 @@ Map<String, dynamic> _$SimpleProcedureToJson(SimpleProcedure instance) =>
     };
 
 const _$ProcedureSuccessEnumMap = {
-  ProcedureSuccess.running: 'A_0',
-  ProcedureSuccess.success: 'A_1',
-  ProcedureSuccess.noSuccess: 'A_2',
-  ProcedureSuccess.partialSuccess: 'A_3',
+  ProcedureSuccess.running: 0,
+  ProcedureSuccess.success: 1,
+  ProcedureSuccess.noSuccess: 2,
+  ProcedureSuccess.partialSuccess: 3,
 };
 
 const _$ProcedureCategoryEnumMap = {
-  ProcedureCategory.unknown: 'A_0',
-  ProcedureCategory.educationAndCulture: 'A_1',
-  ProcedureCategory.demokratie_stateorganisation_domesticPolitics: 'A_2',
-  ProcedureCategory.economy: 'A_3',
-  ProcedureCategory.social: 'A_4',
-  ProcedureCategory.health_Enviromentprotection_Consumerprotection: 'A_5',
-  ProcedureCategory.traffic: 'A_6',
-  ProcedureCategory.miscellaneous: 'A_7',
+  ProcedureCategory.unknown: 0,
+  ProcedureCategory.educationAndCulture: 1,
+  ProcedureCategory.demokratie_stateorganisation_domesticPolitics: 2,
+  ProcedureCategory.economy: 3,
+  ProcedureCategory.social: 4,
+  ProcedureCategory.health_Enviromentprotection_Consumerprotection: 5,
+  ProcedureCategory.traffic: 6,
+  ProcedureCategory.miscellaneous: 7,
 };

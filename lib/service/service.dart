@@ -11,16 +11,16 @@ abstract class Service {
   Future<DetailedProcedure?> getProcedureByID(String procedureId);
 
   //TODO not yet implemented in db: title_Image
-  Future<List<SimpleProcedure>?> getProceduresByEditor(String userId);
+  Future<List<SimpleProcedure>?> getOwnEditorProcedures();
 
   //TODO not yet implemented in db: title_Image
-  Future<List<SimpleProcedure>?> getProceduresBySubscriber(String userId);
+  Future<List<SimpleProcedure>?> getSubscribedProcedures();
 
   ///Edit procedures
   Future<String?> createProcedure({
     required String title,
-    required String titleImage,
-    String? subtitle,
+    //required String titleImage,
+    required String subtitle,
     String? description,
     String? process,
     ProcedureCategory? category,
@@ -34,7 +34,6 @@ abstract class Service {
     String? organisationId,
     DateTime? created,
     DateTime? end,
-    required DateTime lastChanged,
   });
 
   Future<bool> deleteProcedure({required String procedureId});
@@ -42,7 +41,7 @@ abstract class Service {
   Future<bool> editProcedure({
     required String procedureId,
     String? title,
-    String? titleImage,
+    //String? titleImage,
     String? subtitle,
     String? description,
     String? process,
@@ -58,7 +57,6 @@ abstract class Service {
     String? organisationId,
     DateTime? created,
     DateTime? end,
-    DateTime? lastChanged,
   });
 
   //TODO not yet implemented in db

@@ -2,12 +2,12 @@ import 'package:json_annotation/json_annotation.dart';
 
 //Order or enum is important, as index is used
 enum ProcedureSuccess {
-  @JsonValue('A_0')
+  @JsonValue(0)
   running,
-  @JsonValue('A_1')
+  @JsonValue(1)
   success,
-  @JsonValue('A_2')
+  @JsonValue(2)
   noSuccess,
-  @JsonValue('A_3')
+  @JsonValue(3)
   partialSuccess,
 }
