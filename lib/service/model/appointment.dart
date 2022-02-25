@@ -9,8 +9,8 @@ class Appointment {
     required this.id,
     required this.title,
     required this.description,
-    required this.begin,
-    required this.end,
+    this.begin,
+    this.end,
     this.address,
   });
 
@@ -24,9 +24,9 @@ class Appointment {
   @JsonKey(name: 'description')
   final String description;
   @JsonKey(name: 'begin')
-  final DateTime begin;
+  final DateTime? begin;
   @JsonKey(name: 'end')
-  final DateTime end;
+  final DateTime? end;
   @JsonKey(name: 'address')
   final Address? address;
 
