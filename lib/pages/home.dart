@@ -55,6 +55,7 @@ class _HomeState extends State<Home> {
           title: _sP.title,
           img: _imgFile,
           subtitle: _sP.subtitle,
+          success: _sP.success,
           phaseState: _sP.lastCompletedPhase,
           transitionItems: TransitionItems(
             //TODO db: once error msg missing db gets resolved team
@@ -63,6 +64,7 @@ class _HomeState extends State<Home> {
             isSubscribed: false,
             //TODO db: once error msg missing db gets resolved team
             showSubscribe: _isLoggedIn,
+            category: _sP.category,
             description: _sP.description,
             process: _sP.process,
             createDate: _sP.createDate,

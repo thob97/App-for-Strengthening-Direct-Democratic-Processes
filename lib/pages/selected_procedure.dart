@@ -5,9 +5,12 @@ import 'package:provider/provider.dart';
 import 'package:swp_direktdem_verf_app/methods/formate_date_to_de_layout.dart';
 import 'package:swp_direktdem_verf_app/pages/map_page.dart';
 import 'package:swp_direktdem_verf_app/service/database_substitute.dart';
+import 'package:swp_direktdem_verf_app/service/model/procedure/categories.dart';
 import 'package:swp_direktdem_verf_app/service/model/procedure/detailed_procedure.dart';
+import 'package:swp_direktdem_verf_app/service/model/procedure/success.dart';
 import 'package:swp_direktdem_verf_app/service/service_database.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_future_builder.dart';
+import 'package:swp_direktdem_verf_app/widgets/home/foldable_filter_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/elementary/my_expansion_panel_list.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/data_list_view.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/specific/phase_view.dart';
@@ -31,6 +34,7 @@ class TransitionItems {
     required this.createDate,
     required this.endDate,
     required this.organisationName,
+    required this.category,
   });
 
   final bool showEdit;
@@ -43,6 +47,7 @@ class TransitionItems {
   final DateTime? createDate;
   final DateTime? endDate;
   final String? organisationName;
+  final ProcedureCategory category;
 }
 
 class SelectedProcedure extends StatefulWidget {
@@ -61,6 +66,8 @@ class SelectedProcedure extends StatefulWidget {
     required this.createDate,
     required this.endDate,
     required this.organisationName,
+    required this.category,
+    required this.success,
   });
 
   final String id;
@@ -77,6 +84,8 @@ class SelectedProcedure extends StatefulWidget {
   final DateTime? createDate;
   final DateTime? endDate;
   final String? organisationName;
+  final ProcedureCategory category;
+  final ProcedureSuccess success;
 
   @override
   State<SelectedProcedure> createState() => _SelectedProcedureState();
@@ -129,6 +138,7 @@ class _SelectedProcedureState extends State<SelectedProcedure> {
     );
   }
 
+  //Categories
   List<List<String>> getCategories() {
     final List<String> categories = [];
     final List<String> values = [];
@@ -143,19 +153,44 @@ class _SelectedProcedureState extends State<SelectedProcedure> {
                 : widget.creatorLastName,
       );
     }
+    if (widget.category != ProcedureCategory.unknown) {
+      categories.add('Kategorie');
+      values.add(_procedureCategoryToString(widget.category));
+    }
     if (widget.createDate != null) {
-      categories.add('erstellt am');
+      categories.add('Erstellt am');
       values.add(formatDateToDELayout(widget.createDate)!);
     }
     if (widget.endDate != null) {
-      categories.add('beendet am');
+      categories.add('Beendet am');
       values.add(formatDateToDELayout(widget.endDate)!);
     }
+
+    categories.add('Status');
+    values.add(_procedureSuccessToString(widget.success));
+
     if (widget.organisationName != null) {
-      categories.add('organisation');
+      categories.add('Organisation');
       values.add(widget.organisationName!);
     }
     return [categories, values];
+  }
+
+  String _procedureCategoryToString(ProcedureCategory category) {
+    return FilterOptions.filterToOption(category).title;
+  }
+
+  String _procedureSuccessToString(ProcedureSuccess success) {
+    switch (success) {
+      case ProcedureSuccess.success:
+        return 'Erfolgreich';
+      case ProcedureSuccess.noSuccess:
+        return 'Fehlgeschlagen';
+      case ProcedureSuccess.partialSuccess:
+        return 'Teilweise erfolgreich';
+      case ProcedureSuccess.running:
+        return 'Fortlaufend';
+    }
   }
 
   ///ExpansionPanel

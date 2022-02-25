@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/pages/selected_procedure.dart';
+import 'package:swp_direktdem_verf_app/service/model/procedure/success.dart';
 
 class OverviewProcedureView extends StatelessWidget {
   const OverviewProcedureView({required this.items});
@@ -26,6 +27,7 @@ class OverviewProcedureView extends StatelessWidget {
           subtitle: item.subtitle,
           img: item.img,
           state: item.phaseState,
+          success: item.success,
           transitionItems: item.transitionItems,
         );
       },
@@ -42,6 +44,7 @@ class ProcedureOverview {
     required this.img,
     required this.subtitle,
     required this.phaseState,
+    required this.success,
     required this.transitionItems,
   });
 
@@ -50,6 +53,7 @@ class ProcedureOverview {
   final File img;
   final String subtitle;
   final int phaseState;
+  final ProcedureSuccess success;
   final TransitionItems transitionItems;
 }
 
@@ -60,6 +64,7 @@ class _OverviewProcedureTile extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.state,
+    required this.success, //TODO show / use this value
     required this.transitionItems,
   });
 
@@ -68,6 +73,7 @@ class _OverviewProcedureTile extends StatelessWidget {
   final String title;
   final String subtitle;
   final int state;
+  final ProcedureSuccess success;
   final TransitionItems transitionItems;
 
   ///Style
@@ -111,6 +117,8 @@ class _OverviewProcedureTile extends StatelessWidget {
           title: title,
           id: heroId,
           subtitle: subtitle,
+          success: success,
+          category: transitionItems.category,
           description: transitionItems.description,
           process: transitionItems.process,
           createDate: transitionItems.createDate,
