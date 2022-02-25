@@ -14,7 +14,7 @@ class PopupPOIMarker extends Marker {
     Offset? rotateOrigin,
     AlignmentGeometry? rotateAlignment,
     AnchorPos? anchorPos,
-    required this.location,
+    required this.pointOfInterest,
   }) : super(
           point: point,
           builder: builder,
@@ -27,5 +27,5 @@ class PopupPOIMarker extends Marker {
           anchorPos: anchorPos,
         );
 
-  final PointOfInterest location;
+  final PointOfInterest pointOfInterest;
 }

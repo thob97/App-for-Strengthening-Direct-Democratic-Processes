@@ -10,20 +10,20 @@ import 'package:tuple/tuple.dart';
 class MapView extends StatelessWidget {
   const MapView({required this.pointsOfInterestList});
 
-  final List<Tuple2<LatLng, PointOfInterest>> pointsOfInterestList;
+  final List<Tuple2<LatLng, PointOfInterest>>? pointsOfInterestList;
 
   PopupController get popupController => PopupController();
 
   @override
   Widget build(BuildContext context) {
-    final List<Marker> markers = pointsOfInterestList
+    final List<Tuple2<LatLng, PointOfInterest>> pointsOfInterestListValue =
+        pointsOfInterestList ?? <Tuple2<LatLng, PointOfInterest>>[];
+    final List<Marker> markers = pointsOfInterestListValue
         .map(
           (entry) => PopupPOIMarker(
             point: entry.item1,
             builder: (context) => entry.item2.icon!,
-            location: PointOfInterest(
-              location: entry.item2.location,
-            ),
+            pointOfInterest: entry.item2,
           ),
         )
         .toList();
@@ -54,7 +54,7 @@ class MapView extends StatelessWidget {
             popupBuilder: (_, Marker marker) {
               if (marker is PopupPOIMarker) {
                 return POIMarkerPopup(
-                  location: marker.location,
+                  pointOfInterest: marker.pointOfInterest,
                 );
               }
               return Card(
