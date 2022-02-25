@@ -203,7 +203,7 @@ class _SelectedProcedureState extends State<SelectedProcedure> {
           mainAxisSize: MainAxisSize.min,
           children: [
             _getExpansionPanelList(result),
-            _getMapTile(),
+            _getMapTile(result),
           ],
         );
       },
@@ -309,7 +309,9 @@ class _SelectedProcedureState extends State<SelectedProcedure> {
   }
 
   ///Map
-  MapTile _getMapTile() {
-    return const MapTile();
+  MapTile _getMapTile(DetailedProcedure procedure) {
+    return MapTile(
+      procedure: procedure,
+    );
   }
 }

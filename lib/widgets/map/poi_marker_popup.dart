@@ -32,7 +32,7 @@ class POIMarkerPopup extends StatelessWidget {
             ),
             Text(
               // has to remain
-              '\nBeschreibung:\n  ${pointOfInterest.appointment.description}\n\nZeitraum:\n  von ${formatter.format(pointOfInterest.appointment.begin)} Uhr\n  bis ${formatter.format(pointOfInterest.appointment.end)} Uhr\n\nAddresse:\n  ${pointOfInterest.address.street} ${pointOfInterest.address.house_number}\n  ${pointOfInterest.address.postcode} ${pointOfInterest.address.city}',
+              '\nBeschreibung:\n  ${pointOfInterest.appointment.description}\n\nZeitraum:\n  von ${formatter.format(pointOfInterest.appointment.begin)} Uhr\n  bis ${formatter.format(pointOfInterest.appointment.end)} Uhr\n\nAddresse:\n  ${pointOfInterest.address.street} ${pointOfInterest.address.houseNumber}\n  ${pointOfInterest.address.postcode} ${pointOfInterest.address.city}',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface,
               ),
