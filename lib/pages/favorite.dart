@@ -58,7 +58,7 @@ class _FavoritePageState extends State<FavoritePage> {
           id: _sP.id,
           title: _sP.title,
           img: _imgFile,
-          subtitle: _sP.subtitle,
+          subtitle: _sP.description,
           success: _sP.success,
           phaseState: _sP.lastCompletedPhase,
           transitionItems: TransitionItems(
