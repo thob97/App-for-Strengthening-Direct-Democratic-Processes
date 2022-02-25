@@ -1,11 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:swp_direktdem_verf_app/service/model/procedure/categories.dart';
 
 class FoldableFilterBar extends StatefulWidget {
-  const FoldableFilterBar({required this.onDirection, required this.onFilter});
+  const FoldableFilterBar({required this.onFilter});
 
-  final Function(Direction direction) onDirection;
   final Function(FilterOptions option) onFilter;
 
   @override
@@ -13,7 +13,7 @@ class FoldableFilterBar extends StatefulWidget {
 }
 
 class _FoldableFilterBarState extends State<FoldableFilterBar> {
-  String _filterText = FilterOptions.filterToOption(Filter.name).title;
+  String _filterText = FilterOptions.filterToOption(null).title;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,6 @@ class _FoldableFilterBarState extends State<FoldableFilterBar> {
       title: _customText(_filterText),
       iconTheme: _customIconTheme(),
       actions: [
-        _AnimatedArrowIcon(onTap: widget.onDirection),
         _CustomDropdownButton(onChanged: _onFilter),
       ],
     );
@@ -132,37 +131,48 @@ class _AnimatedArrowIconState extends State<_AnimatedArrowIcon>
   }
 }
 
-///Add enum entry here for more Filters
-enum Filter {
-  startDate,
-  endDate,
-  name,
-  phaseState,
-}
-
+/// Filters
 class FilterOptions {
   FilterOptions({required this.title, required this.filter});
 
-  factory FilterOptions.filterToOption(Filter filter) {
+  factory FilterOptions.filterToOption(ProcedureCategory? filter) {
     switch (filter) {
-      case Filter.startDate:
-        return FilterOptions(title: 'Start Datum', filter: filter);
-      case Filter.name:
-        return FilterOptions(title: 'Namen', filter: filter);
-      case Filter.phaseState:
-        return FilterOptions(title: 'Stufe', filter: filter);
-      case Filter.endDate:
-        return FilterOptions(title: 'End Datum', filter: filter);
+      case null:
+        return FilterOptions(title: 'Alle', filter: filter);
+      case ProcedureCategory.unknown:
+        return FilterOptions(title: 'Unbekannt', filter: filter);
+      case ProcedureCategory.demokratie_stateorganisation_domesticPolitics:
+        return FilterOptions(
+          title: 'Demokratie, Staatsorganisation und Innenpolitik',
+          filter: filter,
+        );
+      case ProcedureCategory.economy:
+        return FilterOptions(title: 'Wirtschaft', filter: filter);
+      case ProcedureCategory.educationAndCulture:
+        return FilterOptions(title: 'Bildung und Kultur', filter: filter);
+      case ProcedureCategory.health_Enviromentprotection_Consumerprotection:
+        return FilterOptions(
+          title: 'Gesundheit, Umwelt- und Verbraucherschutz',
+          filter: filter,
+        );
+      case ProcedureCategory.miscellaneous:
+        return FilterOptions(title: 'Sonstiges', filter: filter);
+      case ProcedureCategory.social:
+        return FilterOptions(title: 'Soziales', filter: filter);
+      case ProcedureCategory.traffic:
+        return FilterOptions(title: 'Verkehr', filter: filter);
     }
   }
 
   final String title;
-  final Filter filter;
+  final ProcedureCategory? filter;
 
   static List<FilterOptions> getAllFilters() {
-    return Filter.values.map<FilterOptions>((Filter filter) {
-      return FilterOptions.filterToOption(filter);
-    }).toList();
+    return [FilterOptions.filterToOption(null)].followedBy(
+      ProcedureCategory.values.map<FilterOptions>((ProcedureCategory? filter) {
+        return FilterOptions.filterToOption(filter);
+      }),
+    ).toList();
   }
 }
 
@@ -177,6 +187,7 @@ class _CustomDropdownButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      color: Theme.of(context).colorScheme.background,
       tooltip: _tooltip,
       icon: const Icon(Icons.menu),
       itemBuilder: (context) {

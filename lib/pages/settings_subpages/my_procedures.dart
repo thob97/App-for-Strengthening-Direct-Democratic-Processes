@@ -18,7 +18,7 @@ class MyProcedures extends StatefulWidget {
   const MyProcedures();
 
   ///Style
-  static const _placeholderMsg = 'Es wurden noch keine Verfahren erstellt';
+  static const _noProceduresMsg = 'Es wurden noch keine Verfahren erstellt';
 
   @override
   State<MyProcedures> createState() => _MyProceduresState();
@@ -26,6 +26,9 @@ class MyProcedures extends StatefulWidget {
 
 class _MyProceduresState extends State<MyProcedures> {
   late Future<List<ProcedureOverview>?> _procedures;
+
+  //for filter
+  late final Future<List<ProcedureOverview>?> _allProcedures = _procedures;
 
   @override
   void initState() {
@@ -58,7 +61,8 @@ class _MyProceduresState extends State<MyProcedures> {
           id: _sP.id,
           title: _sP.title,
           img: _imgFile,
-          subtitle: _sP.subtitle,
+          subtitle: _sP.description,
+          success: _sP.success,
           phaseState: _sP.lastCompletedPhase,
           transitionItems: TransitionItems(
             //TODO db: once error msg missing db gets resolved team
@@ -67,6 +71,7 @@ class _MyProceduresState extends State<MyProcedures> {
             isSubscribed: false,
             //TODO db: once error msg missing db gets resolved team
             showSubscribe: _isLoggedIn,
+            category: _sP.category,
             description: _sP.description,
             process: _sP.process,
             createDate: _sP.createDate,
@@ -89,12 +94,7 @@ class _MyProceduresState extends State<MyProcedures> {
           const _TransitionFloatingActionButton(openChild: NewProcedurePage()),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            FoldableFilterBar(
-              onDirection: onDirection,
-              onFilter: onFilter,
-            )
-          ];
+          return <Widget>[FoldableFilterBar(onFilter: onFilter)];
         },
         body: RefreshIndicator(
           onRefresh: _onRefresh,
@@ -107,11 +107,18 @@ class _MyProceduresState extends State<MyProcedures> {
   Widget body(BuildContext context) {
     return CustomFutureBuilder(
       futureData: _procedures,
-      customErrorMsg: MyProcedures._placeholderMsg,
       builder: (result) {
         result as List<ProcedureOverview>;
-        return OverviewProcedureView(items: result);
+        return result.isEmpty
+            ? _noSubscribedProceduresPlaceholder()
+            : OverviewProcedureView(items: result);
       },
+    );
+  }
+
+  Widget _noSubscribedProceduresPlaceholder() {
+    return const Center(
+      child: Text(MyProcedures._noProceduresMsg),
     );
   }
 
@@ -126,11 +133,25 @@ class _MyProceduresState extends State<MyProcedures> {
   //TODO
   void onSearch(String query) {}
 
-  //TODO
-  void onDirection(Direction direction) {}
-
-  //TODO
-  void onFilter(FilterOptions option) {}
+  void onFilter(FilterOptions option) {
+    if (option.filter == null) {
+      setState(() {
+        _procedures = _allProcedures;
+      });
+    } else {
+      setState(() {
+        _procedures = _allProcedures.then(
+          (value) => value
+              ?.where(
+                (element) =>
+                    element.transitionItems.category.index ==
+                    option.filter!.index,
+              )
+              .toList(),
+        );
+      });
+    }
+  }
 }
 
 class _TransitionFloatingActionButton extends StatelessWidget {

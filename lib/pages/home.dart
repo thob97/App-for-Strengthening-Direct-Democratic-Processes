@@ -23,6 +23,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   late Future<List<ProcedureOverview>?> _procedures;
 
+  //for filter
+  late final Future<List<ProcedureOverview>?> _allProcedures = _procedures;
+
   @override
   void initState() {
     super.initState();
@@ -54,7 +57,8 @@ class _HomeState extends State<Home> {
           id: _sP.id,
           title: _sP.title,
           img: _imgFile,
-          subtitle: _sP.subtitle,
+          subtitle: _sP.description,
+          success: _sP.success,
           phaseState: _sP.lastCompletedPhase,
           transitionItems: TransitionItems(
             //TODO db: once error msg missing db gets resolved team
@@ -63,6 +67,7 @@ class _HomeState extends State<Home> {
             isSubscribed: false,
             //TODO db: once error msg missing db gets resolved team
             showSubscribe: _isLoggedIn,
+            category: _sP.category,
             description: _sP.description,
             process: _sP.process,
             createDate: _sP.createDate,
@@ -84,12 +89,7 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: const AnimatedNavBar(selectedIndex: 0),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            FoldableFilterBar(
-              onDirection: onDirection,
-              onFilter: onFilter,
-            )
-          ];
+          return <Widget>[FoldableFilterBar(onFilter: onFilter)];
         },
         body: RefreshIndicator(
           onRefresh: _onRefresh,
@@ -121,9 +121,23 @@ class _HomeState extends State<Home> {
   //TODO
   void onSearch(String query) {}
 
-  //TODO
-  void onDirection(Direction direction) {}
-
-  //TODO
-  void onFilter(FilterOptions option) {}
+  void onFilter(FilterOptions option) {
+    if (option.filter == null) {
+      setState(() {
+        _procedures = _allProcedures;
+      });
+    } else {
+      setState(() {
+        _procedures = _allProcedures.then(
+          (value) => value
+              ?.where(
+                (element) =>
+                    element.transitionItems.category.index ==
+                    option.filter!.index,
+              )
+              .toList(),
+        );
+      });
+    }
+  }
 }

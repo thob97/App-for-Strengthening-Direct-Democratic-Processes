@@ -17,7 +17,7 @@ class FavoritePage extends StatefulWidget {
   const FavoritePage();
 
   ///Style
-  static const _placeholderMsg = 'Es wurden noch keine Verfahren abonniert';
+  static const _noProceduresMsg = 'Es wurden noch keine Verfahren abonniert';
   static const _notLoggedInPlaceholderMsg = 'Dafür musst du angemeldet sein';
 
   @override
@@ -26,6 +26,9 @@ class FavoritePage extends StatefulWidget {
 
 class _FavoritePageState extends State<FavoritePage> {
   late Future<List<ProcedureOverview>?> _procedures;
+
+  //for filter
+  late final Future<List<ProcedureOverview>?> _allProcedures = _procedures;
 
   @override
   void initState() {
@@ -58,7 +61,8 @@ class _FavoritePageState extends State<FavoritePage> {
           id: _sP.id,
           title: _sP.title,
           img: _imgFile,
-          subtitle: _sP.subtitle,
+          subtitle: _sP.description,
+          success: _sP.success,
           phaseState: _sP.lastCompletedPhase,
           transitionItems: TransitionItems(
             //TODO db: once error msg missing db gets resolved team
@@ -67,6 +71,7 @@ class _FavoritePageState extends State<FavoritePage> {
             isSubscribed: false,
             //TODO db: once error msg missing db gets resolved team
             showSubscribe: _isLoggedIn,
+            category: _sP.category,
             description: _sP.description,
             process: _sP.process,
             createDate: _sP.createDate,
@@ -88,12 +93,7 @@ class _FavoritePageState extends State<FavoritePage> {
       bottomNavigationBar: const AnimatedNavBar(selectedIndex: 2),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            FoldableFilterBar(
-              onDirection: onDirection,
-              onFilter: onFilter,
-            )
-          ];
+          return <Widget>[FoldableFilterBar(onFilter: onFilter)];
         },
         body: !Provider.of<ServiceDataBase>(context).userIsLoggedIn()
             ? _notLoggedInPlaceholder()
@@ -111,13 +111,20 @@ class _FavoritePageState extends State<FavoritePage> {
     );
   }
 
+  Widget _noSubscribedProceduresPlaceholder() {
+    return const Center(
+      child: Text(FavoritePage._noProceduresMsg),
+    );
+  }
+
   Widget body(BuildContext context) {
     return CustomFutureBuilder(
       futureData: _procedures,
-      customErrorMsg: FavoritePage._placeholderMsg,
       builder: (result) {
         result as List<ProcedureOverview>;
-        return OverviewProcedureView(items: result);
+        return result.isEmpty
+            ? _noSubscribedProceduresPlaceholder()
+            : OverviewProcedureView(items: result);
       },
     );
   }
@@ -133,9 +140,23 @@ class _FavoritePageState extends State<FavoritePage> {
   //TODO
   void onSearch(String query) {}
 
-  //TODO
-  void onDirection(Direction direction) {}
-
-  //TODO
-  void onFilter(FilterOptions option) {}
+  void onFilter(FilterOptions option) {
+    if (option.filter == null) {
+      setState(() {
+        _procedures = _allProcedures;
+      });
+    } else {
+      setState(() {
+        _procedures = _allProcedures.then(
+          (value) => value
+              ?.where(
+                (element) =>
+                    element.transitionItems.category.index ==
+                    option.filter!.index,
+              )
+              .toList(),
+        );
+      });
+    }
+  }
 }
