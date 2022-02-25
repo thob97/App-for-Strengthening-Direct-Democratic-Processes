@@ -93,12 +93,7 @@ class _FavoritePageState extends State<FavoritePage> {
       bottomNavigationBar: const AnimatedNavBar(selectedIndex: 2),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            FoldableFilterBar(
-              onDirection: onDirection,
-              onFilter: onFilter,
-            )
-          ];
+          return <Widget>[FoldableFilterBar(onFilter: onFilter)];
         },
         body: !Provider.of<ServiceDataBase>(context).userIsLoggedIn()
             ? _notLoggedInPlaceholder()
@@ -137,9 +132,6 @@ class _FavoritePageState extends State<FavoritePage> {
 
   //TODO
   void onSearch(String query) {}
-
-  //TODO
-  void onDirection(Direction direction) {}
 
   void onFilter(FilterOptions option) {
     if (option.filter == null) {

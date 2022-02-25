@@ -94,12 +94,7 @@ class _MyProceduresState extends State<MyProcedures> {
           const _TransitionFloatingActionButton(openChild: NewProcedurePage()),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            FoldableFilterBar(
-              onDirection: onDirection,
-              onFilter: onFilter,
-            )
-          ];
+          return <Widget>[FoldableFilterBar(onFilter: onFilter)];
         },
         body: RefreshIndicator(
           onRefresh: _onRefresh,
@@ -130,9 +125,6 @@ class _MyProceduresState extends State<MyProcedures> {
 
   //TODO
   void onSearch(String query) {}
-
-  //TODO
-  void onDirection(Direction direction) {}
 
   void onFilter(FilterOptions option) {
     if (option.filter == null) {

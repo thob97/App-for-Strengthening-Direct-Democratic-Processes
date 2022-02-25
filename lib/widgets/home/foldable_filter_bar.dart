@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/service/model/procedure/categories.dart';
 
 class FoldableFilterBar extends StatefulWidget {
-  const FoldableFilterBar({required this.onDirection, required this.onFilter});
+  const FoldableFilterBar({required this.onFilter});
 
-  final Function(Direction direction) onDirection;
   final Function(FilterOptions option) onFilter;
 
   @override
@@ -24,7 +23,6 @@ class _FoldableFilterBarState extends State<FoldableFilterBar> {
       title: _customText(_filterText),
       iconTheme: _customIconTheme(),
       actions: [
-        _AnimatedArrowIcon(onTap: widget.onDirection),
         _CustomDropdownButton(onChanged: _onFilter),
       ],
     );

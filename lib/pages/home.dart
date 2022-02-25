@@ -89,12 +89,7 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: const AnimatedNavBar(selectedIndex: 0),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            FoldableFilterBar(
-              onDirection: onDirection,
-              onFilter: onFilter,
-            )
-          ];
+          return <Widget>[FoldableFilterBar(onFilter: onFilter)];
         },
         body: RefreshIndicator(
           onRefresh: _onRefresh,
@@ -125,9 +120,6 @@ class _HomeState extends State<Home> {
 
   //TODO
   void onSearch(String query) {}
-
-  //TODO
-  void onDirection(Direction direction) {}
 
   void onFilter(FilterOptions option) {
     if (option.filter == null) {
