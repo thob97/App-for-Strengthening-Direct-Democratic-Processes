@@ -23,6 +23,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   late Future<List<ProcedureOverview>?> _procedures;
 
+  //for filter
+  late final Future<List<ProcedureOverview>?> _allProcedures = _procedures;
+
   @override
   void initState() {
     super.initState();
@@ -126,6 +129,23 @@ class _HomeState extends State<Home> {
   //TODO
   void onDirection(Direction direction) {}
 
-  //TODO
-  void onFilter(FilterOptions option) {}
+  void onFilter(FilterOptions option) {
+    if (option.filter == null) {
+      setState(() {
+        _procedures = _allProcedures;
+      });
+    } else {
+      setState(() {
+        _procedures = _allProcedures.then(
+          (value) => value
+              ?.where(
+                (element) =>
+                    element.transitionItems.category.index ==
+                    option.filter!.index,
+              )
+              .toList(),
+        );
+      });
+    }
+  }
 }

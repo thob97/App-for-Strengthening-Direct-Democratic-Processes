@@ -27,6 +27,9 @@ class FavoritePage extends StatefulWidget {
 class _FavoritePageState extends State<FavoritePage> {
   late Future<List<ProcedureOverview>?> _procedures;
 
+  //for filter
+  late final Future<List<ProcedureOverview>?> _allProcedures = _procedures;
+
   @override
   void initState() {
     super.initState();
@@ -138,6 +141,23 @@ class _FavoritePageState extends State<FavoritePage> {
   //TODO
   void onDirection(Direction direction) {}
 
-  //TODO
-  void onFilter(FilterOptions option) {}
+  void onFilter(FilterOptions option) {
+    if (option.filter == null) {
+      setState(() {
+        _procedures = _allProcedures;
+      });
+    } else {
+      setState(() {
+        _procedures = _allProcedures.then(
+          (value) => value
+              ?.where(
+                (element) =>
+                    element.transitionItems.category.index ==
+                    option.filter!.index,
+              )
+              .toList(),
+        );
+      });
+    }
+  }
 }
