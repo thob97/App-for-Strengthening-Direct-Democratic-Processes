@@ -11,6 +11,18 @@ class POIMarkerPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DateFormat formatter = DateFormat('dd.MM.yyyy kk:mm');
+    String popupText =
+        '\nBeschreibung:\n  ${pointOfInterest.appointment.description}';
+    if (pointOfInterest.appointment.begin != null &&
+        pointOfInterest.appointment.end != null) {
+      popupText += '\n\nZeitraum:\n  von ${formatter.format(
+        pointOfInterest.appointment.begin!,
+      )} Uhr\n  bis ${formatter.format(
+        pointOfInterest.appointment.end!,
+      )} Uhr';
+    }
+    popupText +=
+        '\n\nAddresse:\n  ${pointOfInterest.address.street} ${pointOfInterest.address.houseNumber}\n  ${pointOfInterest.address.postcode} ${pointOfInterest.address.city}';
     return Card(
       color: Theme.of(context).colorScheme.surface,
       shape: RoundedRectangleBorder(
@@ -32,7 +44,7 @@ class POIMarkerPopup extends StatelessWidget {
             ),
             Text(
               // has to remain
-              '\nBeschreibung:\n  ${pointOfInterest.appointment.description}\n\nZeitraum:\n  von ${formatter.format(pointOfInterest.appointment.begin)} Uhr\n  bis ${formatter.format(pointOfInterest.appointment.end)} Uhr\n\nAddresse:\n  ${pointOfInterest.address.street} ${pointOfInterest.address.houseNumber}\n  ${pointOfInterest.address.postcode} ${pointOfInterest.address.city}',
+              popupText,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface,
               ),
