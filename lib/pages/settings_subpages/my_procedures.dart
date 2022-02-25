@@ -18,7 +18,7 @@ class MyProcedures extends StatefulWidget {
   const MyProcedures();
 
   ///Style
-  static const _placeholderMsg = 'Es wurden noch keine Verfahren erstellt';
+  static const _noProceduresMsg = 'Es wurden noch keine Verfahren erstellt';
 
   @override
   State<MyProcedures> createState() => _MyProceduresState();
@@ -107,11 +107,18 @@ class _MyProceduresState extends State<MyProcedures> {
   Widget body(BuildContext context) {
     return CustomFutureBuilder(
       futureData: _procedures,
-      customErrorMsg: MyProcedures._placeholderMsg,
       builder: (result) {
         result as List<ProcedureOverview>;
-        return OverviewProcedureView(items: result);
+        return result.isEmpty
+            ? _noSubscribedProceduresPlaceholder()
+            : OverviewProcedureView(items: result);
       },
+    );
+  }
+
+  Widget _noSubscribedProceduresPlaceholder() {
+    return const Center(
+      child: Text(MyProcedures._noProceduresMsg),
     );
   }
 

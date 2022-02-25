@@ -17,7 +17,7 @@ class FavoritePage extends StatefulWidget {
   const FavoritePage();
 
   ///Style
-  static const _placeholderMsg = 'Es wurden noch keine Verfahren abonniert';
+  static const _noProceduresMsg = 'Es wurden noch keine Verfahren abonniert';
   static const _notLoggedInPlaceholderMsg = 'Dafür musst du angemeldet sein';
 
   @override
@@ -111,13 +111,20 @@ class _FavoritePageState extends State<FavoritePage> {
     );
   }
 
+  Widget _noSubscribedProceduresPlaceholder() {
+    return const Center(
+      child: Text(FavoritePage._noProceduresMsg),
+    );
+  }
+
   Widget body(BuildContext context) {
     return CustomFutureBuilder(
       futureData: _procedures,
-      customErrorMsg: FavoritePage._placeholderMsg,
       builder: (result) {
         result as List<ProcedureOverview>;
-        return OverviewProcedureView(items: result);
+        return result.isEmpty
+            ? _noSubscribedProceduresPlaceholder()
+            : OverviewProcedureView(items: result);
       },
     );
   }

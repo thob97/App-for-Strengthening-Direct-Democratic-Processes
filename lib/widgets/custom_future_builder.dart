@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomFutureBuilder extends StatelessWidget {
-  const CustomFutureBuilder({
-    required this.futureData,
-    required this.builder,
-    this.customErrorMsg,
-  });
+  const CustomFutureBuilder({required this.futureData, required this.builder});
 
   final Future<dynamic> futureData;
   final Widget Function(Object) builder;
-  final String? customErrorMsg;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +16,7 @@ class CustomFutureBuilder extends StatelessWidget {
             return const _WaitingWidget();
           default:
             return snapshot.hasError || snapshot.data == null
-                ? _ErrorWidget(customErrorMsg)
+                ? _ErrorWidget()
                 : builder(snapshot.data!);
         }
       },
@@ -30,16 +25,12 @@ class CustomFutureBuilder extends StatelessWidget {
 }
 
 class _ErrorWidget extends StatelessWidget {
-  const _ErrorWidget(this.customErrorMsg);
-
-  final String? customErrorMsg;
-
   ///Style
   static const String _errorMsg = 'Etwas ist schiefgelaufen...';
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(customErrorMsg ?? _errorMsg));
+    return const Center(child: Text(_errorMsg));
   }
 }
 
