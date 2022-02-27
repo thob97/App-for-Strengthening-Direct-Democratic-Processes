@@ -62,8 +62,6 @@ dependencies:
   #run with:
   #flutter packages pub run build_runner build
   json_annotation: ^4.3.0
-  #to format datetime
-  intl: ^0.17.0
   #for share buttons
   share_plus: ^3.0.4
   liquid_progress_indicator: ^0.4.0
