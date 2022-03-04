@@ -4,7 +4,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swp_direktdem_verf_app/methods/file_from_img_url_method.dart';
-import 'package:swp_direktdem_verf_app/pages/new_procedure.dart';
+import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure1.dart';
 import 'package:swp_direktdem_verf_app/pages/selected_procedure.dart';
 import 'package:swp_direktdem_verf_app/service/database_substitute.dart';
 import 'package:swp_direktdem_verf_app/service/model/procedure/simple_procedure.dart';
@@ -91,7 +91,7 @@ class _MyProceduresState extends State<MyProcedures> {
     return Scaffold(
       appBar: SearchAppBar(title: 'Meine Verfahren', onSearch: onSearch),
       floatingActionButton:
-          const _TransitionFloatingActionButton(openChild: NewProcedurePage()),
+          const _TransitionFloatingActionButton(openChild: NewProcedure1()),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[FoldableFilterBar(onFilter: onFilter)];

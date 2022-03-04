@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:swp_direktdem_verf_app/pages/new_procedure.dart';
+import 'package:swp_direktdem_verf_app/pages/create_new_procedure/new_procedure1.dart';
 import 'package:swp_direktdem_verf_app/widgets/selected_procedure/widgets/elementary/share_button.dart';
 
 class ProcedureImg extends StatelessWidget {
@@ -107,7 +107,7 @@ class _TopIconsState extends State<_TopIcons> {
           ],
         ),
         if (widget.showEdit)
-          const _TransitionSettingsButton(openChild: NewProcedurePage()),
+          const _TransitionSettingsButton(openChild: NewProcedure1()),
       ],
     );
   }
