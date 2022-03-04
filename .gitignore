@@ -29,7 +29,6 @@
 .packages
 .pub-cache/
 .pub/
-/build/
 pubspec.lock
 local.properties
 
@@ -50,3 +49,13 @@ app.*.map.json
 # GraphQL related
 *.graphql
 .graphqlconfig
+
+#for apk release
+/build/*
+!build/app
+build/app/*
+!build/app/outputs
+build/app/outputs/*
+!build/app/outputs/flutter-apk
+build/app/outputs/flutter-apk/*
+!build/app/outputs/flutter-apk/app-release.apk
