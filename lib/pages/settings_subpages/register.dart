@@ -25,13 +25,6 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final _formkey = GlobalKey<FormState>();
   late User user;
-  @override
-  void dispose() {
-    controllerFirstName.dispose();
-    controllerLastName.dispose();
-    controllerEmail.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -139,6 +132,13 @@ class _RegisterPageState extends State<RegisterPage> {
         lastName: controllerLastName.text,
       ),
     );
+    setState(() {
+      controllerLastName.clear();
+      controllerFirstName.clear();
+      controllerEmail.clear();
+      passController.clear();
+      passConfCcontroller.clear();
+    });
   }
 }
 
