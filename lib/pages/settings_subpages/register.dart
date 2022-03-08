@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 import 'package:swp_direktdem_verf_app/pages/utils/user_preferences.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/service_database.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/password_confirm.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
@@ -14,11 +15,9 @@ final passController = TextEditingController();
 final passConfCcontroller = TextEditingController();
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage(
-    this.users, {
+  const RegisterPage({
     Key? key,
   }) : super(key: key);
-  final List<User> users;
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
@@ -50,17 +49,17 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 TextfieldLoginRegister(
                   'Vorname',
-                  UserPreferences().myUser.first_name,
+                  UserPreferences().myUser.firstName,
                   controllerFirstName,
                 ),
                 TextfieldLoginRegister(
                   'Nachname',
-                  UserPreferences().myUser.last_name,
+                  UserPreferences().myUser.lastName,
                   controllerLastName,
                 ),
                 TextfieldLoginRegister(
                   'Email',
-                  UserPreferences().myUser.email,
+                  '${UserPreferences().myUser.firstName}@${UserPreferences().myUser.lastName}.admin',
                   controllerEmail,
                 ),
                 PasswordFieldWidget(
@@ -72,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     if (_formkey.currentState!.validate()) {
                       final form = _formkey.currentState!;
                       onInputTextChanged();
-                      if (form.validate() && _searchResult.isNotEmpty) {
+                      if (form.validate() && _userCreated.isNotEmpty) {
                         TextInput.finishAutofillContext();
                         ScaffoldMessenger.of(context)
                           ..removeCurrentSnackBar()
@@ -87,9 +86,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => Settings(
-                              user: _searchResult.first,
-                              pressGeoON: true,
-                              users: widget.users,
+                              user: _userCreated.first,
+                              service: service,
                             ),
                           ),
                         );
@@ -125,14 +123,24 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future<void> onInputTextChanged() async {
-    _searchResult.clear();
-    for (final user in widget.users) {
-      if (controllerEmail.text == user.email &&
-          passController.text == user.password) {
-        _searchResult.add(user);
-      }
-    }
+    service.init();
+    final String id = ServiceDataBase()
+        .createUser(
+          firstName: controllerFirstName.text,
+          lastName: controllerLastName.text,
+          password: passController.text,
+          email: controllerEmail.text,
+        )
+        .toString();
+    _userCreated.add(
+      User(
+        firstName: controllerFirstName.text,
+        id: id,
+        lastName: controllerLastName.text,
+      ),
+    );
   }
 }
 
-List<User> _searchResult = [];
+List<User> _userCreated = [];
+final ServiceDataBase service = ServiceDataBase();

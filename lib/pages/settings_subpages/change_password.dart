@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/profile_settings.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/service_database.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/password_confirm.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
@@ -14,11 +15,11 @@ TextEditingController controllerPassOld = TextEditingController();
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage(
     this.user,
-    this.users, {
+    this.service, {
     Key? key,
   }) : super(key: key);
   final User user;
-  final List<User> users;
+  final ServiceDataBase service;
   @override
   _ChangePasswordPageState createState() => _ChangePasswordPageState();
 }
@@ -26,9 +27,12 @@ class ChangePasswordPage extends StatefulWidget {
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
   bool isHidden1 = false;
   bool isHidden2 = false;
+
   void togglePasswordVisibility1() => setState(() => isHidden1 = !isHidden1);
+
   void togglePasswordVisibility2() => setState(() => isHidden2 = !isHidden2);
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: const CustomAppBar('Passwort ändern'),
@@ -62,7 +66,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         MaterialPageRoute(
                           builder: (context) => ProfileSettings(
                             widget.user,
-                            widget.users,
+                            widget.service,
                           ),
                         ),
                       );
@@ -71,28 +75,29 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       if (_formkey.currentState!.validate()) {
                         final form = _formkey.currentState!;
 
-                        if (form.validate() &&
-                            controllerPassOld.text == widget.user.password) {
-                          onInputTextChanged();
-                          TextInput.finishAutofillContext();
+                        if (form.validate()) {
+                          updateUserPassword();
+                          if (update == true) {
+                            TextInput.finishAutofillContext();
 
-                          ScaffoldMessenger.of(context)
-                            ..removeCurrentSnackBar()
-                            ..showSnackBar(
-                              const SnackBar(
-                                content:
-                                    Text('Das Passwort erfolgreich geändert'),
+                            ScaffoldMessenger.of(context)
+                              ..removeCurrentSnackBar()
+                              ..showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('Das Passwort erfolgreich geändert'),
+                                ),
+                              );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProfileSettings(
+                                  widget.user,
+                                  widget.service,
+                                ),
                               ),
                             );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProfileSettings(
-                                _searchResult.first,
-                                widget.users,
-                              ),
-                            ),
-                          );
+                          }
                         } else {
                           TextInput.finishAutofillContext();
 
@@ -110,7 +115,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             MaterialPageRoute(
                               builder: (context) => ChangePasswordPage(
                                 widget.user,
-                                widget.users,
+                                widget.service,
                               ),
                             ),
                           );
@@ -124,34 +129,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           ),
         ),
       );
-  Future<void> onInputTextChanged() async {
-    _searchResult.clear();
-    for (final userDetail in widget.users) {
-      if (passController.text != userDetail.password &&
-          widget.user.id == userDetail.id) {
-        widget.users.removeWhere((_user) => _user.id == userDetail.id);
-        widget.users.add(
-          User(
-            last_login: userDetail.last_login,
-            is_active: userDetail.is_active,
-            is_superuser: userDetail.is_superuser,
-            first_name: userDetail.first_name,
-            password: passController.text,
-            id: userDetail.id,
-            date_joined: userDetail.date_joined,
-            email: userDetail.email,
-            last_name: userDetail.last_name,
-            is_staff: userDetail.is_staff,
-          ),
-        );
-      }
-    }
-    for (final userDetail in widget.users) {
-      if (widget.user.id == userDetail.id) {
-        _searchResult.add(userDetail);
-      }
-    }
+
+  Future<void> updateUserPassword() async {
+    final String id = widget.user.id;
+    update =
+        await widget.service.updateUser(userId: id, email: passController.text);
   }
 }
 
-List<User> _searchResult = [];
+bool update = false;

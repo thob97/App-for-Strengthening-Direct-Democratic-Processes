@@ -6,6 +6,7 @@ import 'package:swp_direktdem_verf_app/pages/settings_subpages/change_password.d
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/login.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/service_database.dart';
 import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/settingsbutton.dart';
@@ -13,11 +14,11 @@ import 'package:swp_direktdem_verf_app/widgets/settingsbutton.dart';
 class ProfileSettings extends StatefulWidget {
   const ProfileSettings(
     this.user,
-    this.users, {
+    this.service, {
     Key? key,
   }) : super(key: key);
   final User user;
-  final List<User> users;
+  final ServiceDataBase service;
   @override
   _ProfileSettingsState createState() => _ProfileSettingsState();
 }
@@ -39,7 +40,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      ChangeEmailPage(widget.user, widget.users),
+                      ChangeEmailPage(widget.user, widget.service),
                 ),
               );
             },
@@ -53,7 +54,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      ChangePasswordPage(widget.user, widget.users),
+                      ChangePasswordPage(widget.user, widget.service),
                 ),
               );
             },
@@ -66,7 +67,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProfilePage(widget.user, widget.users),
+                  builder: (context) =>
+                      ProfilePage(widget.user, widget.service),
                 ),
               );
             },
@@ -133,14 +135,22 @@ class _ProfileSettingsState extends State<ProfileSettings> {
 //        arguments: const NavigationArguments(),
 //      );
         onAccountDelete();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => LoginPage(
-              users,
+        if (isUserDeleted == true) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginPage(),
             ),
-          ),
-        );
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  ProfileSettings(widget.user, widget.service),
+            ),
+          );
+        }
       }, //todo push to login view
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all(
@@ -154,9 +164,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   }
 
   Future<void> onAccountDelete() async {
-    users = widget.users;
-    users.removeWhere((_user) => _user.id == widget.user.id);
+    isUserDeleted = await widget.service.deleteUser(widget.user.id);
+    if (isUserDeleted == true) {
+      widget.service.logout();
+    }
   }
 }
 
-List<User> users = [];
+bool isUserDeleted = false;

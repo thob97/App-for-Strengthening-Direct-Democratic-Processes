@@ -2,10 +2,11 @@ import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/datasecurity.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/login.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermanagement.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/service_database.dart';
 import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/settingsbutton.dart';
@@ -14,12 +15,10 @@ class Settings extends StatefulWidget {
   const Settings({
     Key? key,
     required this.user,
-    required this.pressGeoON,
-    required this.users,
+    required this.service,
   }) : super(key: key);
   final User user;
-  final bool pressGeoON;
-  final List<User> users;
+  final ServiceDataBase service;
   @override
   _SettingsState createState() => _SettingsState();
 }
@@ -35,15 +34,15 @@ class _SettingsState extends State<Settings> {
         children: [
           SettingsButton(
             CommunityMaterialIcons.account_edit,
-            (widget.pressGeoON == true) ? 'Benutzer' : 'Anmelden',
-            (widget.pressGeoON == true)
+            (widget.service.userIsLoggedIn() == true) ? 'Benutzer' : 'Anmelden',
+            (widget.service.userIsLoggedIn() == true)
                 ? () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => ProfilePage(
                           widget.user,
-                          widget.users,
+                          widget.service,
                         ),
                       ),
                     );
@@ -52,9 +51,7 @@ class _SettingsState extends State<Settings> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginPage(
-                          widget.users,
-                        ),
+                        builder: (context) => const LoginPage(),
                       ),
                     );
                   },
@@ -72,7 +69,9 @@ class _SettingsState extends State<Settings> {
           SettingsButton(Icons.notes, 'Datenschutzbestimmungen', () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const DataSecurity()),
+              MaterialPageRoute(
+                builder: (context) => UserScreen(ServiceDataBase()),
+              ),
             );
           }),
         ],

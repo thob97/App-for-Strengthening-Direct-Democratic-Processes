@@ -5,7 +5,8 @@ import 'package:swp_direktdem_verf_app/pages/error_page.dart';
 import 'package:swp_direktdem_verf_app/pages/favorite.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/my_procedures.dart';
-import 'package:swp_direktdem_verf_app/pages/utils/user_preferences.dart';
+import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/service_database.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   if (settings.arguments == null || settings.name == null) {
@@ -35,9 +36,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/settings':
       return PageRouteBuilder(
         pageBuilder: (_, __, ___) => Settings(
-          pressGeoON: false,
-          user: UserPreferences().myUser,
-          users: const [],
+          user: const User(
+            id: '',
+            firstName: '',
+            lastName: '',
+            isSuperuser: false,
+            isStaff: false,
+          ),
+          service: ServiceDataBase(),
         ),
       );
 
