@@ -59,11 +59,7 @@ class _UserScreenState extends State<UserScreen> {
                       return Card(
                         margin: EdgeInsets.zero,
                         child: ListTile(
-                          leading: const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              'https://banner2.cleanpng.com/20180516/zq/kisspng-computer-icons-google-account-icon-design-login-5afc02dab4a218.0950785215264652427399.jpg',
-                            ),
-                          ),
+                          leading: const Icon(Icons.person),
                           title: Text(
                             '${_searchResult[i].firstName} ${_searchResult[i].lastName}',
                           ),
@@ -88,11 +84,7 @@ class _UserScreenState extends State<UserScreen> {
                       return Card(
                         margin: EdgeInsets.zero,
                         child: ListTile(
-                          leading: const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              'https://banner2.cleanpng.com/20180516/zq/kisspng-computer-icons-google-account-icon-design-login-5afc02dab4a218.0950785215264652427399.jpg',
-                            ),
-                          ),
+                          leading: const Icon(Icons.person),
                           title: Text(
                             '${_userDetails[index].firstName} ${_userDetails[index].lastName}',
                           ),
@@ -120,6 +112,7 @@ class _UserScreenState extends State<UserScreen> {
   // Get json result and convert it to model. Then add
   Future<void> getUserDetails() async {
     setState(() async {
+      ServiceDataBase().init();
       _userDetails = (await ServiceDataBase().getAllUsers())!;
     });
   }
