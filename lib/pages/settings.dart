@@ -2,9 +2,9 @@ import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:swp_direktdem_verf_app/config/custom_theme_data.dart';
 import 'package:swp_direktdem_verf_app/config/route_generator.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/datasecurity.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/login.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermanagement.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
 import 'package:swp_direktdem_verf_app/service/service_database.dart';
 import 'package:swp_direktdem_verf_app/widgets/animated_bottom_navigation_bar.dart';
@@ -70,7 +70,7 @@ class _SettingsState extends State<Settings> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => UserScreen(ServiceDataBase()),
+                builder: (context) => const DataSecurity(),
               ),
             );
           }),
