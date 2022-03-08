@@ -57,8 +57,8 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
                   validator: (password) {
                     if (password!.isEmpty) {
                       return 'Bitte das Passwort eingeben';
-                    } else if (password.length < 6) {
-                      return 'Das Passwort muss mindestens 6 Zeichen lang sein';
+                    } else if (password.length < 4) {
+                      return 'Das Passwort muss mindestens 4 Zeichen lang sein';
                     } else {
                       return null;
                     }
@@ -102,8 +102,8 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
                   validator: (password) {
                     if (password!.isEmpty) {
                       return 'Bitte geben Sie Ihr Passwort erneut ein';
-                    } else if (password.length < 6) {
-                      return 'Das Passwort muss mindestens  6 Zeichen lang sein';
+                    } else if (password.length < 4) {
+                      return 'Das Passwort muss mindestens  4 Zeichen lang sein';
                     } else if (password != widget.passController.text) {
                       return 'Das Passwort muss dasselbe sein wie oben';
                     } else {
