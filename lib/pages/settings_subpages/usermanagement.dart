@@ -1,28 +1,20 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage_for_admin.dart';
 import 'package:swp_direktdem_verf_app/service/model/user.dart';
-import 'package:swp_direktdem_verf_app/service/service_mocked.dart';
+import 'package:swp_direktdem_verf_app/service/service_database.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
 TextEditingController controller = TextEditingController();
 
 class UserScreen extends StatefulWidget {
-  const UserScreen(this.users, {Key? key}) : super(key: key);
-  final List<User> users;
+  const UserScreen(this.service, {Key? key}) : super(key: key);
+  final ServiceDataBase service;
   @override
   _UserScreenState createState() => _UserScreenState();
 }
 
 class _UserScreenState extends State<UserScreen> {
-  // Get json result and convert it to model. Then add
-  Future<void> getUserDetails() async {
-    setState(() async {
-      _userDetails = await ServiceMocked().getAllUser();
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -73,15 +65,15 @@ class _UserScreenState extends State<UserScreen> {
                             ),
                           ),
                           title: Text(
-                            '${_searchResult[i].first_name} ${_searchResult[i].last_name}',
+                            '${_searchResult[i].firstName} ${_searchResult[i].lastName}',
                           ),
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ProfilePage(
+                                builder: (context) => ProfilePageForAdmin(
                                   _searchResult[i],
-                                  widget.users,
+                                  widget.service,
                                 ),
                               ),
                             );
@@ -102,15 +94,15 @@ class _UserScreenState extends State<UserScreen> {
                             ),
                           ),
                           title: Text(
-                            '${_userDetails[index].first_name} ${_userDetails[index].last_name}',
+                            '${_userDetails[index].firstName} ${_userDetails[index].lastName}',
                           ),
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ProfilePage(
+                                builder: (context) => ProfilePageForAdmin(
                                   _userDetails[index],
-                                  widget.users,
+                                  widget.service,
                                 ),
                               ),
                             );
@@ -125,6 +117,13 @@ class _UserScreenState extends State<UserScreen> {
     );
   }
 
+  // Get json result and convert it to model. Then add
+  Future<void> getUserDetails() async {
+    setState(() async {
+      _userDetails = (await ServiceDataBase().getAllUsers())!;
+    });
+  }
+
   Future<void> onSearchTextChanged(String text) async {
     _searchResult.clear();
     if (text.isEmpty) {
@@ -133,8 +132,8 @@ class _UserScreenState extends State<UserScreen> {
     }
 
     for (final userDetail in _userDetails) {
-      if (userDetail.first_name.contains(text) ||
-          userDetail.last_name.contains(text)) {
+      if (userDetail.firstName.contains(text) ||
+          userDetail.lastName.contains(text)) {
         _searchResult.add(userDetail);
       }
     }
