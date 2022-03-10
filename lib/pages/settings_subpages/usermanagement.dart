@@ -1,34 +1,20 @@
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilepage_for_admin.dart';
+import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/service_database.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 
-class UserScreen extends StatefulWidget {
-  const UserScreen({Key? key}) : super(key: key);
+TextEditingController controller = TextEditingController();
 
+class UserScreen extends StatefulWidget {
+  const UserScreen(this.service, {Key? key}) : super(key: key);
+  final ServiceDataBase service;
   @override
   _UserScreenState createState() => _UserScreenState();
 }
 
 class _UserScreenState extends State<UserScreen> {
-  TextEditingController controller = TextEditingController();
-
-  // Get json result and convert it to model. Then add
-  Future<void> getUserDetails() async {
-    final response = await http.get(Uri.parse(url));
-    final responseJson = json.decode(response.body);
-
-    setState(() {
-      for (final Map user in responseJson) {
-        _userDetails.add(User.fromJson(user.cast()));
-      }
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -73,20 +59,18 @@ class _UserScreenState extends State<UserScreen> {
                       return Card(
                         margin: EdgeInsets.zero,
                         child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              _searchResult[i].imagePath,
-                            ),
-                          ),
+                          leading: const Icon(Icons.person),
                           title: Text(
-                            '${_searchResult[i].name.split(" ").first} ${_searchResult[i].name.split(" ").last}',
+                            '${_searchResult[i].firstName} ${_searchResult[i].lastName}',
                           ),
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    ProfilePage(_searchResult[i]),
+                                builder: (context) => ProfilePageForAdmin(
+                                  _searchResult[i],
+                                  widget.service,
+                                ),
                               ),
                             );
                           },
@@ -100,20 +84,18 @@ class _UserScreenState extends State<UserScreen> {
                       return Card(
                         margin: EdgeInsets.zero,
                         child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              _userDetails[index].imagePath,
-                            ),
-                          ),
+                          leading: const Icon(Icons.person),
                           title: Text(
-                            '${_userDetails[index].name.split(" ").first} ${_userDetails[index].name.split(" ").last}',
+                            '${_userDetails[index].firstName} ${_userDetails[index].lastName}',
                           ),
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    ProfilePage(_userDetails[index]),
+                                builder: (context) => ProfilePageForAdmin(
+                                  _userDetails[index],
+                                  widget.service,
+                                ),
                               ),
                             );
                           },
@@ -127,6 +109,14 @@ class _UserScreenState extends State<UserScreen> {
     );
   }
 
+  // Get json result and convert it to model. Then add
+  Future<void> getUserDetails() async {
+    setState(() async {
+      ServiceDataBase().init();
+      _userDetails = (await ServiceDataBase().getAllUsers())!;
+    });
+  }
+
   Future<void> onSearchTextChanged(String text) async {
     _searchResult.clear();
     if (text.isEmpty) {
@@ -135,8 +125,8 @@ class _UserScreenState extends State<UserScreen> {
     }
 
     for (final userDetail in _userDetails) {
-      if (userDetail.name.split(' ').first.contains(text) ||
-          userDetail.name.split(' ').last.contains(text)) {
+      if (userDetail.firstName.contains(text) ||
+          userDetail.lastName.contains(text)) {
         _searchResult.add(userDetail);
       }
     }
@@ -147,5 +137,3 @@ class _UserScreenState extends State<UserScreen> {
 List<User> _searchResult = [];
 
 List<User> _userDetails = [];
-
-const String url = 'https://jsonplaceholder.typicode.com/users';

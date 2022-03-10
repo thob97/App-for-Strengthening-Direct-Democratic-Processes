@@ -2,28 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:swp_direktdem_verf_app/pages/settings.dart';
 import 'package:swp_direktdem_verf_app/pages/settings_subpages/register.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
-import 'package:swp_direktdem_verf_app/utils/user_preferences.dart';
+import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/service_database.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/textfield_login_register.dart';
 
+final emailController = TextEditingController();
+final passwordController = TextEditingController();
+
 class LoginPage extends StatefulWidget {
-  const LoginPage(this.user, {Key? key}) : super(key: key);
-  final User user;
+  const LoginPage({
+    Key? key,
+  }) : super(key: key);
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  _LoginPageState();
   final _formkey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+
   @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
+  void initState() {
+    _loggedUser.clear();
+    super.initState();
   }
 
   @override
@@ -36,13 +37,13 @@ class _LoginPageState extends State<LoginPage> {
           child: Form(
             key: _formkey,
             child: Column(
-              children: <Widget>[
+              children: [
                 const SizedBox(
                   height: 15,
                 ),
                 TextfieldLoginRegister(
                   'Email',
-                  UserPreferences.myUser.email,
+                  'user@domain.com',
                   emailController,
                 ),
                 TextfieldLoginRegister(
@@ -51,26 +52,30 @@ class _LoginPageState extends State<LoginPage> {
                   passwordController,
                 ),
                 ElevatedButton(
-                  onPressed: () async {
+                  onPressed: () {
                     if (_formkey.currentState!.validate()) {
                       final form = _formkey.currentState!;
-
-                      if (form.validate()) {
-                        TextInput.finishAutofillContext();
-
-                        ScaffoldMessenger.of(context)
-                          ..removeCurrentSnackBar()
-                          ..showSnackBar(
-                            const SnackBar(
-                              content: Text('Erfolgreich eingeloggt'),
+                      onInputTextChanged();
+                      if (form.validate() && _loggedUser.isNotEmpty) {
+                        {
+                          TextInput.finishAutofillContext();
+                          ScaffoldMessenger.of(context)
+                            ..removeCurrentSnackBar()
+                            ..showSnackBar(
+                              const SnackBar(
+                                content: Text('Erfolgreich eingeloggt'),
+                              ),
+                            );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Settings(
+                                user: _loggedUser.first,
+                                service: service,
+                              ),
                             ),
                           );
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Settings(),
-                          ),
-                        );
+                        }
                       } else {
                         TextInput.finishAutofillContext();
 
@@ -83,6 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           );
+                        setState(() {});
                       }
                     }
                   },
@@ -103,9 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const RegisterPage(
-                          user: UserPreferences.myUser,
-                        ),
+                        builder: (context) => const RegisterPage(),
                       ),
                     );
                   },
@@ -121,4 +125,29 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  Future<void> onInputTextChanged() async {
+    final bool _userExist = await service.login(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+    service.init();
+    if (_userExist != false) {
+      final String id = (await service.getOwnUser())!;
+      _loggedUser.add(
+        User(
+          firstName: emailController.text.split('@').first,
+          id: id,
+          lastName: emailController.text.split('@').last.split('.').first,
+        ),
+      );
+    }
+    setState(() {
+      emailController.clear();
+      passwordController.clear();
+    });
+  }
 }
+
+List<User> _loggedUser = [];
+final ServiceDataBase service = ServiceDataBase();

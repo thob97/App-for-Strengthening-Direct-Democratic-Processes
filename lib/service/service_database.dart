@@ -5,6 +5,7 @@ import 'package:swp_direktdem_verf_app/service/model/procedure/categories.dart';
 import 'package:swp_direktdem_verf_app/service/model/procedure/detailed_procedure.dart';
 import 'package:swp_direktdem_verf_app/service/model/procedure/simple_procedure.dart';
 import 'package:swp_direktdem_verf_app/service/model/procedure/success.dart';
+import 'package:swp_direktdem_verf_app/service/model/user.dart';
 import 'package:swp_direktdem_verf_app/service/service.dart';
 
 class ServiceDataBase implements Service {
@@ -525,6 +526,33 @@ class ServiceDataBase implements Service {
   }
 
   ///Users
+  Future<List<User>?> getAllUsers() async {
+    ///TODO db: change once implemented by db team: titleImage
+    const String query = '''
+    query{
+      user{
+        id,
+        firstName,
+        lastName,
+        email
+      }
+    }
+    ''';
+
+    final QueryResult result = await fetchData(query);
+
+    if (result.hasException) {
+      debugPrint(
+        'getAllUsers: ${result.exception.toString()}',
+      );
+      return null;
+    }
+    debugPrint(result.data.toString());
+    return (result.data!['user'] as List<dynamic>)
+        .map((_proc) => User.fromJson(_proc as Map<String, dynamic>))
+        .toList();
+  }
+
   @override
   Future<String?> getOwnUser() async {
     const String query = '''

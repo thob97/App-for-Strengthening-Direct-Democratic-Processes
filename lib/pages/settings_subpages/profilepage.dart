@@ -1,14 +1,25 @@
+// ignore: eol_at_end_of_file
 import 'package:flutter/material.dart';
-import 'package:swp_direktdem_verf_app/config/route_generator.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/profilesettings.dart';
-import 'package:swp_direktdem_verf_app/pages/settings_subpages/usermodel.dart';
+import 'package:swp_direktdem_verf_app/pages/settings.dart';
+import 'package:swp_direktdem_verf_app/pages/settings_subpages/profile_settings.dart';
+import 'package:swp_direktdem_verf_app/service/model/user.dart';
+import 'package:swp_direktdem_verf_app/service/service_database.dart';
 import 'package:swp_direktdem_verf_app/widgets/custom_appbar.dart';
 import 'package:swp_direktdem_verf_app/widgets/two_butts_in_row.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage(this.user, {Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage(
+    this.user,
+    this.service, {
+    Key? key,
+  }) : super(key: key);
   final User user;
+  final ServiceDataBase service;
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
 
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     // const user = UserPreferences.myUser;
@@ -21,14 +32,17 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 24),
-                buildName(user, context),
+                buildName(widget.user, context),
                 const SizedBox(height: 35),
                 TwoButtInRow(
                   functionOne: () => _showMyDialog(context),
                   functionTwo: () async {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => EditProfilePage(user),
+                        builder: (context) => ProfileSettings(
+                          widget.user,
+                          widget.service,
+                        ),
                       ),
                     );
                   },
@@ -44,35 +58,21 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget buildName(User user, BuildContext context) {
-    const bool isSwitched = true;
     return Column(
       children: [
         Text(
-          user.name.split(' ').first,
+          widget.user.firstName,
           style: Theme.of(context).textTheme.headline2,
         ),
         const SizedBox(height: 4),
         Text(
-          user.name.split(' ').last,
+          widget.user.lastName,
           style: Theme.of(context).textTheme.headline2,
         ),
         const SizedBox(height: 4),
         Text(
-          user.email,
+          '${user.firstName}@${user.lastName}.com',
           style: Theme.of(context).textTheme.bodyText2,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'Email Adresse sichtbar machen',
-              style: Theme.of(context).textTheme.bodyText2,
-            ),
-            Switch(
-              value: isSwitched,
-              onChanged: (value) {},
-            ),
-          ],
         ),
         const SizedBox(
           height: 20,
@@ -88,17 +88,15 @@ class ProfilePage extends StatelessWidget {
         return AlertDialog(
           title: Text(
             'Ausloggen',
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1
-                ?.apply(color: Theme.of(context).colorScheme.primary),
+            style: Theme.of(context).textTheme.bodyText1?.apply(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
           ),
           content: Text(
             'Möchten Sie Ihre Sitzung wirklich beenden?',
-            style: Theme.of(context)
-                .textTheme
-                .bodyText2
-                ?.apply(color: Theme.of(context).colorScheme.primary),
+            style: Theme.of(context).textTheme.bodyText2?.apply(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
           ),
           actions: <Widget>[
             _cancelButton(context),
@@ -127,10 +125,18 @@ class ProfilePage extends StatelessWidget {
 
   Widget _confirmButton(BuildContext context) {
     return TextButton(
-      onPressed: () => Navigator.of(context).pushNamed(
-        '/home',
-        arguments: const NavigationArguments(),
-      ), //todo push to login view
+      onPressed: () {
+        logoutUser();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Settings(
+              user: const User(id: '', firstName: '', lastName: ''),
+              service: widget.service,
+            ),
+          ),
+        );
+      },
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all(
           Theme.of(context).textTheme.bodyText2?.apply(
@@ -140,5 +146,9 @@ class ProfilePage extends StatelessWidget {
       ),
       child: const Text('Ja'),
     );
+  }
+
+  Future<void> logoutUser() async {
+    widget.service.logout();
   }
 }
