@@ -1,13 +1,13 @@
-# swp_direktdem_verf_app
+# App-for-Strengthening-Direct-Democratic-Processes
 
 <p float="left">
     <img src="./_github-example-pictures/home1.png"  width="20%" height="20%">
-    <img src="./_github-example-pictures/home2.png"  width="40%" height="40%">
-    <img src="./_github-example-pictures/dashboard.png"  width="30%" height="30%">
+    <img src="./_github-example-pictures/home2.png"  width="20%" height="20%">
+    <img src="./_github-example-pictures/dashboard.png"  width="20%" height="20%">
 </p>
 
 
-Eine mobile App mit Flutter für Android und iOS zur Staerkung direktdemokratischer Verfahren.
+Eine mobile App mit Flutter für Android und iOS zur Staerkung direktdemokratischer Verfahren. Was developed during a software project at the Free University of Berlin.
 
 
 ## Table Of Content
@@ -15,6 +15,7 @@ Eine mobile App mit Flutter für Android und iOS zur Staerkung direktdemokratisc
 - [Testet with version](#testet-with-version)
 - [Run](#run)
 - [Example pictures](#example-pictures)
+- [Contribution](#contribution)
 
 
 
@@ -42,11 +43,11 @@ flutter run
     <img src="./_github-example-pictures/home3.png"  width="20%" height="20%">
     <img src="./_github-example-pictures/home4.png"  width="20%" height="20%">
     <img src="./_github-example-pictures/map.png"  width="20%" height="20%">
-    <img src="./_github-example-pictures/dashboard.png"  width="40%" height="40%">
-    <img src="./_github-example-pictures/dashboard1.png"  width="30%" height="30%">
-    <img src="./_github-example-pictures/dashboard2.png"  width="30%" height="30%">
-    <img src="./_github-example-pictures/favs.png"  width="30%" height="30%">
-    <img src="./_github-example-pictures/settings.png"  width="30%" height="30%">
+    <img src="./_github-example-pictures/dashboard.png"  width="20%" height="20%">
+    <img src="./_github-example-pictures/dashboard1.png"  width="20%" height="20%">
+    <img src="./_github-example-pictures/dashboard2.png"  width="20%" height="20%">
+    <img src="./_github-example-pictures/favs.png"  width="20%" height="20%">
+    <img src="./_github-example-pictures/settings.png"  width="20%" height="20%">
 </p>
 
 
