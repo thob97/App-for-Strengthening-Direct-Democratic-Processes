@@ -1,9 +1,9 @@
 # App-for-Strengthening-Direct-Democratic-Processes
 
 <p float="left">
-    <img src="./_github-example-pictures/home1.png"  width="20%" height="20%">
-    <img src="./_github-example-pictures/home2.png"  width="20%" height="20%">
-    <img src="./_github-example-pictures/dashboard.png"  width="20%" height="20%">
+    <img src="./_github-example-pictures/preview1.gif"  width="20%" height="20%">
+    <img src="./_github-example-pictures/preview2.gif"  width="20%" height="20%">
+
 </p>
 
 
