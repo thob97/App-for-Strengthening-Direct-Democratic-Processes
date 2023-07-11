@@ -7,7 +7,7 @@
 </p>
 
 
-Eine mobile App mit Flutter für Android und iOS zur Staerkung direktdemokratischer Verfahren. Was developed during a software project at the Free University of Berlin.
+An app developed in flutter for Strengthening Direct Democratic Processes. Developed in a software project at Freie Universität Berlin.
 
 
 ## Table Of Content
