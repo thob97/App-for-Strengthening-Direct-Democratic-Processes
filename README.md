@@ -1,4 +1,4 @@
-# App-for-Strengthening-Direct-Democratic-Processes
+# App for Strengthening Direct Democratic Processes
 
 <p float="left">
     <img src="./_github-example-pictures/preview1.gif"  width="20%" height="20%">
